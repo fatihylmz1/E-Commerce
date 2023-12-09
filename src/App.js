@@ -1,11 +1,12 @@
-import { Header } from "./Layouts/Header";
+import { HomePage } from "./Pages/HomePage";
 import "./index.css";
+
 
 
 function App() {
   return (
     <div >
-      <Header />
+      <HomePage />
 
     </div>
   );
