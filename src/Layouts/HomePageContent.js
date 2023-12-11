@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index.css";
 import ellipse from "../Icons/Ellipse 26.svg";
+import axios from "axios";
+import { Clients } from "./Clients";
 
 export const HomePageContent = () => {
+
+
+    useEffect(() => {
+        axios.get("https://workintech-fe-ecommerce.onrender.com")
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.warn(err);
+            })
+    }, []);
+
+
+
     return (
         <div>
             <div className="flex justify-center pt-16">
@@ -25,6 +41,17 @@ export const HomePageContent = () => {
 
                 </div>
             </div>
+            <Clients />
+            <div className="flex flex-row w-screen pl-24 pr-44 py-20 h-180">
+
+                <div className="bg-shpping-card-1 w-1/2 h-auto">
+
+                </div>
+
+            </div>
+
+
+
         </div>
     )
 }
