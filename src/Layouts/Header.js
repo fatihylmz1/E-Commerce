@@ -15,7 +15,7 @@ import login from "../Icons/login.svg";
 
 export const Header = () => {
     return (
-        <div>
+        <div className="w-screen">
             <div className="w-screen bg-header-blue h-14 flex flex-row">
 
                 <div className="w-screen flex flex-row flex-wrap px-6 content-center items-center justify-between">
