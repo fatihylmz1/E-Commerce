@@ -28,6 +28,7 @@ module.exports = {
         "light-green": "#2bebc5",
         'regal-blue': '#2a7cc7',
         "icon-blue": "#23A6F0",
+        "explore-blue": "#2D8BC0BF"
       }
     },
   },

@@ -2,15 +2,11 @@ import React from "react";
 import "../index.css";
 import phone from "../Icons/phone.svg";
 import message from "../Icons/message.svg";
-import insta from "../Icons/instagram.svg";
-import facebook from "../Icons/facebook.svg";
-import youtube from "../Icons/youtube.svg";
-import twitter from "../Icons/twitter.svg";
-import box from "../Icons/box.svg";
-import hearth from "../Icons/hearth.svg";
-import search from "../Icons/search.svg";
 import { NavLink } from "react-router-dom";
-import login from "../Icons/login.svg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser } from "@fortawesome/free-solid-svg-icons";
+
 
 
 export const Header = () => {
@@ -35,12 +31,14 @@ export const Header = () => {
                         <p className="text-white text-sm font-bold">Follow Us  and get a chance to win 80% off</p>
                     </div>
 
-                    <div className="flex flex-row gap-3">
+                    <div className="flex flex-row gap-3 items-center">
                         <p className="text-white text-sm font-bold">Follow Us :</p>
-                        <img src={insta} />
-                        <img src={youtube} />
-                        <img src={facebook} />
-                        <img src={twitter} />
+
+                        <FontAwesomeIcon icon={faInstagram} className="text-white" />
+                        <FontAwesomeIcon icon={faYoutube} className="text-white" />
+                        <FontAwesomeIcon icon={faFacebook} className="text-white" />
+                        <FontAwesomeIcon icon={faTwitter} className="text-white " />
+
                     </div>
 
                 </div>
@@ -66,22 +64,26 @@ export const Header = () => {
 
                     <div className="flex flex-row gap-8">
                         <div className="flex flex-row justify-between content-center items-center gap-2">
-                            <img src={login} className="w-3 h-3" />
+
+                            <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
                             <p className="text-login text-sm font-bold">Login / Register</p>
                         </div>
 
                         <div className="flex flex-row justify-between gap-8 items-center">
                             <div>
-                                <img src={search} />
+
+                                <FontAwesomeIcon icon={faSearch} className="text-icon-blue" />
                             </div>
 
-                            <div className="flex flex-row justify-between">
-                                <img src={box} />
+                            <div className="flex flex-row justify-between items-center">
+
+                                <FontAwesomeIcon icon={faShoppingBasket} className="text-icon-blue" />
                                 <p>1</p>
                             </div>
 
-                            <div className="flex flex-row justify-between">
-                                <img src={hearth} />
+                            <div className="flex flex-row justify-between items-center">
+
+                                <FontAwesomeIcon icon={faHeartSolid} className="text-icon-blue" />
                                 <p>1</p>
                             </div>
                         </div>
