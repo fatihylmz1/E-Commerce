@@ -19,11 +19,11 @@ import ellipse4 from "../photos/Ellipse 17.svg";
 
 export const Products = () => {
     return (
-        <div className=" flex flex-col flex-wrap justify-between items-center px-40">
+        <div className=" flex flex-col flex-wrap justify-between items-center px-40 py-20">
 
 
-            <div className="flex flex-row flex-wrap justify-between py-6 px-6 gap-8">
-                <div className="flex flex-col justify-between items-center gap-4 ">
+            <div className="flex flex-row flex-wrap justify-between py-6 px-6 gap-4">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product1} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -39,7 +39,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product2} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -55,7 +55,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product3} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -71,7 +71,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product4} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -87,7 +87,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product5} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -103,7 +103,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product6} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -119,7 +119,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product7} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
@@ -135,7 +135,7 @@ export const Products = () => {
                     </div>
 
                 </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
+                <div className="flex flex-col justify-between items-center gap-4 mb-8">
                     <img src={product8} />
                     <p className="text-base font-bold text-header-blue">Graphic Design</p>
                     <p className="text-sm font-bold text-link-color">English Department</p>
