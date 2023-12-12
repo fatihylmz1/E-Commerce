@@ -53,8 +53,8 @@ export const Header = () => {
                             <p className="text-site-name text-2xl font-bold">Bandage</p>
                         </div>
                         <div className="flex flex-row flex-wrap justify-between gap-4 text-sm content-center">
-                            <NavLink to="#" className="text-sm text-link-color font-bold">Home</NavLink>
-                            <NavLink to="#" className="text-sm text-link-color font-bold">Shop</NavLink>
+                            <NavLink to="/" className="text-sm text-link-color font-bold">Home</NavLink>
+                            <NavLink to="/shop" className="text-sm text-link-color font-bold">Shop</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">About</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Blog</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Contact</NavLink>
