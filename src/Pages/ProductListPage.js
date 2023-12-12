@@ -8,10 +8,10 @@ import { faGreaterThan, faThList, faBorderAll, faListCheck } from "@fortawesome/
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { ProductCard } from "../Layouts/ProductCard";
-import { Paging } from "../Layouts/Paging";
 
 
-export const ShoppingPage = () => {
+
+export const ProductListPage = () => {
     return (
         <div>
             <Header />

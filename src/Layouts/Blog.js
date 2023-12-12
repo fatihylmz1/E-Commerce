@@ -88,17 +88,16 @@ export const Blog = () => {
                     <div className=" flex relative z-1000 ">
 
                         <img src={featured2} />
+                        <div className="z-2000 absolute bg-left-top pl-6 pt-6">
+                            <p className="rounded border bg-danger-color text-sm font-bold text-white px-2 py-2 w-14 h-auto text-center">Sale</p>
+                        </div>
+                        <div className=" flex flex-row justify-between pl-6 pt-80 z-2000 absolute bg-bottom gap-4">
+                            <FontAwesomeIcon icon={faHeart} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
+                            <FontAwesomeIcon icon={faShoppingBasket} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
+                            <FontAwesomeIcon icon={faEye} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
+                        </div>
                     </div>
 
-                    <div className="z-2000 absolute bg-left-top pl-6 pt-6">
-                        <p className="rounded border bg-danger-color text-sm font-bold text-white px-2 py-2 w-14 h-auto text-center">Sale</p>
-                    </div>
-                    <div className=" flex flex-row justify-between pl-6 pt-80 z-2000 absolute bg-bottom gap-4">
-                        <FontAwesomeIcon icon={faHeart} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
-                        <FontAwesomeIcon icon={faShoppingBasket} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
-                        <FontAwesomeIcon icon={faEye} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
-
-                    </div>
 
 
                     <div className="flex flex-col justify-between px-4 pb-9 pt-4">
