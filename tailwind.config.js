@@ -12,6 +12,7 @@ module.exports = {
       zIndex: {
         '1000': '1',
         '2000': '2',
+        "3000": "3",
 
       },
       spacing: {
@@ -28,7 +29,10 @@ module.exports = {
         "light-green": "#2bebc5",
         'regal-blue': '#2a7cc7',
         "icon-blue": "#23A6F0",
-        "explore-blue": "#2D8BC0BF"
+        "explore-blue": "#2D8BC0BF",
+        "danger-color": "#E74040",
+        "price-green": "#23856D",
+        "price-grey": "#BDBDBD",
       }
     },
   },
