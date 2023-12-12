@@ -7,7 +7,7 @@ import arrow from "../photos/uil_arrow-growth.svg";
 
 export const Featured = () => {
     return (
-        <div className="w-screen flex flex-col flex-wrap justify-between px-48 py-20">
+        <div className=" flex flex-col flex-wrap justify-between px-48 py-20">
 
             <div className="flex flex-col justify-center gap-4 py-20 text-center">
                 <h4 className="text-link-color text-xl font-normal">Featured Products</h4>

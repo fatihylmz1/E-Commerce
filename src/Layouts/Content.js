@@ -5,7 +5,7 @@ import card4 from "../photos/card-4.png";
 
 export const Content = () => {
     return (
-        <div className="w-screen flex flex-row flex-wrap px-48 py-20 gap-20 items-center">
+        <div className=" flex flex-row flex-wrap px-48 py-20 gap-20 items-center">
 
             <div className="flex flex-row gap-4">
                 <img src={card3} />

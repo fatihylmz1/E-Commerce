@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
     return (
-        <div className="w-screen h-auto flex flex-col px-52">
+        <div className=" h-auto flex flex-col px-52">
 
             <div className="flex flex-row flex-wrap items-center justify-between py-11">
                 <div><p className="text-header-blue text-2xl font-bold">Bandage</p></div>

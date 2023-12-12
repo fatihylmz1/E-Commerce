@@ -11,8 +11,8 @@ import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, 
 
 export const Header = () => {
     return (
-        <div className="w-screen">
-            <div className="w-screen bg-header-blue h-14 flex flex-row">
+        <div >
+            <div className=" bg-header-blue h-14 flex flex-row">
 
                 <div className="w-screen flex flex-row flex-wrap px-6 content-center items-center justify-between">
                     <div className="flex flex-row flex-wrap">
@@ -44,7 +44,7 @@ export const Header = () => {
                 </div>
             </div>
 
-            <div className="w-screen h-16 flex flex-row flex-wrap px-6 content-center items-center py-2.5">
+            <div className=" h-16 flex flex-row flex-wrap px-6 content-center items-center py-2.5">
 
                 <div className="w-screen flex flex-row flex-wrap justify-between">
 

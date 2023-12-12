@@ -18,14 +18,14 @@ import table from "../photos/icon ant-design-area-chart-outlined.svg";
 
 export const Blog = () => {
     return (
-        <div className="w-screer flex flex-col py-20">
+        <div className="flex flex-col py-20">
 
             <div className="flex flex-col flex-wrap justify-between items-center pb-24 gap-4">
                 <p className="text-login text-sm font-bold">Practice Advice</p>
                 <p className="text-header-blue text-4xl font-bold">Featured Posts</p>
             </div>
 
-            <div className="w-screen flex flex-row flex-wrap justify-between px-48">
+            <div className=" flex flex-row flex-wrap justify-between px-48">
 
                 <div className="flex flex-row gap-8">
 

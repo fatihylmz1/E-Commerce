@@ -9,8 +9,8 @@ import teletabi from "../Icons/teletabi.svg";
 
 export const Clients = () => {
     return (
-        <div className="w-screen">
-            <div className="flex flex-row flex-wrap justify-between px-52 py-20 w-screen">
+        <div className=" px-48 py-20">
+            <div className="flex flex-row flex-wrap justify-between">
                 <img src={hooli} />
                 <img src={lyft} />
                 <img src={leaf} />

@@ -11,7 +11,7 @@ import { Blog } from "./Blog";
 export const HomePageContent = () => {
 
     return (
-        <div className="w-screen">
+        <div>
             <Hero />
             <Clients />
             <ShopCards />

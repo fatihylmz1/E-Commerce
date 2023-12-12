@@ -12,7 +12,7 @@ import photo8 from "../photos/cardphotos/product-cover-8.png"
 export const Card = () => {
 
     return (
-        <div className="w-screen flex flex-col flex-wrap justify-between items-center px-40">
+        <div className=" flex flex-col flex-wrap justify-between items-center px-40">
             <div className="flex flex-col justify-center gap-4 py-20 text-center">
                 <h4 className="text-link-color text-xl font-normal">Featured Products</h4>
                 <h3 className="text-header-blue text-2xl font-bold">BESTSELLER PRODUCTS</h3>

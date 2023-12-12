@@ -4,7 +4,7 @@ import "../index.css";
 
 export const Hero = () => {
     return (
-        <div className="flex justify-center pt-16 w-screen">
+        <div className="flex justify-center pt-16 ">
             <div className="w-11/12 rounded-2xl bg-gradient-to-r from-light-blue to-light-green flex flex-row justify-stretch items-center pl-24 gap-12 z-1000 relative h-159 flex-wrap ">
 
                 <div className="flex flex-col justify-between w-1/2 h-80 flex-wrap">

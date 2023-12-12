@@ -4,7 +4,7 @@ import "../index.css";
 
 export const ShopCards = () => {
     return (
-        <div className="flex flex-row w-screen pl-52 pr-44 py-20 h-180 justify-between flex-wrap ">
+        <div className="flex flex-row  pl-52 pr-44 py-20 h-180 justify-between flex-wrap ">
 
             <div className="bg-shopping-card-1 w-1/2 h-auto bg-no-repeat  bg-scroll z-1000 flex flex-col justify-end items-start">
                 <div className="z-2000 w-96 h-56 bg-explore-blue opacity-85 mb-5 flex flex-col justify-center pl-16 pr-36">
