@@ -8,6 +8,8 @@ module.exports = {
         'shopping-card-2': "url(https://s3-alpha-sig.figma.com/img/4587/86e9/d5e9865170a32e0687f0a17d8581b9c8?Expires=1703462400&Signature=Ivt9tp~KtDtKMsTyJc57~0AvBXz8YFATetMSMQ-9-j0R1UQOIA5w-KiULd~SkdPs4h2it4of9YIAbmNjlK4VpDcQAwEIYu~vdScQ27U7mFDQyqqQg7iAfQsjGd-9aantlDJWD83gqedSwCx7rIDRzRh5rveAyhg54QMrPqgQMIBZpM4UK6~WCMjLg5~RHZ5uARx5WsAWPcEeP-2JG-6Mnh~b1ooddIZnxNtUb72ucXWBn7P9h0U~1Ua4SaNCTYm3mWSy8UaqsfsRLn2pLGZb98VtTsVrXBNpS2XgSdxWHLrmRC5DBD6XcwBUdv2z9FoXN7dPR~kTuOQsZzEVmS7N6g__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4)",
         'shopping-card-3': "url(https://s3-alpha-sig.figma.com/img/81b4/0a6b/ad298edf330ec5747ae93edc6118ce4a?Expires=1703462400&Signature=q8Qmewvs7wJtpE0YFuo~2Eb0u6HckmvtVxxybqI4zZ9JwKCj~C2aynevvKj1ZKM8J2B-n~-xMXDY~BfdpL79N-2-76n~heQCgbQSSIA-Wj1hij4~9DWDUTwvyUx~-uQhSa~htMRRZXE03pOWBHQ3I-Ieffiec8BRjuQvLWwKrIs5EAvoIsyut2M8X8zXLrh9KvanRgCa~RrZaeIILjT7y93fm3SJoailSwWli34jutM1qevYsJK1iK6K1eyf-zVBnX8XolTzD86UxT2ZtAOnmchcftl1jBnfcuk2c~7R9QLuzLtoaiT7HPiJB-zueWkkIVTAKLIuRbxby0C1T4knWA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4)",
 
+
+
       },
       zIndex: {
         '1000': '1',

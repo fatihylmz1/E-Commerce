@@ -7,12 +7,16 @@ import { Hero } from "./Hero";
 import { ShopCards } from "./ShopCards";
 import { Featured } from "./Featured";
 import { Blog } from "./Blog";
+import Slider from "./Slider";
+import ImageSlider from "./Slider";
 
 export const HomePageContent = () => {
 
     return (
         <div>
-            <Hero />
+            {/* <Hero /> */}
+            <Slider />
+            {/* <ImageSlider /> */}
             <Clients />
             <ShopCards />
             <Card />

@@ -15,3 +15,7 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.z-move {
+  transform: translate3d(0, 0, 50px);
+}
