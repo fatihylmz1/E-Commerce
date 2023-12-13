@@ -8,7 +8,7 @@ import { ShopCards } from "./ShopCards";
 import { Featured } from "./Featured";
 import { Blog } from "./Blog";
 import Slider from "./Slider";
-import ImageSlider from "./Slider";
+
 
 export const HomePageContent = () => {
 
@@ -16,7 +16,6 @@ export const HomePageContent = () => {
         <div>
             {/* <Hero /> */}
             <Slider />
-            {/* <ImageSlider /> */}
             <Clients />
             <ShopCards />
             <Card />

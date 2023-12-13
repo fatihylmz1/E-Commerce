@@ -34,10 +34,18 @@ export const Header = () => {
                     <div className="flex flex-row gap-3 items-center">
                         <p className="text-white text-sm font-bold">Follow Us :</p>
 
-                        <FontAwesomeIcon icon={faInstagram} className="text-white" />
-                        <FontAwesomeIcon icon={faYoutube} className="text-white" />
-                        <FontAwesomeIcon icon={faFacebook} className="text-white" />
-                        <FontAwesomeIcon icon={faTwitter} className="text-white " />
+                        <button>
+                            <FontAwesomeIcon icon={faInstagram} className="text-white" />
+                        </button>
+                        <button>
+                            <FontAwesomeIcon icon={faYoutube} className="text-white" />
+                        </button>
+                        <button>
+                            <FontAwesomeIcon icon={faFacebook} className="text-white" />
+                        </button>
+                        <button>
+                            <FontAwesomeIcon icon={faTwitter} className="text-white " />
+                        </button>
 
                     </div>
 
@@ -64,27 +72,34 @@ export const Header = () => {
 
                     <div className="flex flex-row gap-8">
                         <div className="flex flex-row justify-between content-center items-center gap-2">
-
-                            <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
-                            <p className="text-login text-sm font-bold">Login / Register</p>
+                            <button className="flex flex-row items-center gap-2">
+                                <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
+                                <p className="text-login text-sm font-bold">Login / Register</p>
+                            </button>
                         </div>
 
                         <div className="flex flex-row justify-between gap-8 items-center">
                             <div>
+                                <button>
+                                    <FontAwesomeIcon icon={faSearch} className="text-icon-blue" />
 
-                                <FontAwesomeIcon icon={faSearch} className="text-icon-blue" />
+                                </button>
                             </div>
 
                             <div className="flex flex-row justify-between items-center">
+                                <button className="flex flex-row items-center gap-2">
 
-                                <FontAwesomeIcon icon={faShoppingBasket} className="text-icon-blue" />
-                                <p>1</p>
+                                    <FontAwesomeIcon icon={faShoppingBasket} className="text-icon-blue" />
+                                    <p>1</p>
+                                </button>
                             </div>
 
                             <div className="flex flex-row justify-between items-center">
+                                <button className="flex flex-row items-center gap-2">
 
-                                <FontAwesomeIcon icon={faHeartSolid} className="text-icon-blue" />
-                                <p>1</p>
+                                    <FontAwesomeIcon icon={faHeartSolid} className="text-icon-blue" />
+                                    <p>1</p>
+                                </button>
                             </div>
                         </div>
                     </div>

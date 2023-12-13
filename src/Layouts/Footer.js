@@ -12,9 +12,15 @@ export const Footer = () => {
             <div className="flex flex-row flex-wrap items-center justify-between py-11">
                 <div><p className="text-header-blue text-2xl font-bold">Bandage</p></div>
                 <div className=" flex flex-row gap-3">
-                    <FontAwesomeIcon icon={faFacebook} className="text-icon-blue" />
-                    <FontAwesomeIcon icon={faInstagram} className="text-icon-blue" />
-                    <FontAwesomeIcon icon={faTwitter} className="text-icon-blue" />
+                    <button>
+                        <FontAwesomeIcon icon={faFacebook} className="text-icon-blue" />
+                    </button>
+                    <button>
+                        <FontAwesomeIcon icon={faInstagram} className="text-icon-blue" />
+                    </button>
+                    <button>
+                        <FontAwesomeIcon icon={faTwitter} className="text-icon-blue" />
+                    </button>
                 </div>
             </div>
 

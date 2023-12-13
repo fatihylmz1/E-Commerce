@@ -17,204 +17,33 @@ import ellipse2 from "../photos/Ellipse 15.svg";
 import ellipse3 from "../photos/Ellipse 16.svg";
 import ellipse4 from "../photos/Ellipse 17.svg";
 
+const products = [product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12]
+
 export const Products = () => {
     return (
         <div className=" flex flex-col flex-wrap justify-between items-center px-40 py-20">
 
 
             <div className="flex flex-row flex-wrap justify-between py-6 px-6 gap-4">
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product1} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
+                {products.map((product) => (
+                    <div className="flex flex-col justify-between items-center gap-4 mb-8">
+                        <img src={product} />
+                        <p className="text-base font-bold text-header-blue">Graphic Design</p>
+                        <p className="text-sm font-bold text-link-color">English Department</p>
+                        <div className="flex flex-row gap-2">
+                            <p className="text-price-grey text-base font-bold">$16.48</p>
+                            <p className="text-price-green text-base font-bold">$6.48</p>
+                        </div>
+                        <div className="flex flex-row gap-2">
+                            <img src={ellipse} />
+                            <img src={ellipse2} />
+                            <img src={ellipse3} />
+                            <img src={ellipse4} />
+                        </div>
 
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product2} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
                     </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
+                ))}
 
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product3} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product4} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product5} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product6} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product7} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                    <img src={product8} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
-                    <img src={product9} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
-                    <img src={product10} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
-                    <img src={product11} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
-                <div className="flex flex-col justify-between items-center gap-4 ">
-                    <img src={product12} />
-                    <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                    <p className="text-sm font-bold text-link-color">English Department</p>
-                    <div className="flex flex-row gap-2">
-                        <p className="text-price-grey text-base font-bold">$16.48</p>
-                        <p className="text-price-green text-base font-bold">$6.48</p>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                        <img src={ellipse} />
-                        <img src={ellipse2} />
-                        <img src={ellipse3} />
-                        <img src={ellipse4} />
-                    </div>
-
-                </div>
             </div>
         </div>
     )
