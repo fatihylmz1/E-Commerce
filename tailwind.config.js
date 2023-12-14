@@ -21,6 +21,7 @@ module.exports = {
         '160': '40rem',
         "180": "45rem",
         "159": "39rem",
+        "157": "37rem",
       },
       colors: {
         "header-blue": "#252B42",

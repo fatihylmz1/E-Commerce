@@ -90,7 +90,7 @@ export const Header = () => {
                                 <button className="flex flex-row items-center gap-2">
 
                                     <FontAwesomeIcon icon={faShoppingBasket} className="text-icon-blue" />
-                                    <p>1</p>
+                                    <p className="text-login">1</p>
                                 </button>
                             </div>
 
@@ -98,7 +98,7 @@ export const Header = () => {
                                 <button className="flex flex-row items-center gap-2">
 
                                     <FontAwesomeIcon icon={faHeartSolid} className="text-icon-blue" />
-                                    <p>1</p>
+                                    <p className="text-login">1</p>
                                 </button>
                             </div>
                         </div>

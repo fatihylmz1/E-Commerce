@@ -4,7 +4,7 @@ import { Header } from "../Layouts/Header";
 import { Clients } from "../Layouts/Clients";
 import { Footer } from "../Layouts/Footer";
 import { Products } from "../Layouts/Products";
-import { faGreaterThan, faThList, faBorderAll, faListCheck } from "@fortawesome/free-solid-svg-icons";
+import { faGreaterThan, faBorderAll, faListCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { ProductCard } from "../Layouts/ProductCard";
@@ -29,22 +29,26 @@ export const ProductListPage = () => {
             <ProductCard />
             <div className="flex flex-row justify-between px-48 py-6 items-center">
                 <div>
-                    <p>Showing all 12 results</p>
+                    <p className="text-sm font-bold text-[#737373]">Showing all 12 results</p>
                 </div>
-                <div className="flex flex-row gap-4 items-center">
+                <div className="flex flex-row flex-wrap gap-4 items-center">
                     <p>Views</p>
-                    <FontAwesomeIcon icon={faBorderAll} className="border rounded border-neutral-400 px-4 py-4" />
-                    <FontAwesomeIcon icon={faListCheck} className="border rounded border-neutral-400 px-4 py-4" />
+                    <button>
+                        <FontAwesomeIcon icon={faBorderAll} className="border rounded border-neutral-400 px-4 py-4 hover:bg-black hover:text-white" />
+                    </button>
+                    <button>
+                        <FontAwesomeIcon icon={faListCheck} className="border rounded border-neutral-400 px-4 py-4 hover:bg-black hover:text-white" />
+                    </button>
 
                 </div>
-                <div className="flex flex-row items-center gap-4">
-                    <div className="border rounded border-neutral-400 px-4 py-4">
-                        <select className="dropdown">
-                            <option>Popularity</option>
-                            <option>Price</option>
-                            <option>Alphabeth</option>
-                        </select>
-                    </div>
+                <div className="flex flex-row flex-wrap items-center gap-4">
+
+                    <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer">
+                        <option>Popularity</option>
+                        <option>Price</option>
+                        <option>Alphabeth</option>
+                    </select>
+
                     <div>
                         <button className="rounded bg-sky-500 text-white text-lg font-light w-32 h-14">Filter</button>
                     </div>

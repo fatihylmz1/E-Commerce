@@ -86,7 +86,7 @@ export const Blog = () => {
                             <p className="text-xs text-link-color font-normal">Progress</p>
 
                         </div>
-                        <button className="rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">Subscribe </button>
+                        <button className="rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">Learn More </button>
                     </div>
 
 
@@ -148,7 +148,7 @@ export const Blog = () => {
                             <p className="text-xs text-link-color font-normal">Progress</p>
 
                         </div>
-                        <button className="rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">Subscribe </button>
+                        <button className="rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">Learn More </button>
                     </div>
 
                 </div>

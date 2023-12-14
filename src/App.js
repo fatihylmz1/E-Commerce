@@ -6,12 +6,13 @@ import { ProductListPage } from "./Pages/ProductListPage";
 
 
 
+
 function App() {
   return (
     <div >
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" exact element={<HomePage />} />
         </Routes>
         <Routes>
           <Route path="/shop" element={<ProductListPage />} />

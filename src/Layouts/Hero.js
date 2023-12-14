@@ -4,8 +4,8 @@ import "../index.css";
 
 export const Hero = () => {
     return (
-        <div className="flex justify-center pt-16 ">
-            <div className="w-11/12 rounded-2xl bg-gradient-to-r from-light-blue to-light-green flex flex-row justify-stretch items-center pl-24 gap-12 z-1000 relative h-159 flex-wrap ">
+        <div className="flex justify-center  ">
+            <div className="w-full rounded-2xl bg-gradient-to-r from-[#96E9FB] to-[#ABECD6] flex flex-row justify-stretch items-center pl-24 gap-12 z-1000 relative h-159 flex-wrap ">
 
                 <div className="flex flex-col justify-between w-1/2 h-80 flex-wrap">
                     <p className="text-regal-blue text-base font-bold">SUMMER 2020</p>
@@ -16,7 +16,7 @@ export const Hero = () => {
 
                 </div>
 
-                <div className="w-1/2 flex justify-end z-2000 absolute ml-160">
+                <div className="w-1/2 flex justify-end z-2000 absolute ml-157 h-full">
 
                     <img src="https://cdn.discordapp.com/attachments/1179758368726982712/1183781503084281907/none.png?ex=6589956f&is=6577206f&hm=7b95f5a80277148177bad160f47e425c9a5859bd7a77199f00d805df5b816546&" />
 
