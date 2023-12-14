@@ -4,7 +4,7 @@ import featured1 from "../photos/featured-1.png";
 import featured2 from "../photos/featured-2.png";
 import heart from "../Icons/icn favorite.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faHeart, faShoppingCart as faShoppingBasket, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faGreaterThan, faHeart, faShoppingCart as faShoppingBasket, faStar } from "@fortawesome/free-solid-svg-icons";
 import download from "../photos/download.svg";
 import ellipse from "../photos/Ellipse 14.svg";
 import ellipse2 from "../photos/Ellipse 15.svg";
@@ -50,10 +50,10 @@ export const Blog = () => {
 
 
                     <div className="flex flex-col justify-between px-4 pb-9 pt-4">
-                        <div className="flex flex-row justify-evenly gap-12">
+                        <div className="flex flex-row justify-evenly items-center gap-12">
                             <p className="text-login text-sm font-bold">English Department</p>
-                            <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-16 h-6  py-1 content-center items-center">
-                                <FontAwesomeIcon icon={faStar} className=" w-4 h-4 px-3 py-3 text-yellow-400" />
+                            <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-14 h-7  py-1 content-center items-center">
+                                <FontAwesomeIcon icon={faStar} className=" w-4 h-4 px-2 py-3 text-yellow-400" />
                                 <p className="text-white text-xs font-normal">4.9</p>
                             </div>
                         </div>
@@ -86,7 +86,10 @@ export const Blog = () => {
                             <p className="text-xs text-link-color font-normal">Progress</p>
 
                         </div>
-                        <button className="rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">Learn More </button>
+                        <button className="flex flex-row items-center justify-center gap-2 rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">
+                            <p>Learn More</p>
+                            <FontAwesomeIcon icon={faGreaterThan} />
+                        </button>
                     </div>
 
 
@@ -112,10 +115,10 @@ export const Blog = () => {
 
 
                     <div className="flex flex-col justify-between px-4 pb-9 pt-4">
-                        <div className="flex flex-row justify-evenly gap-12">
+                        <div className="flex flex-row justify-evenly items-center gap-12">
                             <p className="text-login text-sm font-bold">English Department</p>
-                            <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-16 h-6  py-1 content-center items-center">
-                                <FontAwesomeIcon icon={faStar} className=" w-4 h-4 px-3 py-3 text-yellow-400" />
+                            <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-14 h-7  py-1 content-center items-center">
+                                <FontAwesomeIcon icon={faStar} className=" w-4 h-4 px-2 py-3 text-yellow-400" />
                                 <p className="text-white text-xs font-normal">4.9</p>
                             </div>
                         </div>
@@ -148,7 +151,10 @@ export const Blog = () => {
                             <p className="text-xs text-link-color font-normal">Progress</p>
 
                         </div>
-                        <button className="rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">Learn More </button>
+                        <button className="flex flex-row items-center justify-center gap-2 rounded-3xl border border-login text-login text-sm font-bold w-32 h-14">
+                            <p>Learn More</p>
+                            <FontAwesomeIcon icon={faGreaterThan} />
+                        </button>
                     </div>
 
                 </div>

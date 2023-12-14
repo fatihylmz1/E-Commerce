@@ -16,7 +16,7 @@ export const Hero = () => {
 
                 </div>
 
-                <div className="w-1/2 flex justify-end z-2000 absolute ml-157 h-full">
+                <div className="w-1/2 flex justify-end z-2000 absolute ml-160 h-full">
 
                     <img src="https://cdn.discordapp.com/attachments/1179758368726982712/1183781503084281907/none.png?ex=6589956f&is=6577206f&hm=7b95f5a80277148177bad160f47e425c9a5859bd7a77199f00d805df5b816546&" />
 

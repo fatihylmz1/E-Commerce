@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import image2 from "../photos/hero-2.jpg";
+
 import { NavLink } from 'react-router-dom';
 import { Hero } from './Hero';
 
@@ -17,11 +18,11 @@ const ImageSlider = () => {
     };
 
     return (
-        <div className="w-full pt-16 pl-16 pr-20 z-10 relative">
+        <div className="w-full pt-16 pl-12 pr-16 z-10 relative">
 
             <Slider {...settings}>
 
-                <div className='w-full pl-16 pr-20 z-30 h-full relative' >
+                <div className='w-full pr-20 z-30 h-full relative' >
                     <Hero />
                 </div>
 
