@@ -14,12 +14,12 @@ export const Content = () => {
             <div className="flex flex-col flex-wrap justify-between h-64 ">
                 <p className="text-icon-blue text-base font-bold">Featured Products</p>
                 <p className="text-header-blue text-4xl font-bold">We love what we do</p>
-                <p className="text-link-color text-sm font-normal">
+                <p className="text-[#737373] text-sm font-normal">
                     Problems trying to resolve the conflict between<br />
                     the two major realms of Classical physics:<br />
                     Newtonian mechanics.
                 </p>
-                <p className="text-link-color text-sm font-normal">
+                <p className="text-[#737373] text-sm font-normal">
                     Problems trying to resolve the conflict between<br />
                     the two major realms of Classical physics:<br />
                     Newtonian mechanics.

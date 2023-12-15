@@ -15,10 +15,10 @@ export const ProductListPage = () => {
     return (
         <div>
             <Header />
-            <div className="px-6 py-6">
+            <div className="px-40 py-12">
                 <div className="flex flex-row justify-between">
                     <p className="text-2xl text-header-blue font-bold">Shop</p>
-                    <div className="flex flex-row gap-4 items-center">
+                    <div className="flex flex-row gap-3 items-center mr-4">
                         <NavLink to="/" className="text-header-blue text-sm font-bold">Home</NavLink>
                         <FontAwesomeIcon icon={faGreaterThan} className="text-price-grey" />
                         <NavLink to="/shop" className="text-sm font-bold text-price-grey">Shop</NavLink>
@@ -56,8 +56,8 @@ export const ProductListPage = () => {
 
             </div>
             <Products />
-            <div className="flex flex-row items-center px-40 justify-center">
-                <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-16 h-14">First</button>
+            <div className="flex flex-row items-center px-40 justify-center pb-12">
+                <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-16 h-14 transition-colors">First</button>
                 <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-8 h-14">1</button>
                 <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-8 h-14">2</button>
                 <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-8 h-14">3</button>

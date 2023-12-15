@@ -10,7 +10,7 @@ export const ProductCard = () => {
     return (
         <div className="px-40 pb-12 flex flex-wrap flex-row gap-4">
             <div className="z-1000 relative flex items-center justify-center">
-                <img src={img1} className="w-56 h-56 opacity-95" />
+                <img src={img1} className="w-56 h-56 brightness-75" alt="img1" />
 
                 <div className="z-2000 absolute flex flex-col justify-between gap-4 items-center">
                     <p className="text-white text-base font-bold">CLOTHS</p>
@@ -19,7 +19,7 @@ export const ProductCard = () => {
 
             </div>
             <div className="z-1000 relative flex items-center justify-center">
-                <img src={img2} className="w-56 h-56 opacity-95" />
+                <img src={img2} className="w-56 h-56 brightness-75" alt="img2" />
 
                 <div className="z-2000 absolute flex flex-col justify-between gap-4 items-center">
                     <p className="text-white text-base font-bold">CLOTHS</p>
@@ -28,7 +28,7 @@ export const ProductCard = () => {
 
             </div>
             <div className="z-1000 relative flex items-center justify-center">
-                <img src={img3} className="w-56 h-56 opacity-95" />
+                <img src={img3} className="w-56 h-56 brightness-75" alt="img3" />
 
                 <div className="z-2000 absolute flex flex-col justify-between gap-4 items-center">
                     <p className="text-white text-base font-bold">CLOTHS</p>
@@ -37,7 +37,7 @@ export const ProductCard = () => {
 
             </div>
             <div className="z-1000 relative flex items-center justify-center">
-                <img src={img4} className="w-56 h-56 opacity-95" />
+                <img src={img4} className="w-56 h-56 brightness-75" alt="img4" />
 
                 <div className="z-2000 absolute flex flex-col justify-between gap-4 items-center">
                     <p className="text-white text-base font-bold">CLOTHS</p>
@@ -46,7 +46,7 @@ export const ProductCard = () => {
 
             </div>
             <div className="z-1000 relative flex items-center justify-center">
-                <img src={img5} className="w-56 h-56 opacity-95" />
+                <img src={img5} className="w-56 h-56 brightness-75" alt="img5" />
 
                 <div className="z-2000 absolute flex flex-col justify-between gap-4 items-center">
                     <p className="text-white text-base font-bold">CLOTHS</p>

@@ -24,10 +24,10 @@ export const Products = () => {
         <div className=" flex flex-col flex-wrap justify-between items-center px-40 py-20">
 
 
-            <div className="flex flex-row flex-wrap justify-between py-6 px-6 gap-4">
+            <div className="flex flex-row flex-wrap justify-between pt-6 px-6 gap-4">
                 {products.map((product) => (
-                    <div className="flex flex-col justify-between items-center gap-4 mb-8">
-                        <img src={product} />
+                    <div className="flex flex-col justify-between items-center gap-4 mb-16">
+                        <img src={product} alt="product" />
                         <p className="text-base font-bold text-header-blue">Graphic Design</p>
                         <p className="text-sm font-bold text-link-color">English Department</p>
                         <div className="flex flex-row gap-2">
@@ -35,10 +35,10 @@ export const Products = () => {
                             <p className="text-price-green text-base font-bold">$6.48</p>
                         </div>
                         <div className="flex flex-row gap-2">
-                            <img src={ellipse} />
-                            <img src={ellipse2} />
-                            <img src={ellipse3} />
-                            <img src={ellipse4} />
+                            <img src={ellipse} alt="ellipse" />
+                            <img src={ellipse2} alt="ellipse" />
+                            <img src={ellipse3} alt="ellipse" />
+                            <img src={ellipse4} alt="ellipse" />
                         </div>
 
                     </div>
