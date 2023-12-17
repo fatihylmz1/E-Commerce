@@ -16,32 +16,27 @@ export const Card = () => {
 
     return (
         <div className=" flex flex-col flex-wrap justify-between items-center px-40">
-            <div className="flex flex-col justify-center gap-4 py-20 text-center">
-                <h4 className="text-link-color text-xl font-normal">Featured Products</h4>
-                <h3 className="text-header-blue text-2xl font-bold">BESTSELLER PRODUCTS</h3>
-                <p className="text-link-color text-sm font-normal">Problems trying to resolve the conflict between </p>
-            </div>
+
 
             <div className="flex flex-row flex-wrap justify-between pt-6 px-6 gap-8">
-                {photos.map((photo) => (
-                    <div className="flex flex-col justify-between items-center gap-4 mb-6">
-                        <img src={photo} />
-                        <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                        <p className="text-sm font-bold text-link-color">English Department</p>
-                        <div className="flex flex-row gap-2">
-                            <p className="text-price-grey text-base font-bold">$16.48</p>
-                            <p className="text-price-green text-base font-bold">$6.48</p>
-                        </div>
 
-                    </div>
+                {photos.map((photo) => (
+                    <NavLink to="/product">
+                        <div className="flex flex-col justify-between items-center gap-4 mb-6">
+                            <img src={photo} />
+                            <p className="text-base font-bold text-header-blue">Graphic Design</p>
+                            <p className="text-sm font-bold text-link-color">English Department</p>
+                            <div className="flex flex-row gap-2">
+                                <p className="text-price-grey text-base font-bold">$16.48</p>
+                                <p className="text-price-green text-base font-bold">$6.48</p>
+                            </div>
+
+                        </div>
+                    </NavLink>
 
                 ))}
             </div>
-            <div className="pt-24 pb-20">
-                <NavLink to="/shop">
-                    <button className="rounded border border-login text-login text-sm font-bold w-64 h-14">LOAD MORE PRODUCTS </button>
-                </NavLink>
-            </div>
+
 
         </div>
     )

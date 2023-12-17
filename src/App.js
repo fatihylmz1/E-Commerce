@@ -2,6 +2,7 @@ import { Route, BrowserRouter, Routes } from "react-router-dom";
 import { HomePage } from "./Pages/HomePage";
 import "./index.css";
 import { ProductListPage } from "./Pages/ProductListPage";
+import { ProductPage } from "./Pages/ProductPage";
 
 
 
@@ -16,6 +17,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/shop" element={<ProductListPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/product" element={<ProductPage />} />
         </Routes>
       </BrowserRouter>
     </div>

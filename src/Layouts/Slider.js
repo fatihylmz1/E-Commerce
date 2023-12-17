@@ -18,7 +18,7 @@ const ImageSlider = () => {
     };
 
     return (
-        <div className="w-full pt-16 pl-12 pr-16 z-10 relative">
+        <div className="w-full pt-16 pl-12 pr-8 z-10 relative">
 
             <Slider {...settings}>
 
