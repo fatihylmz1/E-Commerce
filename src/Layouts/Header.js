@@ -63,7 +63,7 @@ export const Header = () => {
                         <div className="flex flex-row flex-wrap justify-between gap-4 text-sm content-center">
                             <NavLink to="/" className="text-sm text-link-color font-bold">Home</NavLink>
                             <NavLink to="/shop" className="text-sm text-link-color font-bold">Shop</NavLink>
-                            <NavLink to="#" className="text-sm text-link-color font-bold">About</NavLink>
+                            <NavLink to="/about" className="text-sm text-link-color font-bold">About</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Blog</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Contact</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Pages</NavLink>
