@@ -1,20 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "../index.css";
 import phone from "../Icons/phone.svg";
 import message from "../Icons/message.svg";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
 
 
 
 export const Header = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
         <div >
-            <div className=" bg-header-blue h-14 flex flex-row">
+            <div className="sm:bg-header-blue sm:h-14 sm:flex sm:flex-row">
 
-                <div className="w-screen flex flex-row flex-wrap px-6 content-center items-center justify-between">
+                <div className="sm:w-screen sm:flex sm:flex-row sm:flex-wrap sm:px-6 sm:content-center sm:items-center sm:justify-between">
                     <div className="flex flex-row flex-wrap">
                         <div className="flex flex-row gap-1.5 flex-wrap mr-8">
                             <img src={phone} className="w-5 h-5" />
@@ -52,15 +58,40 @@ export const Header = () => {
                 </div>
             </div>
 
-            <div className=" h-16 flex flex-row flex-wrap px-6 content-center items-center py-2.5">
+            <div className=" sm:h-16 sm:flex sm:flex-row sm:flex-wrap sm:px-6 sm:content-center sm:items-center sm:py-2.5 px-0">
 
-                <div className="w-screen flex flex-row flex-wrap justify-between">
+                <div className="sm:w-screen sm:flex sm:flex-row sm:flex-wrap sm:justify-between w-full">
 
-                    <div className="flex flex-row">
-                        <div className="mr-32">
-                            <p className="text-site-name text-2xl font-bold">Bandage</p>
+                    <div className="sm:flex sm:flex-row flex flex-col items">
+                        <div className=" flex flex-col gap-0 h-auto">
+                            <div className="sm:mr-32 flex flex-row px-9 py-6 items-center gap-4 justify-between w-full">
+                                <p className="text-site-name text-2xl font-bold">Bandage</p>
+
+                                <div className="flex flex-row gap-4 items-center">
+                                    <FontAwesomeIcon icon={faSearch} className="text-black sm:hidden" />
+                                    <FontAwesomeIcon icon={faShoppingBasket} className="text-black sm:hidden" />
+
+                                    <nav className="sm:hidden ">
+                                        <div className="flex flex-col items-center justify-between">
+                                            <div className="text-white font-bold"></div>
+                                            <button
+                                                onClick={toggleMenu}
+                                                className="sm:hidden text-white focus:outline-none focus:border-none"
+                                            >
+                                                <FontAwesomeIcon icon={faBars} className="text-black" />
+                                            </button>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div className={`sm:hidden ${isOpen ? 'flex flex-col' : 'hidden'} lg:mt-0 items-center gap-8 py-24`}>
+                                <a href="/" className="block text-link-color text-3xl font-normal">Home</a>
+                                <a href="/shop" className="block text-link-color text-3xl font-normal">Product</a>
+                                <a href="#" className="block text-link-color text-3xl font-normal">Pricing</a>
+                                <a href="/contact" className="block text-link-color text-3xl font-normal">Contact</a>
+                            </div>
                         </div>
-                        <div className="flex flex-row flex-wrap justify-between gap-4 text-sm content-center">
+                        <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center">
                             <NavLink to="/" className="text-sm text-link-color font-bold">Home</NavLink>
                             <NavLink to="/shop" className="text-sm text-link-color font-bold">Shop</NavLink>
                             <NavLink to="/about" className="text-sm text-link-color font-bold">About</NavLink>
@@ -70,8 +101,8 @@ export const Header = () => {
                         </div>
                     </div>
 
-                    <div className="flex flex-row gap-8">
-                        <div className="flex flex-row justify-between content-center items-center gap-2">
+                    <div className="hidden sm:flex flex-row gap-8">
+                        <div className="hidden sm:flex flex-row justify-between content-center items-center gap-2">
                             <button className="flex flex-row items-center gap-2">
                                 <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
                                 <p className="text-login text-sm font-bold">Login / Register</p>
