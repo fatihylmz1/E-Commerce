@@ -4,6 +4,7 @@ import "./index.css";
 import { ProductListPage } from "./Pages/ProductListPage";
 import { ProductPage } from "./Pages/ProductPage";
 import { AboutPage } from "./Pages/AboutPage";
+import { ContactPage } from "./Pages/Contact";
 
 
 
@@ -24,6 +25,9 @@ function App() {
         </Routes>
         <Routes>
           <Route path="/about" element={<AboutPage />} />
+        </Routes>
+        <Routes>
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </BrowserRouter>
     </div>

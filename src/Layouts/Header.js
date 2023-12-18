@@ -65,7 +65,7 @@ export const Header = () => {
                             <NavLink to="/shop" className="text-sm text-link-color font-bold">Shop</NavLink>
                             <NavLink to="/about" className="text-sm text-link-color font-bold">About</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Blog</NavLink>
-                            <NavLink to="#" className="text-sm text-link-color font-bold">Contact</NavLink>
+                            <NavLink to="/contact" className="text-sm text-link-color font-bold">Contact</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Pages</NavLink>
                         </div>
                     </div>
