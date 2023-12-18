@@ -16,9 +16,10 @@ export const Header = () => {
         setIsOpen(!isOpen);
     };
 
+
     return (
         <div >
-            <div className="sm:bg-header-blue sm:h-14 sm:flex sm:flex-row">
+            <div className="sm:bg-header-blue sm:h-14 sm:flex sm:flex-row hidden">
 
                 <div className="sm:w-screen sm:flex sm:flex-row sm:flex-wrap sm:px-6 sm:content-center sm:items-center sm:justify-between">
                     <div className="flex flex-row flex-wrap">

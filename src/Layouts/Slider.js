@@ -18,34 +18,27 @@ const ImageSlider = () => {
     };
 
     return (
-        <div className="w-full pt-16 pl-12 pr-8 z-10 relative">
+        <div className="sm:w-full sm:pt-16 sm:pl-12 sm:pr-8 sm:z-10 sm:relative">
 
             <Slider {...settings}>
 
-                <div className='w-full pr-20 z-30 h-full relative' >
+                <div className='sm:w-full sm:pr-20 sm:z-30 sm:h-full sm:relative' >
                     <Hero />
                 </div>
 
 
-                <div className="w-full rounded-2xl flex flex-row justify-stretch items-center gap-12 relative flex-wrap">
+                <div className="sm:w-full sm:rounded-2xl sm:flex sm:flex-row sm:justify-stretch sm:items-center sm:gap-12 sm:relative sm:flex-wrap ">
 
 
-                    <div className="flex relative z-20">
-                        <img src={image2} className='h-159 rounded-2xl z-10 w-full' />
+                    <div className="sm:flex sm:relative sm:z-20 flex z-10 ">
+                        <img src={image2} className='sm:h-159 rounded-2xl sm:z-10 w-full h-[60rem] bg-left' />
 
-                        <div className="flex flex-col justify-center w-1/2 h-full flex-wrap absolute z-10 pl-24 gap-12">
-                            <p className="text-white text-base font-bold">SUMMER 2020</p>
-                            <p className="text-white text-6xl font-bold">NEW COLLECTION</p>
-                            <p className="text-white text-xl font-normal">We know how large objects will act,<br />
+                        <div className="sm:flex sm:flex-col sm:justify-center sm:w-1/2 sm:h-full sm:flex-wrap sm:items-start  sm:z-10 sm:absolute sm:pl-24 sm:gap-12 sm:mb-0 sm:ml-0 sm:pt-0 sm:text-start flex flex-col items-center z-20  mb-[23rem] ml-[30rem]  justify-center gap-12 text-center">
+                            <p className="text-regal-blue text-base font-bold">SUMMER 2020</p>
+                            <p className="text-header-blue sm:text-6xl text-[2.5rem] font-bold">NEW COLLECTION</p>
+                            <p className="text-gray-500 text-xl font-normal">We know how large objects will act,<br />
                                 but things on a small scale.</p>
-
-                            <div className='w-52 h-16'>
-                                <NavLink to="/shop">
-                                    <button className="rounded bg-[#2DC071] text-white text-2xl font-bold w-52 h-16">SHOP NOW</button>
-                                </NavLink>
-
-                            </div>
-
+                            <button className="rounded bg-sky-500 text-white text-2xl font-bold w-60 h-16">SHOP NOW</button>
                         </div>
                     </div>
 
