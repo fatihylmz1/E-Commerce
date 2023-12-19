@@ -8,7 +8,7 @@ import img5 from "../photos/shop-card/card-cover-9.jpg"
 
 export const ProductCard = () => {
     return (
-        <div className="px-40 pb-12 flex flex-wrap flex-row gap-4">
+        <div className="sm:px-40 pb-12 flex flex-wrap sm:flex-row gap-4 flex-col">
             <div className="z-1000 relative flex items-center justify-center">
                 <img src={img1} className="w-56 h-56 brightness-75" alt="img1" />
 

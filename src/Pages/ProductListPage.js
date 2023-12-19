@@ -15,8 +15,8 @@ export const ProductListPage = () => {
     return (
         <div>
             <Header />
-            <div className="px-40 py-12">
-                <div className="flex flex-row justify-between">
+            <div className="sm:px-40 py-12">
+                <div className="flex sm:flex-row justify-between flex-col items-center sm:gap-0 gap-6">
                     <p className="text-2xl text-header-blue font-bold">Shop</p>
                     <div className="flex flex-row gap-3 items-center mr-4">
                         <NavLink to="/" className="text-header-blue text-sm font-bold">Home</NavLink>
@@ -27,7 +27,7 @@ export const ProductListPage = () => {
             </div>
 
             <ProductCard />
-            <div className="flex flex-row justify-between px-48 py-6 items-center">
+            <div className="flex sm:flex-row justify-between sm:px-48 py-6 items-center flex-col sm:gap-0 gap-6">
                 <div>
                     <p className="text-sm font-bold text-[#737373]">Showing all 12 results</p>
                 </div>
@@ -56,7 +56,7 @@ export const ProductListPage = () => {
 
             </div>
             <Products />
-            <div className="flex flex-row items-center px-40 justify-center pb-12">
+            <div className="flex flex-row items-center sm:px-40 justify-center pb-12">
                 <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-16 h-14 transition-colors">First</button>
                 <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-8 h-14">1</button>
                 <button className="rounded border border-neutral-400 text-login text-sm font-bold hover:bg-login hover:text-white w-8 h-14">2</button>

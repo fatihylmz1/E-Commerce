@@ -114,7 +114,7 @@ export const Blog = () => {
 
 
 
-                    <div className="flex flex-col justify-between px-4 pb-9 pt-4 sm:gap-0 gap-4">
+                    <div className="flex flex-col justify-between sm:px-4 pb-9 pt-4 sm:gap-0 gap-4">
                         <div className="flex flex-row sm:justify-evenly items-center gap-12 justify-between">
                             <p className="text-login text-sm font-bold">English Department</p>
                             <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-14 h-7  py-1 content-center items-center">

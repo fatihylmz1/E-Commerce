@@ -87,9 +87,11 @@ export const Header = () => {
                             </div>
                             <div className={`sm:hidden ${isOpen ? 'flex flex-col' : 'hidden'} lg:mt-0 items-center gap-8 py-24`}>
                                 <a href="/" className="block text-link-color text-3xl font-normal">Home</a>
-                                <a href="/shop" className="block text-link-color text-3xl font-normal">Product</a>
-                                <a href="#" className="block text-link-color text-3xl font-normal">Pricing</a>
+                                <a href="/shop" className="block text-link-color text-3xl font-normal">Shop</a>
+                                <a href="/about" className="block text-link-color text-3xl font-normal">About</a>
+                                <a href="#" className="block text-link-color text-3xl font-normal">Blog</a>
                                 <a href="/contact" className="block text-link-color text-3xl font-normal">Contact</a>
+                                <a href="#" className="block text-link-color text-3xl font-normal">Pages</a>
                             </div>
                         </div>
                         <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center">

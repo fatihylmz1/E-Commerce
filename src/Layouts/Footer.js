@@ -7,9 +7,9 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
     return (
-        <div className=" h-auto flex flex-col px-52">
+        <div className=" h-auto flex flex-col sm:px-52 px-10">
 
-            <div className="flex flex-row flex-wrap items-center justify-between py-11">
+            <div className="flex sm:flex-row flex-wrap sm:items-center justify-between py-11 flex-col items-start sm:gap-0 gap-3">
                 <div><p className="text-header-blue text-2xl font-bold">Bandage</p></div>
                 <div className=" flex flex-row gap-3">
                     <button>
@@ -24,7 +24,7 @@ export const Footer = () => {
                 </div>
             </div>
 
-            <div className="py-12 flex flex-row flex-wrap justify-between">
+            <div className="py-12 flex sm:flex-row flex-wrap justify-between flex-col sm:gap-0 gap-4">
 
                 <div className="flex flex-col flex-wrap justify-between gap-4">
                     <p className="text-header-blue text-base font-bold">Company Info</p>

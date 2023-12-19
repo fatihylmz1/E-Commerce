@@ -22,10 +22,10 @@ const products = [product1, product2, product3, product4, product5, product6, pr
 
 export const Products = () => {
     return (
-        <div className=" flex flex-col flex-wrap justify-between items-center px-40 py-20">
+        <div className=" flex flex-col flex-wrap justify-between items-center sm:px-40 py-20">
 
 
-            <div className="flex flex-row flex-wrap justify-between pt-6 px-6 gap-4">
+            <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
                 {products.map((product) => (
 
                     <NavLink to="/product">
