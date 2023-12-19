@@ -15,10 +15,10 @@ const photos = [photo1, photo2, photo3, photo4, photo5, photo1, photo6, photo7, 
 export const Card = () => {
 
     return (
-        <div className=" flex flex-col flex-wrap justify-between items-center px-40">
+        <div className=" flex flex-col flex-wrap justify-between items-center sm:px-40">
 
 
-            <div className="flex flex-row flex-wrap justify-between pt-6 px-6 gap-8">
+            <div className="sm:flex sm:flex-row flex-wrap justify-between sm:pt-6 sm:px-6 sm:gap-8 flex flex-col ">
 
                 {photos.map((photo) => (
                     <NavLink to="/product">
