@@ -25,18 +25,18 @@ export const Blog = () => {
                 <p className="text-header-blue text-4xl font-bold">Featured Posts</p>
             </div>
 
-            <div className=" flex flex-row flex-wrap justify-between px-48">
+            <div className=" flex sm:flex-row flex-wrap sm:justify-between sm:px-48 flex-col justify-center items-center">
 
-                <div className="flex flex-row gap-8">
+                <div className="flex sm:flex-row gap-8 flex-col sm:w-[66rem] w-[21rem]">
 
                     <div className=" flex relative z-1000 ">
 
-                        <img src={featured1} />
+                        <img src={featured1} className="w-full sm:h-[25rem] h-[18rem]" />
                     </div>
                     <div className="z-2000 absolute bg-left-top pl-6 pt-6">
                         <p className="rounded border bg-danger-color text-sm font-bold text-white px-2 py-2 w-14 h-auto text-center">Sale</p>
                     </div>
-                    <div className=" flex flex-row justify-between pl-6 pt-80 z-2000 absolute bg-bottom gap-4">
+                    <div className="hidden sm:flex flex-row justify-between pl-6 pt-80 z-2000 absolute bg-bottom gap-4">
                         <button>
                             <FontAwesomeIcon icon={faHeart} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
                         </button>
@@ -49,8 +49,8 @@ export const Blog = () => {
                     </div>
 
 
-                    <div className="flex flex-col justify-between px-4 pb-9 pt-4">
-                        <div className="flex flex-row justify-evenly items-center gap-12">
+                    <div className="flex flex-col justify-between sm:px-4 pb-9 pt-4 sm:gap-0 gap-4">
+                        <div className="flex flex-row sm:justify-evenly items-center gap-12 justify-between">
                             <p className="text-login text-sm font-bold">English Department</p>
                             <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-14 h-7  py-1 content-center items-center">
                                 <FontAwesomeIcon icon={faStar} className=" w-4 h-4 px-2 py-3 text-yellow-400" />
@@ -95,11 +95,11 @@ export const Blog = () => {
 
                     <div className=" flex relative z-1000 ">
 
-                        <img src={featured2} />
+                        <img src={featured2} className="w-full sm:h-[25rem] h-[18rem]" />
                         <div className="z-2000 absolute bg-left-top pl-6 pt-6">
                             <p className="rounded border bg-danger-color text-sm font-bold text-white px-2 py-2 w-14 h-auto text-center">Sale</p>
                         </div>
-                        <div className=" flex flex-row justify-between pl-6 pt-80 z-2000 absolute bg-bottom gap-4">
+                        <div className="hidden sm:flex flex-row justify-between pl-6 pt-80 z-2000 absolute bg-bottom gap-4">
                             <button>
                                 <FontAwesomeIcon icon={faHeart} className="border rounded-full w-5 h-5 bg-white px-3 py-3" />
                             </button>
@@ -114,8 +114,8 @@ export const Blog = () => {
 
 
 
-                    <div className="flex flex-col justify-between px-4 pb-9 pt-4">
-                        <div className="flex flex-row justify-evenly items-center gap-12">
+                    <div className="flex flex-col justify-between px-4 pb-9 pt-4 sm:gap-0 gap-4">
+                        <div className="flex flex-row sm:justify-evenly items-center gap-12 justify-between">
                             <p className="text-login text-sm font-bold">English Department</p>
                             <div className="flex flex-row justify-stretch rounded-3xl bg-header-blue w-14 h-7  py-1 content-center items-center">
                                 <FontAwesomeIcon icon={faStar} className=" w-4 h-4 px-2 py-3 text-yellow-400" />
