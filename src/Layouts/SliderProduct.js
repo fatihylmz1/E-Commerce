@@ -18,7 +18,7 @@ const ProductSlider = () => {
     };
 
     return (
-        <div className="h-[30rem] w-[35rem]">
+        <div className="sm:h-[30rem] sm:w-[35rem]">
 
             <Slider {...settings}>
 

@@ -19,15 +19,12 @@ export const ProductPage = () => {
     return (
         <div>
             <Header />
-            <div className="flex flex-row gap-3 items-center ml-[12rem] py-6">
+            <div className="flex sm:flex-row gap-3 sm:justify-start items-center sm:ml-[12rem] sm:py-6 justify-center py-12">
                 <NavLink to="/" className="text-header-blue text-sm font-bold">Home</NavLink>
                 <FontAwesomeIcon icon={faGreaterThan} className="text-price-grey" />
                 <NavLink to="/shop" className="text-sm font-bold text-price-grey">Shop</NavLink>
             </div>
-            <div className="flex flex-row px-48 gap-8 pb-20">
-
-
-
+            <div className="flex sm:flex-row sm:px-48 gap-8 pb-20 flex-col px-12">
 
                 <ProductSlider />
                 <div className="flex flex-col justify-between h-[30rem] pb-4">
@@ -79,19 +76,19 @@ export const ProductPage = () => {
                 </div>
             </div>
 
-            <div className="flex flex-row justify-center items-center px-48 gap-8 pb-8">
+            <div className="flex flex-row justify-center items-center sm:px-48 gap-8 pb-8">
                 <p>Description</p>
                 <p>Additional Information</p>
                 <p>Reviews</p>
             </div>
-            <hr className="py-8 w-[71rem] ml-48" />
-            <div className="flex flex-row justify-between pt-6 pb-12 px-48 h-157">
+            <hr className="py-8 sm:w-[71rem] sm:ml-48" />
+            <div className="flex sm:flex-row justify-between pt-6 pb-12 sm:px-48 sm:h-157 flex-col px-12 sm:gap-0 gap-8">
 
                 <div>
-                    <img src={imgProduct} className="h-[25rem]" />
+                    <img src={imgProduct} className="sm:h-[25rem] h-64 w-full" />
                 </div>
 
-                <div className="flex flex-col gap-6 ">
+                <div className="flex flex-col gap-6">
                     <p className="text-[#252B42] text-2xl font-bold">the quick fox jumps over </p>
                     <p className="text-[#737373] text-sm font-normal">Met minim Mollie non desert Alamo est sit<br /> cliquey dolor do met sent. RELIT official<br /> consequent door ENIM RELIT Mollie.<br /> Excitation venial consequent sent nostrum<br /> met.</p>
                     <p className="text-[#737373] text-sm font-normal">Met minim Mollie non desert Alamo est sit<br /> cliquey dolor do met sent. RELIT official<br /> consequent door ENIM RELIT Mollie.<br /> Excitation venial consequent sent nostrum<br /> met.</p>
@@ -115,7 +112,7 @@ export const ProductPage = () => {
             </div>
 
             <div className="bg-[#FAFAFA] pt-12">
-                <div className="flex flex-col px-48 gap-6 ">
+                <div className="flex flex-col sm:px-48 sm:gap-6 px-12 gap-12 items-center sm:items-start">
                     <h2 className="text-[#252B42] text-2xl font-bold">BESTSELLER PRODUCTS</h2>
                     <hr />
                 </div>
