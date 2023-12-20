@@ -29,7 +29,7 @@ export const Blog = () => {
 
                 <div className="flex sm:flex-row gap-8 flex-col sm:w-[66rem] w-[21rem]">
 
-                    <div className=" flex relative z-1000 ">
+                    <div className=" flex relative z-1000 sm:h-[25rem]">
 
                         <img src={featured1} className="w-full sm:h-[25rem] h-[18rem]" />
                     </div>
@@ -95,7 +95,7 @@ export const Blog = () => {
 
                     <div className=" flex relative z-1000 ">
 
-                        <img src={featured2} className="w-full sm:h-[25rem] h-[18rem]" />
+                        <img src={featured2} className="w-full sm:h-auto h-[18rem]" />
                         <div className="z-2000 absolute bg-left-top pl-6 pt-6">
                             <p className="rounded border bg-danger-color text-sm font-bold text-white px-2 py-2 w-14 h-auto text-center">Sale</p>
                         </div>

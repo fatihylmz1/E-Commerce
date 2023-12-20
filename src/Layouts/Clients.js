@@ -9,8 +9,8 @@ import teletabi from "../Icons/teletabi.svg";
 
 export const Clients = () => {
     return (
-        <div className=" sm:px-48 sm:py-20 bg-[#FAFAFA] px-32 py-20 h-auto">
-            <div className="sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-0 sm:h-auto gap-14 flex flex-col justify-between h-auto">
+        <div className=" sm:px-48 sm:py-20 bg-[#FAFAFA] px-36 py-20 h-auto w-auto">
+            <div className="sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-0 sm:h-auto gap-14 flex flex-col justify-between h-auto px-6 sm:px-0">
                 <img src={hooli} />
                 <img src={lyft} />
                 <img src={leaf} />

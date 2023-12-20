@@ -12,6 +12,7 @@ import ellipse2 from "../photos/Ellipse 15.svg";
 import ellipse3 from "../photos/Ellipse 16.svg";
 import ellipse4 from "../photos/Ellipse 17.svg";
 import { NavLink } from "react-router-dom";
+import Slider2 from "../Layouts/Slider2";
 
 
 
@@ -24,10 +25,11 @@ export const ProductPage = () => {
                 <FontAwesomeIcon icon={faGreaterThan} className="text-price-grey" />
                 <NavLink to="/shop" className="text-sm font-bold text-price-grey">Shop</NavLink>
             </div>
-            <div className="flex sm:flex-row sm:px-48 gap-8 pb-20 flex-col px-12">
+            <div className="flex sm:flex-row sm:px-48 gap-8 pb-20 flex-col px-12 sm:w-full">
 
                 <ProductSlider />
-                <div className="flex flex-col justify-between h-[30rem] pb-4">
+
+                <div className="flex flex-col justify-between h-[30rem] pb-4 sm:w-full">
                     <h2 className="text-[#252B42] text-xl font-normal">Floating Phone</h2>
                     <div className="flex flex-row gap-4">
                         <div className="star-rating">

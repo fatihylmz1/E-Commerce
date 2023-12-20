@@ -18,7 +18,7 @@ export const Card = () => {
         <div className=" flex flex-col flex-wrap justify-between items-center sm:px-40">
 
 
-            <div className="sm:flex sm:flex-row flex-wrap justify-between sm:pt-6 sm:px-6 sm:gap-8 flex flex-col ">
+            <div className="sm:flex sm:flex-row flex-wrap justify-between sm:pt-6 sm:px-6 sm:gap-8 flex flex-col px-6">
 
                 {photos.map((photo) => (
                     <NavLink to="/product">
