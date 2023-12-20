@@ -7,9 +7,9 @@ import { NavLink } from "react-router-dom";
 
 export const Footer = () => {
     return (
-        <div className=" h-auto flex flex-col sm:px-52 px-10">
+        <div className=" h-auto flex flex-col sm:px-52 px-10 ">
 
-            <div className="flex sm:flex-row flex-wrap sm:items-center justify-between py-11 flex-col items-start sm:gap-0 gap-3">
+            <div className="flex sm:flex-row flex-wrap sm:items-center justify-between py-11 flex-col items-center sm:gap-0 gap-3">
                 <div><p className="text-header-blue text-2xl font-bold">Bandage</p></div>
                 <div className=" flex flex-row gap-3">
                     <button>
@@ -24,7 +24,7 @@ export const Footer = () => {
                 </div>
             </div>
 
-            <div className="py-12 flex sm:flex-row flex-wrap justify-between flex-col sm:gap-0 gap-4">
+            <div className="py-12 flex sm:flex-row flex-wrap justify-between flex-col sm:gap-0 gap-4 sm:items-start items-center sm:text-start text-center">
 
                 <div className="flex flex-col flex-wrap justify-between gap-4">
                     <p className="text-header-blue text-base font-bold">Company Info</p>
@@ -75,7 +75,7 @@ export const Footer = () => {
 
             </div>
             <div className="py-6">
-                <p className="text-sm text-link-color font-bold">Made With Love By Figmaland All Right Reserved </p>
+                <p className="text-sm text-link-color font-bold sm:text-start text-center">Made With Love By Figmaland All Right Reserved </p>
 
             </div>
 

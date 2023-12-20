@@ -49,7 +49,7 @@ export const ContactPage = () => {
                         with big ideas</p>
                 </div>
 
-                <div className="flex sm:flex-row py-16 flex-col sm:gap-0 gap-6">
+                <div className="flex sm:flex-row py-16 flex-col sm:gap-0 gap-6 flex-wrap">
                     <div className="flex flex-col justify-between items-center px-12 py-10 gap-4">
                         <FontAwesomeIcon icon={faPhone} className="w-[4.5rem] h-[4.5rem] text-login" />
                         <p className="text-[#252B42] text-sm font-bold">georgia.young@example.com</p>

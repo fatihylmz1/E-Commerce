@@ -7,7 +7,6 @@ import image2 from "../photos/hero-2.jpg";
 import { NavLink } from 'react-router-dom';
 import { Hero } from './Hero';
 
-
 const ImageSlider = () => {
     const settings = {
         dots: true,
@@ -15,7 +14,10 @@ const ImageSlider = () => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
+        arrows: true,
+
     };
+
 
     return (
         <div className="sm:w-full sm:pt-16 sm:pl-12 sm:pr-8 sm:z-10 sm:relative px-4">
@@ -45,8 +47,12 @@ const ImageSlider = () => {
 
                 </div>
 
+
             </Slider>
+
+
         </div>
+
     );
 };
 

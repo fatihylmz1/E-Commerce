@@ -77,7 +77,7 @@ export const Header = () => {
                                             <div className="text-white font-bold"></div>
                                             <button
                                                 onClick={toggleMenu}
-                                                className="sm:hidden text-white focus:outline-none focus:border-none"
+                                                className="sm:hidden text-white focus:outline-none focus:border-none transition ease-in-out delay-100"
                                             >
                                                 <FontAwesomeIcon icon={faBars} className="text-black" />
                                             </button>
@@ -85,7 +85,7 @@ export const Header = () => {
                                     </nav>
                                 </div>
                             </div>
-                            <div className={`sm:hidden ${isOpen ? 'flex flex-col' : 'hidden'} lg:mt-0 items-center gap-8 py-24`}>
+                            <div className={`sm:hidden ${isOpen ? 'flex flex-col' : 'hidden'} lg:mt-0 items-center gap-8 py-24 transition ease-in-out delay-100`}>
                                 <a href="/" className="block text-link-color text-3xl font-normal">Home</a>
                                 <a href="/shop" className="block text-link-color text-3xl font-normal">Shop</a>
                                 <a href="/about" className="block text-link-color text-3xl font-normal">About</a>
