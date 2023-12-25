@@ -34,7 +34,7 @@ const SignUpForm = () => {
         axios
             .get("https://workintech-fe-ecommerce.onrender.com/roles")
             .then((response) => {
-                console.log("Roles Data", response.data);
+                // console.log("Roles Data", response.data);
                 setRoles(response.data);
             })
             .catch((error) => console.error(error))
