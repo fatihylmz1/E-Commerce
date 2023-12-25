@@ -5,7 +5,7 @@ import { ProductListPage } from "./Pages/ProductListPage";
 import { ProductPage } from "./Pages/ProductPage";
 import { AboutPage } from "./Pages/AboutPage";
 import { ContactPage } from "./Pages/Contact";
-import { SignUpPage } from "./Pages/SignUpPage";
+import SignUpForm, { SignUpPage } from "./Pages/SignUpPage";
 
 
 
@@ -31,7 +31,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Routes>
-          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/signup" element={<SignUpForm />} />
         </Routes>
       </BrowserRouter>
     </div>

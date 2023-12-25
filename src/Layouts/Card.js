@@ -18,11 +18,11 @@ export const Card = () => {
         <div className=" flex flex-col flex-wrap justify-between items-center sm:px-40">
 
 
-            <div className="sm:flex sm:flex-row flex-wrap justify-between sm:pt-6 sm:px-6 sm:gap-8 flex flex-col px-6">
+            <div className="sm:flex sm:flex-row flex-wrap justify-between sm:pt-6 sm:px-6 sm:gap-8 flex flex-col">
 
                 {photos.map((photo) => (
                     <NavLink to="/product">
-                        <div className="flex flex-col justify-between items-center gap-4 mb-6">
+                        <div className="flex flex-col justify-between items-center gap-4 mb-6 hover:scale-125 transition-transform">
                             <img src={photo} />
                             <p className="text-base font-bold text-header-blue">Graphic Design</p>
                             <p className="text-sm font-bold text-link-color">English Department</p>

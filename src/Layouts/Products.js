@@ -29,7 +29,7 @@ export const Products = () => {
                 {products.map((product) => (
 
                     <NavLink to="/product">
-                        <div className="flex flex-col justify-between items-center gap-4 mb-16">
+                        <div className="flex flex-col justify-between items-center gap-4 mb-16 hover:scale-125 transition-transform">
                             <img src={product} alt="product" />
                             <p className="text-base font-bold text-header-blue">Graphic Design</p>
                             <p className="text-sm font-bold text-link-color">English Department</p>
