@@ -4,7 +4,7 @@ const cartInitial = {
     address: {},
 };
 
-export const shoppingCartReducer = (state = cartInitial, action) => {
+export const ShoppingCartReducer = (state = cartInitial, action) => {
     switch (action.type) {
         case "ADD_TO_CART":
             return { ...state, cart: [...state.cart, action.payload] };

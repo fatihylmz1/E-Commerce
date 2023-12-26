@@ -34,7 +34,6 @@ const SignUpForm = () => {
         axios
             .get("https://workintech-fe-ecommerce.onrender.com/roles")
             .then((response) => {
-                // console.log("Roles Data", response.data);
                 setRoles(response.data);
             })
             .catch((error) => console.error(error))
@@ -71,7 +70,6 @@ const SignUpForm = () => {
         axios
             .post("https://workintech-fe-ecommerce.onrender.com/signup", formData)
             .then((response) => {
-                console.log("Registration successful", response);
                 console.log("Registration successful", response.config.data);
                 toast.success("Congratulations! You've successfully signed up!");
                 toast.warning(

@@ -1,4 +1,15 @@
-export const globalReducer = (state = initialState, action) => {
+const globalInitial = {
+    roles: [],
+    categories: [],
+    theme: "",
+    language: "",
+};
+
+
+
+
+
+export const GlobalReducer = (state = globalInitial, action) => {
     switch (action.type) {
         case 'SET_ROLES':
             return { ...state, roles: action.payload };

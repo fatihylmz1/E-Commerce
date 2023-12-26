@@ -5,7 +5,8 @@ import { ProductListPage } from "./Pages/ProductListPage";
 import { ProductPage } from "./Pages/ProductPage";
 import { AboutPage } from "./Pages/AboutPage";
 import { ContactPage } from "./Pages/Contact";
-import SignUpForm, { SignUpPage } from "./Pages/SignUpPage";
+import SignUpForm from "./Pages/SignUpPage";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -16,7 +17,7 @@ function App() {
     <div >
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<HomePage />} />
+          <Route exact path="/" element={<HomePage />} />
         </Routes>
         <Routes>
           <Route path="/shop" element={<ProductListPage />} />
@@ -34,6 +35,7 @@ function App() {
           <Route path="/signup" element={<SignUpForm />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }

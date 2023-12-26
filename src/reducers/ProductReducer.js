@@ -12,6 +12,6 @@ const InitialValue = {
     activePage: 1,
     fetchState: "NOT_FETCHED",
 };
-export const productReducer = (state = InitialValue, action) => {
+export const ProductReducer = (state = InitialValue, action) => {
     return state;
 };

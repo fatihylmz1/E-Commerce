@@ -1,6 +1,6 @@
 const SET_STORE = "SET_STORE";
 
-const storeReducer = (state = initialState, action) => {
+const StoreReducer = (state = null, action) => {
     switch (action.type) {
         case SET_STORE:
             return {
@@ -13,4 +13,4 @@ const storeReducer = (state = initialState, action) => {
     }
 };
 
-export default storeReducer;
+export default StoreReducer;
