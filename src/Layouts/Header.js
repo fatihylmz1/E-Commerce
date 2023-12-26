@@ -107,10 +107,12 @@ export const Header = () => {
                     <div className="hidden sm:flex flex-row gap-8">
                         <div className="hidden sm:flex flex-row justify-between content-center items-center gap-2">
 
-                            <button className="flex flex-row items-center gap-2">
-                                <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
-                                <p className="text-login text-sm font-bold">Login / </p>
-                            </button>
+                            <NavLink to="/login">
+                                <button className="flex flex-row items-center gap-2">
+                                    <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
+                                    <p className="text-login text-sm font-bold">Login / </p>
+                                </button>
+                            </NavLink>
 
                             <NavLink to="/signup">
                                 <button>

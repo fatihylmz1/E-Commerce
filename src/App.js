@@ -7,6 +7,8 @@ import { AboutPage } from "./Pages/AboutPage";
 import { ContactPage } from "./Pages/Contact";
 import SignUpForm from "./Pages/SignUpPage";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { LoginPage } from "./Pages/LoginPage";
 
 
 
@@ -34,8 +36,12 @@ function App() {
         <Routes>
           <Route path="/signup" element={<SignUpForm />} />
         </Routes>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
       </BrowserRouter>
       <ToastContainer />
+
     </div>
   );
 }

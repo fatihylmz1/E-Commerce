@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Flip, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -70,15 +71,29 @@ const SignUpForm = () => {
         axios
             .post("https://workintech-fe-ecommerce.onrender.com/signup", formData)
             .then((response) => {
-                console.log("Registration successful", response.config.data);
-                toast.success("Congratulations! You've successfully signed up!");
-                toast.warning(
-                    "You need to click the link in the email to activate your account!"
+                console.log("FormData > ", response.config.data);
+                toast.success("You've successfully signed up!", {
+                    transition: Flip,
+                    position: "bottom-center",
+                    style: {
+                        backgroundColor: "green",
+                        color: "white"
+                    }
+                });
+                toast.warn(
+                    "You need to click the link in the email to activate your account!", {
+                    transition: Flip,
+                    position: "bottom-center",
+                    style: {
+                        backgroundColor: "red",
+                        color: "black"
+                    }
+                }
                 );
                 navigate(-1);
             })
             .catch((error) => {
-                console.error("Registration failed!", error);
+                console.error("Error", error);
                 console.log(error);
                 toast.error("Registration failed!");
                 setError("apiError", {
@@ -126,7 +141,7 @@ const SignUpForm = () => {
                                         },
                                     })}
                                     placeholder="Your Name"
-                                    className="form-input w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                    className="form-input w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                 />
                                 {errors.name && (
                                     <span className="text-red-500 text-xs">
@@ -152,7 +167,7 @@ const SignUpForm = () => {
                                         },
                                     })}
                                     placeholder="Your Email"
-                                    className="form-input w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                    className="form-input w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                 />
                                 {errors.email && (
                                     <p className="mt-1 text-xs text-red-500">
@@ -180,7 +195,7 @@ const SignUpForm = () => {
                                         },
                                     })}
                                     placeholder="Password"
-                                    className="form-input w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm "
+                                    className="form-input w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm "
                                 />
                                 {errors.password && (
                                     <p className="mt-1 text-xs text-red-500">
@@ -204,7 +219,7 @@ const SignUpForm = () => {
                                             value === watch("password") || "The passwords do not match",
                                     })}
                                     placeholder="Confirm Password"
-                                    className="form-input w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                    className="form-input w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                 />
                                 {errors.confirmPassword && (
                                     <p className="mt-1 text-xs text-red-500">
@@ -222,7 +237,7 @@ const SignUpForm = () => {
                                 <select
                                     id="role_id"
                                     {...register("role_id", { required: "Role is required" })}
-                                    className="form-select w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                    className="form-select w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                     value={watch("role_id")}
                                 >
                                     {roles.map((role) => (
@@ -252,7 +267,7 @@ const SignUpForm = () => {
                                                     message: "Store name must be at least 3 characters",
                                                 },
                                             })}
-                                            className="mt-2 w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                            className="mt-2 w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                         />
                                         {errors.storeName && (
                                             <span className="text-red-500 text-xs">
@@ -278,7 +293,7 @@ const SignUpForm = () => {
                                                         "Invalid Turkish phone number, +90 XXX XXX XX XX",
                                                 },
                                             })}
-                                            className="mt-2 w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                            className="mt-2 w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                         />
                                         {errors.storePhone && (
                                             <span className="text-red-500 text-xs">
@@ -303,7 +318,7 @@ const SignUpForm = () => {
                                                     message: "Invalid Tax ID format,  “TXXXXVXXXXXX” ",
                                                 },
                                             })}
-                                            className="mt-2 w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                            className="mt-2 w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                         />
                                         {errors.storeTaxId && (
                                             <span className="text-red-500 text-xs">
@@ -328,7 +343,7 @@ const SignUpForm = () => {
                                                     message: "Invalid IBAN format",
                                                 },
                                             })}
-                                            className="mt-2  w-full p-3 border border-solid bg-ltGrey border-ltGrey rounded-lg text-sm"
+                                            className="mt-2  w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm"
                                         />
                                         {errors.storeBankAccount && (
                                             <span className="text-red-500 text-xs">
