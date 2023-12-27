@@ -3,36 +3,54 @@ import { Header } from "../Layouts/Header";
 import { Footer } from "../Layouts/Footer";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { loginUser, setUser } from "../store/actions/UserActions";
+import { Flip, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
-        watch,
-        setError,
-        setValue,
         formState: { errors },
-    } = useForm({
-        defaultValues: {
-            mode: "onChange",
-            role_id: "3",
-            password: "",
-            confirmPassword: "",
-        },
-    });
+    } = useForm({});
 
     const dispatch = useDispatch()
 
     const onSubmit = (data) => {
-        let formData = {
-            email: data.email,
-            password: data.password
-        }
-    }
+        dispatch(loginUser(data))
 
+            .then((response) => {
+                console.log("response", response);
+                if (response.data && response.data.token) {
+                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("userName", response.data.name);
+                    dispatch(
+                        setUser({
+                            name: response.data.name,
+                            email: data.email,
 
-    const passwordPattern =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                        })
+                    );
+                    toast.success("Logged in successfully!", {
+                        transition: Flip,
+                        style: {
+                            background: "green",
+                            color: "white"
+                        },
+                        position: "bottom-center",
+                    });
+                    navigate("/");
+                } else {
+                    throw new Error("Login failed: No token received");
+                }
+                console.log("data>", data)
+            })
+            .catch((error) => {
+                toast.error("Login failed: " + error.message);
+            });
+    };
+
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 
@@ -85,11 +103,6 @@ export const LoginPage = () => {
                                     id="password"
                                     {...register("password", {
                                         required: "Password is required",
-                                        pattern: {
-                                            value: passwordPattern,
-                                            message:
-                                                "Password must be at least 8 characters, including a number, uppercase and lowercase letter, and a special character",
-                                        },
                                     })}
                                     placeholder="Password"
                                     className="form-input w-full p-3 border border-solid bg-gray-300 border-gray-300 rounded-lg text-sm "
