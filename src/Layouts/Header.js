@@ -2,18 +2,39 @@ import React, { useState } from "react";
 import "../index.css";
 import phone from "../Icons/phone.svg";
 import message from "../Icons/message.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { Bounce, toast } from "react-toastify";
+
 
 
 
 export const Header = () => {
-
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const loggedIn = localStorage.getItem("isloggedIn");
+    console.log("loggedin >", loggedIn);
+    const name = localStorage.getItem("userName")
+    console.log(name);
+
+    const logOut = () => {
+        localStorage.removeItem("isloggedIn");
+        navigate("/");
+        toast.warn("Logged Out!", {
+            style: {
+                background: "red",
+                color: "white",
+            },
+            position: "bottom-center",
+            transition: Bounce,
+        })
+
     };
 
 
@@ -92,6 +113,32 @@ export const Header = () => {
                                 <a href="#" className="block text-link-color text-3xl font-normal">Blog</a>
                                 <a href="/contact" className="block text-link-color text-3xl font-normal">Contact</a>
                                 <a href="#" className="block text-link-color text-3xl font-normal">Pages</a>
+                                {!loggedIn &&
+                                    <div className="sm:hidden flex flex-col justify-between content-center items-center gap-4">
+
+                                        <NavLink to="/login">
+                                            <button className="flex flex-row items-center gap-2">
+                                                <p className="text-link-color text-3xl font-bold">Login </p>
+                                            </button>
+                                        </NavLink>
+
+                                        <NavLink to="/signup">
+                                            <button>
+                                                <p className="text-link-color font-bold text-3xl">Register</p>
+                                            </button>
+                                        </NavLink>
+                                    </div>
+                                }
+                                {loggedIn &&
+                                    <div className="sm:hidden flex flex-col justify-between content-center items-center gap-6">
+                                        <p className="text-header-blue text-3xl font-bold items-center justify-center">{name}</p>
+                                        <button onClick={logOut} className="text-login text-3xl font-bold items-center gap-3 flex flex-row">
+                                            <p>Log Out</p>
+                                            <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-login" />
+                                        </button>
+                                    </div>
+
+                                }
                             </div>
                         </div>
                         <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center">
@@ -101,25 +148,42 @@ export const Header = () => {
                             <NavLink to="#" className="text-sm text-link-color font-bold">Blog</NavLink>
                             <NavLink to="/contact" className="text-sm text-link-color font-bold">Contact</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold">Pages</NavLink>
+
                         </div>
                     </div>
 
                     <div className="hidden sm:flex flex-row gap-8">
-                        <div className="hidden sm:flex flex-row justify-between content-center items-center gap-2">
 
-                            <NavLink to="/login">
-                                <button className="flex flex-row items-center gap-2">
-                                    <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
-                                    <p className="text-login text-sm font-bold">Login / </p>
-                                </button>
-                            </NavLink>
 
-                            <NavLink to="/signup">
-                                <button>
-                                    <p className="text-login text-sm font-bold">Register</p>
+                        {!loggedIn &&
+                            <div className="hidden sm:flex flex-row justify-between content-center items-center gap-2">
+
+                                <NavLink to="/login">
+                                    <button className="flex flex-row items-center gap-2">
+                                        <FontAwesomeIcon icon={faUser} className="text-icon-blue w-3 h-3" />
+                                        <p className="text-login text-sm font-bold">Login / </p>
+                                    </button>
+                                </NavLink>
+
+                                <NavLink to="/signup">
+                                    <button>
+                                        <p className="text-login text-sm font-bold">Register</p>
+                                    </button>
+                                </NavLink>
+                            </div>
+                        }
+                        {loggedIn &&
+                            <div className="hidden sm:flex flex-row justify-between content-center items-center gap-6">
+                                <p className="text-header-blue text-base font-bold items-center justify-center">{name}</p>
+                                <button onClick={logOut} className="text-login text-base font-bold items-center gap-3 flex flex-row">
+                                    <p>Log Out</p>
+                                    <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-login" />
                                 </button>
-                            </NavLink>
-                        </div>
+                            </div>
+
+                        }
+
+
 
                         <div className="flex flex-row justify-between gap-8 items-center">
                             <div>

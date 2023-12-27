@@ -16,6 +16,7 @@ export const loginUser = (loginInfo) => {
         return axios.post("https://workintech-fe-ecommerce.onrender.com/login", loginInfo)
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("isloggedIn", true);
                 dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
                 return response;
             })

@@ -12,6 +12,7 @@ const userInitial = {
 export const UserReducer = (state = userInitial, action) => {
     switch (action.type) {
         case "SET_USER":
+            localStorage.setItem("userName", action.payload.name);
             return {
                 ...state,
                 userName: action.payload.name,
