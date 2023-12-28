@@ -47,7 +47,14 @@ export const LoginPage = () => {
                 console.log("data>", data)
             })
             .catch((error) => {
-                toast.error("Login failed: " + error.message);
+                toast.error("Login failed: " + error.message, {
+                    transition: Flip,
+                    style: {
+                        background: "red",
+                        color: "black"
+                    },
+                    position: "bottom-center",
+                });
             });
     };
 
