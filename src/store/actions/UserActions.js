@@ -17,6 +17,7 @@ export const loginUser = (loginInfo) => {
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("isloggedIn", true);
+                localStorage.setItem("email", response.data.email)
                 dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
                 return response;
             })

@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Bounce, toast } from "react-toastify";
+import Gravatar from "react-gravatar";
 
 
 
@@ -22,6 +23,8 @@ export const Header = () => {
     console.log("loggedin >", loggedIn);
     const name = localStorage.getItem("userName")
     console.log(name);
+    const email = localStorage.getItem("email")
+    console.log("email", email);
 
     const logOut = () => {
         localStorage.removeItem("isloggedIn");
@@ -131,6 +134,7 @@ export const Header = () => {
                                 }
                                 {loggedIn &&
                                     <div className="sm:hidden flex flex-col justify-between content-center items-center gap-6">
+                                        <Gravatar email={email} className="w-8 h-8 rounded-full" />
                                         <p className="text-header-blue text-3xl font-bold items-center justify-center">{name}</p>
                                         <button onClick={logOut} className="text-login text-3xl font-bold items-center gap-3 flex flex-row">
                                             <p>Log Out</p>
@@ -174,6 +178,7 @@ export const Header = () => {
                         }
                         {loggedIn &&
                             <div className="hidden sm:flex flex-row justify-between content-center items-center gap-6">
+                                <Gravatar email={email} className="w-8 h-8 rounded-full" />
                                 <p className="text-header-blue text-base font-bold items-center justify-center">{name}</p>
                                 <button onClick={logOut} className="text-login text-base font-bold items-center gap-3 flex flex-row">
                                     <p>Log Out</p>

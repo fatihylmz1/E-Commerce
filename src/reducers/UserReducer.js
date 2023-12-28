@@ -13,6 +13,7 @@ export const UserReducer = (state = userInitial, action) => {
     switch (action.type) {
         case "SET_USER":
             localStorage.setItem("userName", action.payload.name);
+            localStorage.setItem("email", action.payload.email);
             return {
                 ...state,
                 userName: action.payload.name,
