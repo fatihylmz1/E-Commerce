@@ -24,7 +24,6 @@ export const LoginPage = () => {
                 console.log("response", response);
                 if (response.data && response.data.token) {
                     localStorage.setItem("token", response.data.token);
-                    localStorage.setItem("userName", response.data.name);
                     dispatch(
                         setUser({
                             name: response.data.name,
