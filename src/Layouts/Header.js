@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../index.css";
 import phone from "../Icons/phone.svg";
 import message from "../Icons/message.svg";
@@ -8,6 +8,10 @@ import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free
 import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Bounce, toast } from "react-toastify";
 import Gravatar from "react-gravatar";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { loginSuccess } from "../store/actions/UserActions";
+import { fetchCategories, setCategories } from "../store/actions/GlobalActions";
 
 
 
@@ -15,19 +19,18 @@ import Gravatar from "react-gravatar";
 export const Header = () => {
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
+    const dispatch = useDispatch()
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
     const loggedIn = localStorage.getItem("isloggedIn");
     console.log("loggedin >", loggedIn);
-    const name = localStorage.getItem("userName")
-    console.log(name);
-    const email = localStorage.getItem("email")
-    console.log("email", email);
+
 
     const logOut = () => {
         localStorage.removeItem("isloggedIn");
+        localStorage.removeItem("token");
         navigate("/");
         toast.warn("Logged Out!", {
             style: {
@@ -40,6 +43,37 @@ export const Header = () => {
 
     };
 
+    useEffect(() => {
+
+        const token = localStorage.getItem("token");
+
+        if (token) {
+
+            axios.get("https://workintech-fe-ecommerce.onrender.com/verify", {
+                headers: {
+                    Authorization: token,
+                }
+            }).then((res) => {
+                // console.log("authorization data >", res.data);
+                dispatch(loginSuccess(res.data));
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+        dispatch(fetchCategories())
+            .then((response) => {
+                // console.log("Categories fetched successfully", response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching categories:', error);
+            });
+    }, [])
+
+    const name = useSelector((store) => store.user.userName);
+    const email = useSelector((store) => store.user.userMail);
+
+    const categories = useSelector((store) => store.global.categories);
+    console.log("categories>>", categories);
 
     return (
         <div >
@@ -146,12 +180,12 @@ export const Header = () => {
                             </div>
                         </div>
                         <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center">
-                            <NavLink to="/" className="text-sm text-link-color font-bold">Home</NavLink>
-                            <NavLink to="/shop" className="text-sm text-link-color font-bold">Shop</NavLink>
-                            <NavLink to="/about" className="text-sm text-link-color font-bold">About</NavLink>
-                            <NavLink to="#" className="text-sm text-link-color font-bold">Blog</NavLink>
-                            <NavLink to="/contact" className="text-sm text-link-color font-bold">Contact</NavLink>
-                            <NavLink to="#" className="text-sm text-link-color font-bold">Pages</NavLink>
+                            <NavLink to="/" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Home</NavLink>
+                            <NavLink to="/shop" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Shop</NavLink>
+                            <NavLink to="/about" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">About</NavLink>
+                            <NavLink to="#" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Blog</NavLink>
+                            <NavLink to="/contact" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Contact</NavLink>
+                            <NavLink to="#" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Pages</NavLink>
 
                         </div>
                     </div>
@@ -178,7 +212,7 @@ export const Header = () => {
                         }
                         {loggedIn &&
                             <div className="hidden sm:flex flex-row justify-between content-center items-center gap-6">
-                                <Gravatar email={email} className="w-8 h-8 rounded-full" />
+                                <Gravatar email={email} className="w-8 h-8 rounded-full hover:scale-125 cursor-pointer transition-transform delay-100" />
                                 <p className="text-header-blue text-base font-bold items-center justify-center">{name}</p>
                                 <button onClick={logOut} className="text-login text-base font-bold items-center gap-3 flex flex-row">
                                     <p>Log Out</p>

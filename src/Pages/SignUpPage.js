@@ -108,7 +108,7 @@ const SignUpForm = () => {
 
     const turkeyPhoneNumberPattern = /^(\+90)?[0-9]{10}$/;
     const taxIdPattern = /^T\d{4}V\d{6}$/;
-    const ibanPattern = /^[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}([A-Z0-9]?){0,16}$/;
+    const ibanPattern = /^(TR\d{2})\s?(\d{4})\s?(\d{4})\s?(\d{4})\s?(\d{4})\s?(\d{4})\s?(\d{2})$/;
     const passwordPattern =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
