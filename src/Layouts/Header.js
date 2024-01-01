@@ -5,13 +5,13 @@ import message from "../Icons/message.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faShoppingCart as faShoppingBasket, faHeart as faHeartSolid, faUser, faBars, faArrowRightFromBracket, faArrowDown, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { Bounce, toast } from "react-toastify";
 import Gravatar from "react-gravatar";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loginSuccess } from "../store/actions/UserActions";
-import { fetchCategories, setCategories } from "../store/actions/GlobalActions";
+import { fetchCategories } from "../store/actions/GlobalActions";
 
 
 
@@ -19,10 +19,14 @@ import { fetchCategories, setCategories } from "../store/actions/GlobalActions";
 export const Header = () => {
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
+    const [shopOpen, setShopOpen] = useState(false);
     const dispatch = useDispatch()
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
+    const shopmenu = () => {
+        setShopOpen(!shopOpen);
+    }
 
     const loggedIn = localStorage.getItem("isloggedIn");
     console.log("loggedin >", loggedIn);
@@ -67,6 +71,8 @@ export const Header = () => {
             .catch((error) => {
                 console.error('Error fetching categories:', error);
             });
+
+
     }, [])
 
     const name = useSelector((store) => store.user.userName);
@@ -74,6 +80,11 @@ export const Header = () => {
 
     const categories = useSelector((store) => store.global.categories);
     console.log("categories>>", categories);
+    const female = categories.filter(gender => gender.code.charAt(0) === "k");
+    // console.log("kadın", female[0].title);
+    const male = categories.filter(gender => gender.code.charAt(0) === "e");
+    console.log("female>>", female);
+    console.log("male>>", male);
 
     return (
         <div >
@@ -179,9 +190,37 @@ export const Header = () => {
                                 }
                             </div>
                         </div>
-                        <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center">
+                        <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center relative">
                             <NavLink to="/" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Home</NavLink>
                             <NavLink to="/shop" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Shop</NavLink>
+
+                            <div className="flex flex-col dropdown items-center transition-transform delay-150 gap-0">
+                                <div className="flex flex-col items-center justify-between">
+                                    <button
+                                        onClick={shopmenu}
+                                        className=" text-white focus:outline-none focus:border-none transition ease-in-out delay-100"
+                                    >
+                                        <FontAwesomeIcon icon={faCaretDown} className="text-black" />
+                                    </button>
+                                </div>
+                                {shopOpen && (
+                                    <div className="flex flex-row gap-8 absolute top-3/4 z-10 border rounded border-white bg-gray-200 p-5
+                                    transition-opacity ease-in delay-150">
+                                        <div className="flex flex-col items-center justify-center gap-2">
+                                            <p className="text-sm font-bold"><strong>Kadın</strong></p>
+                                            {female.map((cat) => (
+                                                <NavLink to={cat.title} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
+                                            ))}
+                                        </div>
+                                        <div className="flex flex-col items-center  gap-2">
+                                            <p className="text-sm font-bold"><strong>Erkek</strong></p>
+                                            {male.map((cat) => (
+                                                <NavLink to={cat.title} className="hover:scale-105 hover:font-bold">{cat.title}</NavLink>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                             <NavLink to="/about" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">About</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Blog</NavLink>
                             <NavLink to="/contact" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Contact</NavLink>
