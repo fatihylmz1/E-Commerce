@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const FETCH_STATES = {
     notFetched: "NOT_FETCHED",
     fetching: "FETCHING",
@@ -29,3 +31,17 @@ export const setFetchState = (fetchState) => ({
     type: "SET_FETCH_STATE",
     payload: fetchState,
 });
+
+
+export const fetchProducts = () => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get("https://workintech-fe-ecommerce.onrender.com/products");
+            dispatch(setProductList(response.data));
+            return response;
+        } catch (error) {
+            console.error('Error fetching products:', error);
+            throw error;
+        }
+    };
+};

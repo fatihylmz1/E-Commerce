@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../index.css";
 import { Header } from "../Layouts/Header";
 import { Clients } from "../Layouts/Clients";
@@ -8,10 +8,13 @@ import { faGreaterThan, faBorderAll, faListCheck } from "@fortawesome/free-solid
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { ProductCard } from "../Layouts/ProductCard";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "../store/actions/ProductActions";
 
 
 
 export const ProductListPage = () => {
+
     return (
         <div>
             <Header />

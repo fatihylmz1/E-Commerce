@@ -13,5 +13,10 @@ const InitialValue = {
     fetchState: "NOT_FETCHED",
 };
 export const ProductReducer = (state = InitialValue, action) => {
-    return state;
+    switch (action.type) {
+        case "SET_PRODUCTS":
+            return { ...state, productList: action.payload };
+        default:
+            return state;
+    }
 };

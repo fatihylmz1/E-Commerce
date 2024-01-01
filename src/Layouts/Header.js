@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loginSuccess } from "../store/actions/UserActions";
 import { fetchCategories } from "../store/actions/GlobalActions";
+import { fetchProducts } from "../store/actions/ProductActions";
 
 
 
@@ -70,6 +71,14 @@ export const Header = () => {
             })
             .catch((error) => {
                 console.error('Error fetching categories:', error);
+            });
+
+        dispatch(fetchProducts())
+            .then((response) => {
+                // console.log("Categories fetched successfully", response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching products:', error);
             });
 
 
@@ -209,13 +218,15 @@ export const Header = () => {
                                         <div className="flex flex-col items-center justify-center gap-2">
                                             <p className="text-sm font-bold"><strong>Kadın</strong></p>
                                             {female.map((cat) => (
-                                                <NavLink to={cat.title} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
+                                                // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
+                                                <a href={`/shopping/kadın/${cat.title}`} className="hover:scale-105 hover:font-bold">{cat.title}</a>
                                             ))}
                                         </div>
                                         <div className="flex flex-col items-center  gap-2">
                                             <p className="text-sm font-bold"><strong>Erkek</strong></p>
                                             {male.map((cat) => (
-                                                <NavLink to={cat.title} className="hover:scale-105 hover:font-bold">{cat.title}</NavLink>
+                                                // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold">{cat.title}</NavLink>
+                                                <a href={`/shopping/erkek/${cat.title}`} className="hover:scale-105 hover:font-bold">{cat.title}</a>
                                             ))}
                                         </div>
                                     </div>
