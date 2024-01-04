@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export const FETCH_STATES = {
     notFetched: "NOT_FETCHED",
@@ -31,14 +32,40 @@ export const setFetchState = (fetchState) => ({
     type: "SET_FETCH_STATE",
     payload: fetchState,
 });
+export const setFilterProducts = (filter) => ({
+    type: "SET_FILTER_PRODUCTS",
+    payload: filter,
+});
 
-
-export const fetchProducts = () => {
+export const fetchProducts = (filter, categoryId, sort) => {
     return async (dispatch) => {
         try {
-            const response = await axios.get("https://workintech-fe-ecommerce.onrender.com/products");
-            dispatch(setProductList(response.data));
-            return response;
+
+            const queryString = new URLSearchParams({
+                filter: filter || '',
+                category: categoryId || "",
+                sort: sort || "",
+            }).toString();
+
+
+            const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/products?${queryString}`);
+            console.log("RESPOOONNSE>>>", response)
+            const data = response.data;
+            const filterProducts = data.products?.filter((obje) => obje.description.toLowerCase().includes(filter));
+            console.log("FILTERED>>>", filterProducts);
+            console.log("FILTEREDLENGTH>>>", filterProducts.length);
+
+            if (filterProducts === undefined || filterProducts.length === 0) {
+                dispatch(setProductList(response.data.products));
+                return response.data;
+            } else {
+                dispatch(setProductList(filterProducts))
+                return filterProducts;
+            }
+
+
+            // dispatch(setProductList(filterProducts))
+            // return filterProducts;
         } catch (error) {
             console.error('Error fetching products:', error);
             throw error;

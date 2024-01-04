@@ -21,6 +21,7 @@ export const Header = () => {
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [shopOpen, setShopOpen] = useState(false);
+    const [category, setCategory] = useState();
     const dispatch = useDispatch()
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -83,6 +84,13 @@ export const Header = () => {
 
 
     }, [])
+
+    const CategoryChange = (e, cat) => {
+        const categoryId = cat.id; // Burada cat nesnesinin içindeki id değerini alıyoruz
+        console.log("Selected Category ID:", categoryId);
+        dispatch(fetchProducts(categoryId))
+    }
+
 
     const name = useSelector((store) => store.user.userName);
     const email = useSelector((store) => store.user.userMail);
@@ -213,20 +221,24 @@ export const Header = () => {
                                     </button>
                                 </div>
                                 {shopOpen && (
-                                    <div className="flex flex-row gap-8 absolute top-3/4 z-10 border rounded border-white bg-gray-200 p-5
+                                    <div className="flex flex-row gap-8 absolute top-3/4 z-20 border rounded border-white bg-gray-200 p-5
                                     transition-opacity ease-in delay-150">
                                         <div className="flex flex-col items-center justify-center gap-2">
                                             <p className="text-sm font-bold"><strong>Kadın</strong></p>
                                             {female.map((cat) => (
                                                 // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
-                                                <a href={`/shopping/kadın/${cat.title}`} className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                <button onClick={(e) => CategoryChange(e, cat)}>
+                                                    <a href="#" className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                </button>
                                             ))}
                                         </div>
                                         <div className="flex flex-col items-center  gap-2">
                                             <p className="text-sm font-bold"><strong>Erkek</strong></p>
                                             {male.map((cat) => (
                                                 // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold">{cat.title}</NavLink>
-                                                <a href={`/shopping/erkek/${cat.title}`} className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                <button onClick={(e) => CategoryChange(e, cat)}>
+                                                    <a href="#" className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                </button>
                                             ))}
                                         </div>
                                     </div>

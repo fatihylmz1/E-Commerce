@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../index.css";
 import { Header } from "../Layouts/Header";
 import { Clients } from "../Layouts/Clients";
@@ -8,12 +8,27 @@ import { faGreaterThan, faBorderAll, faListCheck } from "@fortawesome/free-solid
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { ProductCard } from "../Layouts/ProductCard";
-import { useDispatch } from "react-redux";
-import { fetchProducts } from "../store/actions/ProductActions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, setFilterProducts } from "../store/actions/ProductActions";
 
 
 
 export const ProductListPage = () => {
+
+    const [filter, setFilter] = useState("");
+    const dispatch = useDispatch();
+
+    const handleChange = (e) => {
+        setFilter(e.target.value)
+    }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        dispatch(setFilterProducts(filter))
+        dispatch(fetchProducts(filter));
+
+    }
+
 
     return (
         <div>
@@ -46,15 +61,19 @@ export const ProductListPage = () => {
                 </div>
                 <div className="flex flex-row flex-wrap items-center gap-4">
 
-                    <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer">
-                        <option>Popularity</option>
-                        <option>Price</option>
-                        <option>Alphabeth</option>
-                    </select>
+                    <form onSubmit={onSubmit} className="flex flex-row gap-2">
+                        <input type="text" className="border rounded p-4 border-neutral-400 w-36" placeholder="Filter Products" value={filter} onChange={handleChange} />
 
-                    <div>
-                        <button className="rounded bg-sky-500 text-white text-lg font-light w-32 h-14">Filter</button>
-                    </div>
+                        <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer">
+                            <option>Price</option>
+                            <option>Rating</option>
+                            <option></option>
+                        </select>
+
+                        <div>
+                            <button className="rounded bg-sky-500 text-white text-lg font-light w-32 h-14" type="submit">Filter</button>
+                        </div>
+                    </form>
                 </div>
 
             </div>
