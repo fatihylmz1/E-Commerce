@@ -18,7 +18,7 @@ export const ProductListPage = () => {
     const [filter, setFilter] = useState("");
     const [sorted, setSorted] = useState("");
     const dispatch = useDispatch();
-    const categoryId = useSelector((store) => store.product.category);
+    const categoryId = useSelector((store) => store.product.category) || null;
     console.log("CATEGORYYY>>>>", categoryId);
 
     const handleChange = (e) => {

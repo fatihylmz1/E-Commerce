@@ -114,11 +114,14 @@ export const Header = () => {
     console.log("male>>", male);
 
     useEffect(() => {
-        const urlSearchParams = new URLSearchParams();
-        urlSearchParams.set('category', categoryName);
-        console.log("URLSearchParams:", urlSearchParams.toString());
-        const newURL = `${window.location.pathname}?${urlSearchParams.toString()}`;
-        window.history.replaceState({}, '', newURL);
+        if (categoryName) {
+
+            const urlSearchParams = new URLSearchParams();
+            urlSearchParams.set('category', categoryName);
+            console.log("URLSearchParams:", urlSearchParams.toString());
+            const newURL = `${window.location.pathname}?${urlSearchParams.toString()}`;
+            window.history.replaceState({}, '', newURL);
+        }
 
     }, [categoryName, categoryGender])
 

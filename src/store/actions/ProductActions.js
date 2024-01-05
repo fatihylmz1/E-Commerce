@@ -48,32 +48,28 @@ export const setSortProducts = (sort) => ({
 export const fetchProducts = (filter, category, sort) => {
     return async (dispatch) => {
         try {
+            const queryParams = new URLSearchParams();
 
-            const queryString = new URLSearchParams({
-                filter: filter || '',
-                category: category || "",
-                sort: sort || "",
-            }).toString();
+            if (category) {
+                queryParams.append('category', category);
+            }
+
+            if (filter) {
+                queryParams.append('filter', filter);
+            }
+
+            if (sort) {
+                queryParams.append('sort', sort);
+            }
 
 
-            const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/products?${queryString}`);
+
+            const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/products?${queryParams}`);
             console.log("RESPOOONNSE>>>", response)
             const data = response.data;
             dispatch(setProductList(response.data.products));
             return response.data.products;
 
-
-            // if (filterProducts === undefined || filterProducts.length === 0) {
-            //     dispatch(setProductList(response.data.products));
-            //     return response.data.products;
-            // } else {
-            //     dispatch(setProductList(filterProducts))
-            //     return filterProducts;
-            // }
-
-            // const filterProducts = data.products?.filter((obje) => obje.description.toLowerCase().includes(filter));
-            // console.log("FILTERED>>>", filterProducts);
-            // console.log("FILTEREDLENGTH>>>", filterProducts.length);
         } catch (error) {
             console.error('Error fetching products:', error);
             throw error;
