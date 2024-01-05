@@ -12,6 +12,8 @@ const InitialValue = {
     activePage: 1,
     fetchState: "NOT_FETCHED",
     filter: "",
+    category: 1,
+    sort: "",
 };
 export const ProductReducer = (state = InitialValue, action) => {
     switch (action.type) {
@@ -19,6 +21,10 @@ export const ProductReducer = (state = InitialValue, action) => {
             return { ...state, productList: action.payload };
         case "SET_FILTER_PRODUCTS":
             return { ...state, filter: action.payload };
+        case "SET_CATEGORY_PRODUCTS":
+            return { ...state, category: action.payload };
+        case "SET_SORT_PRODUCTS":
+            return { ...state, sort: action.payload };
         default:
             return state;
     }

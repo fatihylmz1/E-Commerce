@@ -36,14 +36,22 @@ export const setFilterProducts = (filter) => ({
     type: "SET_FILTER_PRODUCTS",
     payload: filter,
 });
+export const setCategoryProducts = (category) => ({
+    type: "SET_CATEGORY_PRODUCTS",
+    payload: category,
+});
+export const setSortProducts = (sort) => ({
+    type: "SET_SORT_PRODUCTS",
+    payload: sort,
+});
 
-export const fetchProducts = (filter, categoryId, sort) => {
+export const fetchProducts = (filter, category, sort) => {
     return async (dispatch) => {
         try {
 
             const queryString = new URLSearchParams({
                 filter: filter || '',
-                category: categoryId || "",
+                category: category || "",
                 sort: sort || "",
             }).toString();
 
@@ -51,21 +59,21 @@ export const fetchProducts = (filter, categoryId, sort) => {
             const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/products?${queryString}`);
             console.log("RESPOOONNSE>>>", response)
             const data = response.data;
-            const filterProducts = data.products?.filter((obje) => obje.description.toLowerCase().includes(filter));
-            console.log("FILTERED>>>", filterProducts);
-            console.log("FILTEREDLENGTH>>>", filterProducts.length);
-
-            if (filterProducts === undefined || filterProducts.length === 0) {
-                dispatch(setProductList(response.data.products));
-                return response.data;
-            } else {
-                dispatch(setProductList(filterProducts))
-                return filterProducts;
-            }
+            dispatch(setProductList(response.data.products));
+            return response.data.products;
 
 
-            // dispatch(setProductList(filterProducts))
-            // return filterProducts;
+            // if (filterProducts === undefined || filterProducts.length === 0) {
+            //     dispatch(setProductList(response.data.products));
+            //     return response.data.products;
+            // } else {
+            //     dispatch(setProductList(filterProducts))
+            //     return filterProducts;
+            // }
+
+            // const filterProducts = data.products?.filter((obje) => obje.description.toLowerCase().includes(filter));
+            // console.log("FILTERED>>>", filterProducts);
+            // console.log("FILTEREDLENGTH>>>", filterProducts.length);
         } catch (error) {
             console.error('Error fetching products:', error);
             throw error;

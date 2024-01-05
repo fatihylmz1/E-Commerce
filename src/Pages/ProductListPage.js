@@ -9,14 +9,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
 import { ProductCard } from "../Layouts/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, setFilterProducts } from "../store/actions/ProductActions";
+import { fetchProducts, setFilterProducts, setSortProducts } from "../store/actions/ProductActions";
 
 
 
 export const ProductListPage = () => {
 
     const [filter, setFilter] = useState("");
+    const [sorted, setSorted] = useState("");
     const dispatch = useDispatch();
+    const categoryId = useSelector((store) => store.product.category);
+    console.log("CATEGORYYY>>>>", categoryId);
 
     const handleChange = (e) => {
         setFilter(e.target.value)
@@ -25,7 +28,8 @@ export const ProductListPage = () => {
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(setFilterProducts(filter))
-        dispatch(fetchProducts(filter));
+        dispatch(setSortProducts(sorted))
+        dispatch(fetchProducts(filter, categoryId, sorted));
 
     }
 
@@ -64,10 +68,11 @@ export const ProductListPage = () => {
                     <form onSubmit={onSubmit} className="flex flex-row gap-2">
                         <input type="text" className="border rounded p-4 border-neutral-400 w-36" placeholder="Filter Products" value={filter} onChange={handleChange} />
 
-                        <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer">
-                            <option>Price</option>
-                            <option>Rating</option>
-                            <option></option>
+                        <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer" value={sorted} onChange={(e) => setSorted(e.target.value)}>
+                            <option value="price:asc">Price:Low to High</option>
+                            <option value="price:desc">Price:High to Low</option>
+                            <option value="rating:asc">Rating:Low to High</option>
+                            <option value="rating:desc">Rating:High to Low</option>
                         </select>
 
                         <div>

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loginSuccess } from "../store/actions/UserActions";
 import { fetchCategories } from "../store/actions/GlobalActions";
-import { fetchProducts } from "../store/actions/ProductActions";
+import { fetchProducts, setCategoryProducts } from "../store/actions/ProductActions";
 
 
 
@@ -22,6 +22,8 @@ export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [shopOpen, setShopOpen] = useState(false);
     const [category, setCategory] = useState();
+    const [categoryName, setCategoryName] = useState();
+    const [categoryGender, setCategoryGender] = useState();
     const dispatch = useDispatch()
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -83,12 +85,20 @@ export const Header = () => {
             });
 
 
+
+
     }, [])
 
     const CategoryChange = (e, cat) => {
         const categoryId = cat.id; // Burada cat nesnesinin içindeki id değerini alıyoruz
+        setCategory(categoryId);
+        setCategoryName(cat.title);
+        setCategoryGender(cat.gender);
         console.log("Selected Category ID:", categoryId);
+        console.log("Selected Category", cat.title);
+
         dispatch(fetchProducts(categoryId))
+        dispatch(setCategoryProducts(categoryId))
     }
 
 
@@ -102,6 +112,15 @@ export const Header = () => {
     const male = categories.filter(gender => gender.code.charAt(0) === "e");
     console.log("female>>", female);
     console.log("male>>", male);
+
+    useEffect(() => {
+        const urlSearchParams = new URLSearchParams();
+        urlSearchParams.set('category', categoryName);
+        console.log("URLSearchParams:", urlSearchParams.toString());
+        const newURL = `${window.location.pathname}?${urlSearchParams.toString()}`;
+        window.history.replaceState({}, '', newURL);
+
+    }, [categoryName, categoryGender])
 
     return (
         <div >
