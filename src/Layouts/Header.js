@@ -50,6 +50,8 @@ export const Header = () => {
         })
 
     };
+    const filtre = useSelector((store) => store.product.filter);
+    const sort = useSelector((store) => store.product.sort);
 
     useEffect(() => {
 
@@ -89,17 +91,42 @@ export const Header = () => {
 
     }, [])
 
+
     const CategoryChange = (e, cat) => {
-        const categoryId = cat.id; // Burada cat nesnesinin içindeki id değerini alıyoruz
+        e.preventDefault()
+        const categoryId = cat.id;
         setCategory(categoryId);
         setCategoryName(cat.title);
         setCategoryGender(cat.gender);
         console.log("Selected Category ID:", categoryId);
         console.log("Selected Category", cat.title);
-
-        dispatch(fetchProducts(categoryId))
+        dispatch(fetchProducts(categoryId));
         dispatch(setCategoryProducts(categoryId))
+        const gender = cat.gender === "k" ? "Kadın" : "Erkek"
+        const category = cat.title;
+        updateLink('/shop/' + `${gender}/` + `${category}/`);
+
     }
+    function updateLink(link) {
+        window.history.pushState({}, '', link);
+    }
+
+    const queryParams = new URLSearchParams();
+    useEffect(() => {
+
+        if (category) {
+            queryParams.append('category', category);
+        }
+
+        if (filtre) {
+            queryParams.append('filter', filtre);
+        }
+
+        if (sort) {
+            queryParams.append('sort', sort);
+        }
+
+    }, [category, filtre, sort])
 
 
     const name = useSelector((store) => store.user.userName);
@@ -113,17 +140,6 @@ export const Header = () => {
     console.log("female>>", female);
     console.log("male>>", male);
 
-    useEffect(() => {
-        if (categoryName) {
-
-            const urlSearchParams = new URLSearchParams();
-            urlSearchParams.set('category', categoryName);
-            console.log("URLSearchParams:", urlSearchParams.toString());
-            const newURL = `${window.location.pathname}?${urlSearchParams.toString()}`;
-            window.history.replaceState({}, '', newURL);
-        }
-
-    }, [categoryName, categoryGender])
 
     return (
         <div >
@@ -245,12 +261,12 @@ export const Header = () => {
                                 {shopOpen && (
                                     <div className="flex flex-row gap-8 absolute top-3/4 z-20 border rounded border-white bg-gray-200 p-5
                                     transition-opacity ease-in delay-150">
-                                        <div className="flex flex-col items-center justify-center gap-2">
+                                        <div className="flex flex-col items-center justify-center gap-2 hover:animate-fade-in">
                                             <p className="text-sm font-bold"><strong>Kadın</strong></p>
                                             {female.map((cat) => (
-                                                // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
+                                                // <a href="shop/Kadın/" className="hover:scale-105 hover:font-bold">{cat.title}</a>
                                                 <button onClick={(e) => CategoryChange(e, cat)}>
-                                                    <a href="#" className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                    <NavLink to={`/shop/Kadın/${cat.title}/?${queryParams}`} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
                                                 </button>
                                             ))}
                                         </div>

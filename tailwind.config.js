@@ -37,6 +37,9 @@ module.exports = {
         "danger-color": "#E74040",
         "price-green": "#23856D",
         "price-grey": "#BDBDBD",
+      },
+      animation: {
+        "fade-in": "fadeIn 0.3s ease-in-out"
       }
     },
   },
