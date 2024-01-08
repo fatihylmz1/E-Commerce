@@ -264,9 +264,9 @@ export const Header = () => {
                                         <div className="flex flex-col items-center justify-center gap-2 hover:animate-fade-in">
                                             <p className="text-sm font-bold"><strong>Kadın</strong></p>
                                             {female.map((cat) => (
-                                                // <a href="shop/Kadın/" className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                // <NavLink to={`/shop/Kadın/${cat.title}/?${queryParams}`} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
                                                 <button onClick={(e) => CategoryChange(e, cat)}>
-                                                    <NavLink to={`/shop/Kadın/${cat.title}/?${queryParams}`} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
+                                                    <a href="#" className="hover:scale-105 hover:font-bold">{cat.title}</a>
                                                 </button>
                                             ))}
                                         </div>

@@ -14,11 +14,14 @@ const InitialValue = {
     filter: "",
     category: 1,
     sort: "",
+    productId: null,
 };
 export const ProductReducer = (state = InitialValue, action) => {
     switch (action.type) {
         case "SET_PRODUCTS":
             return { ...state, productList: action.payload };
+        case "SET_PRODUCT_ID":
+            return { ...state, productId: action.payload };
         case "SET_FILTER_PRODUCTS":
             return { ...state, filter: action.payload };
         case "SET_CATEGORY_PRODUCTS":

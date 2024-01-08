@@ -9,34 +9,30 @@ import SignUpForm from "./Pages/SignUpPage";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginPage } from "./Pages/LoginPage";
+import { useSelector } from "react-redux";
 
 
 
 
 
 function App() {
+
+  const category = useSelector((store) => store.product.category);
+  const id = useSelector((store) => store.product.productId);
+  console.log("APP ID>>>>>", id);
+
+
+
   return (
     <div >
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-        </Routes>
-        <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ProductListPage />} />
-        </Routes>
-        <Routes>
-          <Route path="/product" element={<ProductPage />} />
-        </Routes>
-        <Routes>
+          <Route path="/product/:id" element={<ProductPage />} />
           <Route path="/about" element={<AboutPage />} />
-        </Routes>
-        <Routes>
           <Route path="/contact" element={<ContactPage />} />
-        </Routes>
-        <Routes>
           <Route path="/signup" element={<SignUpForm />} />
-        </Routes>
-        <Routes>
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>

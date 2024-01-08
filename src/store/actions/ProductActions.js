@@ -12,6 +12,10 @@ export const setProductList = (productList) => ({
     type: "SET_PRODUCTS",
     payload: productList,
 });
+export const setProductID = (productId) => ({
+    type: "SET_PRODUCT_ID",
+    payload: productId,
+});
 
 export const setTotalProductCount = (count) => ({
     type: "SET_TOTAL_PRODUCT_COUNT",
@@ -65,7 +69,6 @@ export const fetchProducts = (filter, category, sort) => {
 
 
             const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/products?${queryParams}`);
-            console.log("RESPOOONNSE>>>", response)
             const data = response.data;
             dispatch(setProductList(response.data.products));
             return response.data.products;

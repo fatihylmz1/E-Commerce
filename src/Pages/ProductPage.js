@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../Layouts/Header";
 import { Card } from "../Layouts/Card";
 import { Clients } from "../Layouts/Clients";
@@ -11,12 +11,37 @@ import ellipse from "../photos/Ellipse 14.svg";
 import ellipse2 from "../photos/Ellipse 15.svg";
 import ellipse3 from "../photos/Ellipse 16.svg";
 import ellipse4 from "../photos/Ellipse 17.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 
 
 
 export const ProductPage = () => {
+
+    const [product, setProduct] = useState()
+    const { id } = useParams();
+    console.log("IDIDIDIDID>>>>>>", id);
+
+
+    useEffect(() => {
+        axios.get(`https://workintech-fe-ecommerce.onrender.com/products/${id}`)
+            .then((res) => {
+                console.log("REQUEST>>>>>", res.data);
+                setProduct(res);
+                // console.log("PRODUCTDETAIL>>>>>>", product);
+            }).catch((err) => {
+                console.log(err);
+            })
+    }, [id])
+
+    useEffect(() => {
+        console.log("PRODUCTDETAIL>>>>>>", product);
+    }, [product]);
+
+
+
     return (
         <div>
             <Header />
@@ -27,10 +52,10 @@ export const ProductPage = () => {
             </div>
             <div className="flex sm:flex-row sm:px-48 gap-8 pb-20 flex-col px-12 sm:w-full">
 
-                <ProductSlider />
+                <ProductSlider product={product} />
 
                 <div className="flex flex-col justify-between h-[30rem] pb-4 sm:w-full">
-                    <h2 className="text-[#252B42] text-xl font-normal">Floating Phone</h2>
+                    <h2 className="text-[#252B42] text-xl font-normal">{product?.data.name}</h2>
                     <div className="flex flex-row gap-4">
                         <div className="star-rating">
                             <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
@@ -42,16 +67,23 @@ export const ProductPage = () => {
                         <p className="text-[#737373] text-sm font-bold">10 Reviews</p>
 
                     </div>
-                    <p className="text-[#252B42] text-2xl font-bold">$1,139.33</p>
+                    <p className="text-[#252B42] text-2xl font-bold">${product?.data.price}</p>
                     <div className="flex flex-row">
                         <p className="text-[#737373] text-sm font-bold">Availability:</p>
                         <p className="text-login text-sm font-bold">In Stock</p>
-
                     </div>
+
+                    <div className="flex flex-row">
+                        <p className="text-[#737373] text-sm font-bold">Sell Count:</p>
+                        <p className="text-login text-sm font-bold">{product?.data.sell_count}</p>
+                    </div>
+                    <div className="flex flex-row">
+                        <p className="text-[#737373] text-sm font-bold">Stock Count:</p>
+                        <p className="text-login text-sm font-bold">{product?.data.stock}</p>
+                    </div>
+
                     <p className="text-[#858585] text-sm font-normal">
-                        Met minim Mollie non desert Alamo est sit cliquey dolor<br />
-                        do met sent. RELIT official consequent door ENIM RELIT Mollie.<br />
-                        Excitation venial consequent sent nostrum met.
+                        {product?.data.description}
                     </p>
                     <hr />
                     <div className="flex flex-row gap-2">

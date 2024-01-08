@@ -4,12 +4,13 @@ import ellipse from "../photos/Ellipse 14.svg";
 import ellipse2 from "../photos/Ellipse 15.svg";
 import ellipse3 from "../photos/Ellipse 16.svg";
 import ellipse4 from "../photos/Ellipse 17.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../store/actions/ProductActions";
+import { fetchProducts, setProductID } from "../store/actions/ProductActions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import slugify from "slugify";
 
 
 export const Products = () => {
@@ -27,6 +28,8 @@ export const Products = () => {
 
     const product = useSelector((store) => store.product.productList);
     console.log("ürünler>>>>>", product);
+    const navigate = useNavigate()
+
 
 
     useEffect(() => {
@@ -73,6 +76,16 @@ export const Products = () => {
 
     };
 
+    const productDetail = (productId) => {
+        dispatch(setProductID(productId));
+
+    }
+    const handleClick = (product) => {
+        dispatch(setProductID(product.id));
+        navigate(`/product/${product.id}`);
+
+    }
+
 
     return (
         <div className=" flex flex-col flex-wrap justify-between items-center sm:px-40 py-20">
@@ -88,7 +101,8 @@ export const Products = () => {
             >
                 <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
                     {object?.map((product) => (
-                        <NavLink to="/product" key={product.id}>
+                        // <NavLink to={`/product/${product.id}`} key={product.id} onClick={() => productDetail(product.id)}>
+                        <button onClick={() => handleClick(product)}>
                             <div className="flex flex-col justify-between items-center gap-4 mb-16 hover:scale-110 transition-transform w-[15rem] h-[31rem]">
                                 <img src={product.images[0].url} alt="product" className="w-[15rem] h-[19rem] object-cover" />
                                 <p className="text-base font-bold text-header-blue">{product.name}</p>
@@ -105,7 +119,8 @@ export const Products = () => {
                                 </div>
 
                             </div>
-                        </NavLink>
+                        </button>
+                        // </NavLink>
                     ))}
 
                 </div>
