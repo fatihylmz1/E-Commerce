@@ -76,13 +76,11 @@ export const Products = () => {
 
     };
 
-    const productDetail = (productId) => {
-        dispatch(setProductID(productId));
 
-    }
     const handleClick = (product) => {
         dispatch(setProductID(product.id));
         navigate(`/product/${product.id}`);
+        console.log("ASDASDASD>>>>>", product);
 
     }
 
@@ -101,7 +99,6 @@ export const Products = () => {
             >
                 <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
                     {object?.map((product) => (
-                        // <NavLink to={`/product/${product.id}`} key={product.id} onClick={() => productDetail(product.id)}>
                         <button onClick={() => handleClick(product)}>
                             <div className="flex flex-col justify-between items-center gap-4 mb-16 hover:scale-110 transition-transform w-[15rem] h-[31rem]">
                                 <img src={product.images[0].url} alt="product" className="w-[15rem] h-[19rem] object-cover" />

@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { LoginPage } from "./Pages/LoginPage";
 import { useSelector } from "react-redux";
+import { CategoryPage } from "./Pages/CategoryPage";
 
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ProductListPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/shopping/:gender/:title/" element={<CategoryPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/signup" element={<SignUpForm />} />

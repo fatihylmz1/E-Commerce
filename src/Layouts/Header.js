@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loginSuccess } from "../store/actions/UserActions";
 import { fetchCategories } from "../store/actions/GlobalActions";
-import { fetchProducts, setCategoryProducts } from "../store/actions/ProductActions";
+import { fetchProducts, setCategoryProducts, setFilterProducts, setSortProducts } from "../store/actions/ProductActions";
 
 
 
@@ -22,8 +22,6 @@ export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [shopOpen, setShopOpen] = useState(false);
     const [category, setCategory] = useState();
-    const [categoryName, setCategoryName] = useState();
-    const [categoryGender, setCategoryGender] = useState();
     const dispatch = useDispatch()
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -34,6 +32,7 @@ export const Header = () => {
 
     const loggedIn = localStorage.getItem("isloggedIn");
     console.log("loggedin >", loggedIn);
+
 
 
     const logOut = () => {
@@ -95,50 +94,25 @@ export const Header = () => {
     const CategoryChange = (e, cat) => {
         e.preventDefault()
         const categoryId = cat.id;
+        console.log("ÜRÜÜÜÜÜÜNNNNNNNNNNNNNNN>>>>>>>>>>>", cat);
         setCategory(categoryId);
-        setCategoryName(cat.title);
-        setCategoryGender(cat.gender);
-        console.log("Selected Category ID:", categoryId);
-        console.log("Selected Category", cat.title);
-        dispatch(fetchProducts(categoryId));
-        dispatch(setCategoryProducts(categoryId))
-        const gender = cat.gender === "k" ? "Kadın" : "Erkek"
-        const category = cat.title;
-        updateLink('/shop/' + `${gender}/` + `${category}/`);
-
+        dispatch(setCategoryProducts(categoryId));
+        dispatch(fetchProducts(filtre, categoryId, sort));
+        let gender = cat.gender === "k" ? "Kadın" : "Erkek";
+        navigate(`/shopping/${gender}/${cat.title}/`);
     }
-    function updateLink(link) {
-        window.history.pushState({}, '', link);
-    }
-
-    const queryParams = new URLSearchParams();
-    useEffect(() => {
-
-        if (category) {
-            queryParams.append('category', category);
-        }
-
-        if (filtre) {
-            queryParams.append('filter', filtre);
-        }
-
-        if (sort) {
-            queryParams.append('sort', sort);
-        }
-
-    }, [category, filtre, sort])
 
 
     const name = useSelector((store) => store.user.userName);
     const email = useSelector((store) => store.user.userMail);
 
     const categories = useSelector((store) => store.global.categories);
-    console.log("categories>>", categories);
+    // console.log("categories>>", categories);
     const female = categories.filter(gender => gender.code.charAt(0) === "k");
     // console.log("kadın", female[0].title);
     const male = categories.filter(gender => gender.code.charAt(0) === "e");
-    console.log("female>>", female);
-    console.log("male>>", male);
+    // console.log("female>>", female);
+    // console.log("male>>", male);
 
 
     return (
@@ -265,8 +239,8 @@ export const Header = () => {
                                             <p className="text-sm font-bold"><strong>Kadın</strong></p>
                                             {female.map((cat) => (
                                                 // <NavLink to={`/shop/Kadın/${cat.title}/?${queryParams}`} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
-                                                <button onClick={(e) => CategoryChange(e, cat)}>
-                                                    <a href="#" className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
+                                                    {cat.title}
                                                 </button>
                                             ))}
                                         </div>
@@ -274,8 +248,8 @@ export const Header = () => {
                                             <p className="text-sm font-bold"><strong>Erkek</strong></p>
                                             {male.map((cat) => (
                                                 // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold">{cat.title}</NavLink>
-                                                <button onClick={(e) => CategoryChange(e, cat)}>
-                                                    <a href="#" className="hover:scale-105 hover:font-bold">{cat.title}</a>
+                                                <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
+                                                    {cat.title}
                                                 </button>
                                             ))}
                                         </div>
