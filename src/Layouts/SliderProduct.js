@@ -24,10 +24,10 @@ const ProductSlider = ({ product }) => {
             <Slider {...settings}>
 
                 <div className='w-[32rem] h-[28rem]'>
-                    <img className='max-w-full max-h-full w-[32rem] h-auto ' src={product?.data.images[0].url} />
+                    <img className=' w-[32rem] h-[28rem] ' src={product?.data.images[0].url} />
                 </div>
                 <div>
-                    <img src={imgProduct} />
+                    <img className=' w-[32rem] h-[28rem] ' src={product?.data.images[0].url} />
                 </div>
 
 

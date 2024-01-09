@@ -5,13 +5,13 @@ import { Clients } from "../Layouts/Clients";
 import { Footer } from "../Layouts/Footer";
 import imgProduct from "../photos/unsplash_QANOF9iJlFs.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faGreaterThan, faHeart, faStar, faShoppingCart as faShoppingBasket } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faGreaterThan, faHeart, faStar, faShoppingCart as faShoppingBasket, faArrowLeft, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import ProductSlider from "../Layouts/SliderProduct";
 import ellipse from "../photos/Ellipse 14.svg";
 import ellipse2 from "../photos/Ellipse 15.svg";
 import ellipse3 from "../photos/Ellipse 16.svg";
 import ellipse4 from "../photos/Ellipse 17.svg";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -23,6 +23,7 @@ export const ProductPage = () => {
     const [product, setProduct] = useState()
     const { id } = useParams();
     console.log("IDIDIDIDID>>>>>>", id);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -30,7 +31,6 @@ export const ProductPage = () => {
             .then((res) => {
                 console.log("REQUEST>>>>>", res.data);
                 setProduct(res);
-                // console.log("PRODUCTDETAIL>>>>>>", product);
             }).catch((err) => {
                 console.log(err);
             })
@@ -40,11 +40,22 @@ export const ProductPage = () => {
         console.log("PRODUCTDETAIL>>>>>>", product);
     }, [product]);
 
+    const backButton = () => {
+        navigate(-1);
+
+    }
+
 
 
     return (
         <div>
             <Header />
+            <div className="ml-[12rem]">
+                <button onClick={backButton} className="flex flex-row gap-2 items-center rounded p-2 bg-slate-700 text-white">
+                    <FontAwesomeIcon icon={faCircleArrowLeft}></FontAwesomeIcon>
+                    <p>Go Back</p>
+                </button>
+            </div>
             <div className="flex sm:flex-row gap-3 sm:justify-start items-center sm:ml-[12rem] sm:py-6 justify-center py-12">
                 <NavLink to="/" className="text-header-blue text-sm font-bold">Home</NavLink>
                 <FontAwesomeIcon icon={faGreaterThan} className="text-price-grey" />

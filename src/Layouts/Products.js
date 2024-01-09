@@ -11,6 +11,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import slugify from "slugify";
+import { type } from "@testing-library/user-event/dist/type";
 
 
 export const Products = () => {
@@ -79,7 +80,27 @@ export const Products = () => {
 
     const handleClick = (product) => {
         dispatch(setProductID(product.id));
-        navigate(`/product/${product.id}`);
+        const slug = slugify(product.name, {
+            lower: true,
+        });
+        console.log("SLUGGGGGGG>>>>>>>>>>>>>>>>", slug);
+        if (product.category_id === 1) {
+            const type = "Kadın-Tişört";
+            navigate(`/product/${type}/${product.id}/${slug}`);
+        } else if (product.category_id === 2) {
+            const type = "Kadın-Ayakkabı";
+            navigate(`/product/${type}/${product.id}/${slug}`);
+
+        } else if (product.category_id === 3) {
+            const type = "Kadın-Ceket";
+            navigate(`/product/${type}/${product.id}/${slug}`);
+
+        } else if (product.category_id === 4) {
+            const type = "Kadın-Elbise";
+            navigate(`/product/${type}/${product.id}/${slug}`);
+
+        }
+
         console.log("ASDASDASD>>>>>", product);
 
     }

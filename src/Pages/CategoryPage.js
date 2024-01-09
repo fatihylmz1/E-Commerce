@@ -32,6 +32,9 @@ export const CategoryPage = () => {
         dispatch(fetchProducts(filter, categoryId, sorted));
 
     }
+    useEffect(() => {
+        dispatch(fetchProducts(filter, categoryId, sorted));
+    }, [])
 
 
     return (
