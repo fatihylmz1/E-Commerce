@@ -23,11 +23,11 @@ const ProductSlider = ({ product }) => {
 
             <Slider {...settings}>
 
-                <div className='w-[32rem] h-[28rem]'>
-                    <img className=' w-[32rem] h-[28rem] ' src={product?.data.images[0].url} />
+                <div className='w-[32rem] h-[30rem]'>
+                    <img className=' w-[32rem] h-[30rem] ' src={product?.data.images[0].url} />
                 </div>
                 <div>
-                    <img className=' w-[32rem] h-[28rem] ' src={product?.data.images[0].url} />
+                    <img className=' w-[32rem] h-[30rem] ' src={product?.data.images[0].url} />
                 </div>
 
 

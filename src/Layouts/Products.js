@@ -61,7 +61,7 @@ export const Products = () => {
     const fetchNewProducts = async () => {
 
         try {
-            const response = await fetch(`https://workintech-fe-ecommerce.onrender.com/products?offset=${offset}&limit=${limit}`);
+            const response = await fetch(`https://workintech-fe-ecommerce.onrender.com/products?category=${category}&offset=${offset}&limit=${limit}`);
             const data = await response.json();
             console.log("data>>>>", data)
             if (!Array.isArray(data.products)) {
@@ -87,17 +87,22 @@ export const Products = () => {
         if (product.category_id === 1) {
             const type = "Kadın-Tişört";
             navigate(`/product/${type}/${product.id}/${slug}`);
+            window.scrollTo(0, 0);
+
         } else if (product.category_id === 2) {
             const type = "Kadın-Ayakkabı";
             navigate(`/product/${type}/${product.id}/${slug}`);
+            window.scrollTo(0, 0);
 
         } else if (product.category_id === 3) {
             const type = "Kadın-Ceket";
             navigate(`/product/${type}/${product.id}/${slug}`);
+            window.scrollTo(0, 0);
 
         } else if (product.category_id === 4) {
             const type = "Kadın-Elbise";
             navigate(`/product/${type}/${product.id}/${slug}`);
+            window.scrollTo(0, 0);
 
         }
 
