@@ -101,6 +101,12 @@ export const Header = () => {
         let gender = cat.gender === "k" ? "Kadın" : "Erkek";
         navigate(`/shopping/${gender}/${cat.title}/`);
     }
+    const handleMouseEnter = () => {
+        setShopOpen(true);
+    }
+    const handleMouseLeave = () => {
+        setShopOpen(false);
+    }
 
 
     const name = useSelector((store) => store.user.userName);
@@ -221,40 +227,42 @@ export const Header = () => {
                         </div>
                         <div className="hidden sm:flex sm:flex-row sm:flex-wrap sm:justify-between sm:gap-4 sm:text-sm sm:content-center relative">
                             <NavLink to="/" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Home</NavLink>
-                            <NavLink to="/shop" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Shop</NavLink>
+                            <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="flex flex-row gap-2">
+                                <NavLink to="/shop" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Shop</NavLink>
 
-                            <div className="flex flex-col dropdown items-center transition-transform delay-150 gap-0">
-                                <div className="flex flex-col items-center justify-between">
-                                    <button
-                                        onClick={shopmenu}
-                                        className=" text-white focus:outline-none focus:border-none transition ease-in-out delay-100"
-                                    >
-                                        <FontAwesomeIcon icon={faCaretDown} className="text-black" />
-                                    </button>
-                                </div>
-                                {shopOpen && (
-                                    <div className="flex flex-row gap-8 absolute top-3/4 z-20 border rounded border-white bg-gray-200 p-5
-                                    transition-opacity ease-in delay-150">
-                                        <div className="flex flex-col items-center justify-center gap-2 hover:animate-fade-in">
-                                            <p className="text-sm font-bold"><strong>Kadın</strong></p>
-                                            {female.map((cat) => (
-
-                                                <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
-                                                    {cat.title}
-                                                </button>
-                                            ))}
-                                        </div>
-                                        <div className="flex flex-col items-center  gap-2">
-                                            <p className="text-sm font-bold"><strong>Erkek</strong></p>
-                                            {male.map((cat) => (
-
-                                                <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
-                                                    {cat.title}
-                                                </button>
-                                            ))}
-                                        </div>
+                                <div className="flex flex-col dropdown items-center transition-transform delay-150 gap-0" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                                    <div className="flex flex-col items-center justify-between">
+                                        <button
+                                            onClick={shopmenu}
+                                            className=" text-white focus:outline-none focus:border-none transition ease-in-out delay-100"
+                                        >
+                                            <FontAwesomeIcon icon={faCaretDown} className="text-black" />
+                                        </button>
                                     </div>
-                                )}
+                                    {shopOpen && (
+                                        <div className="flex flex-row gap-8 absolute top-[65%] z-20 border rounded border-black bg-gray-50 p-5
+                                    transition-opacity ease-in delay-150 shadow-md" >
+                                            <div className="flex flex-col items-center justify-center gap-2 hover:animate-fade-in">
+                                                <p className="text-sm font-bold"><strong>Kadın</strong></p>
+                                                {female.map((cat) => (
+
+                                                    <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold transition-transform">
+                                                        {cat.title}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                            <div className="flex flex-col items-center  gap-2">
+                                                <p className="text-sm font-bold"><strong>Erkek</strong></p>
+                                                {male.map((cat) => (
+
+                                                    <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
+                                                        {cat.title}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                             <NavLink to="/about" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">About</NavLink>
                             <NavLink to="#" className="text-sm text-link-color font-bold hover:text-black hover:scale-125 transition-transform delay-75">Blog</NavLink>
@@ -325,6 +333,6 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

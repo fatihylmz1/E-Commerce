@@ -65,7 +65,7 @@ export const ProductListPage = () => {
                 </div>
                 <div className="flex flex-row flex-wrap items-center gap-4">
 
-                    <form onSubmit={onSubmit} className="flex flex-row gap-2">
+                    <form onSubmit={onSubmit} className="flex flex-row  gap-2">
                         <input type="text" className="border rounded p-4 border-neutral-400 w-36" placeholder="Filter Products" value={filter} onChange={handleChange} />
 
                         <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer " placeholder="Sort By" value={sorted} onChange={(e) => setSorted(e.target.value)}>

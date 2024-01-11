@@ -1,18 +1,18 @@
 import React from "react";
 import "../index.css";
-import photo1 from "../photos/cardphotos/product-cover-1.png"
-import photo2 from "../photos/cardphotos/product-cover-2.png"
-import photo3 from "../photos/cardphotos/product-cover-3.png"
-import photo4 from "../photos/cardphotos/product-cover-4.png"
-import photo5 from "../photos/cardphotos/product-cover-5.png"
-import photo6 from "../photos/cardphotos/product-cover-6.png"
-import photo7 from "../photos/cardphotos/product-cover-7.png"
-import photo8 from "../photos/cardphotos/product-cover-8.png"
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const photos = [photo1, photo2, photo3, photo4, photo5, photo1, photo6, photo7, photo8, photo3];
+
 
 export const Card = () => {
+
+    const product = useSelector((store) => store.product.productList);
+    console.log("HOMEPAGEPRODUCT", product);
+    const sortedObjects = product.sort((a, b) => b.sell_count - a.sell_count);
+    console.log("HOMEPAGESORTED>>>>", sortedObjects);
+    const topseller = sortedObjects.slice(0, 12);
+    console.log("TOPSELLER>>>", topseller);
 
     return (
         <div className=" flex flex-col flex-wrap justify-between items-center sm:px-40">
@@ -20,15 +20,25 @@ export const Card = () => {
 
             <div className="sm:flex sm:flex-row flex-wrap justify-between sm:pt-6 sm:px-6 sm:gap-8 flex flex-col">
 
-                {photos.map((photo) => (
+                {topseller.map((product) => (
                     <NavLink to="/product">
-                        <div className="flex flex-col justify-between items-center gap-4 mb-6 hover:scale-125 transition-transform">
-                            <img src={photo} />
-                            <p className="text-base font-bold text-header-blue">Graphic Design</p>
-                            <p className="text-sm font-bold text-link-color">English Department</p>
-                            <div className="flex flex-row gap-2">
-                                <p className="text-price-grey text-base font-bold">$16.48</p>
-                                <p className="text-price-green text-base font-bold">$6.48</p>
+                        <div className="flex flex-col gap-3 items-center  hover:scale-105 transition-transform w-[15rem] h-[27rem] rounded border border-gray-200 bg-white shadow-md ">
+                            <div className="w-full">
+
+                                <img src={product.images[0].url} className="w-full h-[18rem] object-cover" />
+                            </div>
+                            <div className="px-2 items-center flex flex-col justify-around h-[9rem]">
+                                <div className="flex flex-col justify-end">
+
+                                    <p className="text-base font-bold text-header-blue">{product.name}</p>
+                                    <p className="text-sm font-bold text-link-color items-center content-center">{product.description}</p>
+                                </div>
+
+                                <div className="flex flex-col justify-end items-end">
+
+                                    <p className="text-price-green text-base font-bold">${product.price}</p>
+                                </div>
+
                             </div>
 
                         </div>

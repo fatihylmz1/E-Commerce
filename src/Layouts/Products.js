@@ -126,7 +126,7 @@ export const Products = () => {
                 {object.length === 0 ? <p>Ürün Bulunamadı.... </p> : <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
                     {object?.map((product) => (
                         <button onClick={() => handleClick(product)}>
-                            <div className="flex flex-col justify-between items-center gap-4 mb-16 hover:scale-110 transition-transform w-[15rem] h-[31rem]">
+                            <div className="flex flex-col justify-between items-center gap-2 mb-16 hover:scale-110 transition-transform w-[15rem] h-[31rem] rounded border border-gray-200 bg-white shadow-md ">
                                 <img src={product.images[0].url} alt="product" className="w-[15rem] h-[19rem] object-cover" />
                                 <p className="text-base font-bold text-header-blue">{product.name}</p>
                                 <p className="text-sm font-bold text-link-color">{product.description}</p>
@@ -134,7 +134,7 @@ export const Products = () => {
                                     <p className="text-base font-bold">{product.price}</p>
                                     <p className="text-base font-bold">$</p>
                                 </div>
-                                <div className="flex flex-row gap-2">
+                                <div className="flex flex-row gap-2 py-2">
                                     <img src={ellipse} alt="ellipse" />
                                     <img src={ellipse2} alt="ellipse" />
                                     <img src={ellipse3} alt="ellipse" />
