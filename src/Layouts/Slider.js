@@ -4,10 +4,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import image2 from "../photos/hero-2.jpg";
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Hero } from './Hero';
 
 const ImageSlider = () => {
+    const navigate = useNavigate()
+    const handleShopButton = () => {
+        navigate("/shop")
+    }
     const settings = {
         dots: true,
         infinite: true,
@@ -36,11 +40,11 @@ const ImageSlider = () => {
                         <img src={image2} className='sm:h-159 rounded-2xl sm:z-10 w-full h-[60rem] bg-left' />
 
                         <div className="sm:flex sm:flex-col sm:justify-center sm:gap-8 sm:content-center sm:w-1/2 sm:h-full sm:flex-wrap sm:items-start gap-10 flex flex-col items-center sm:text-start text-center justify-center h-1/2 content-center w-full absolute sm:z-20">
-                            <p className="text-regal-blue text-base font-bold">SUMMER 2020</p>
-                            <p className="text-header-blue sm:text-6xl text-[2.5rem] font-bold">NEW COLLECTION</p>
-                            <p className="text-gray-500 text-xl font-normal">We know how large objects will act,<br />
+                            <p className="text-white text-base font-bold">SUMMER 2020</p>
+                            <p className="text-white sm:text-6xl text-[2.5rem] font-bold">NEW COLLECTION</p>
+                            <p className="text-white text-xl font-normal">We know how large objects will act,<br />
                                 but things on a small scale.</p>
-                            <button className="rounded bg-sky-500 text-white text-2xl font-bold w-60 h-16">SHOP NOW</button>
+                            <button className="rounded bg-[#2DC071] text-white text-2xl font-bold w-60 h-16" onClick={handleShopButton}>SHOP NOW</button>
 
                         </div>
                     </div>
