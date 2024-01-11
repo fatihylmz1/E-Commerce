@@ -191,7 +191,44 @@ export const Header = () => {
                             </div>
                             <div className={`sm:hidden ${isOpen ? 'flex flex-col' : 'hidden'} lg:mt-0 items-center gap-8 py-24 transition ease-in-out delay-100`}>
                                 <a href="/" className="block text-link-color text-3xl font-normal">Home</a>
-                                <a href="/shop" className="block text-link-color text-3xl font-normal">Shop</a>
+
+                                <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="flex flex-row gap-2 relative items-center">
+                                    <NavLink to="/shop" className="text-link-color text-3xl font-normal hover:text-black hover:scale-125 transition-transform delay-75" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>Shop</NavLink>
+
+                                    <div className="flex flex-col dropdown items-center transition-transform delay-150 gap-0">
+                                        <div className="flex flex-col items-center justify-between">
+                                            <button
+                                                onClick={shopmenu}
+                                                className=" text-white focus:outline-none focus:border-none transition ease-in-out delay-100"
+                                            >
+                                                <FontAwesomeIcon icon={faCaretDown} className="text-black text-3xl" />
+                                            </button>
+                                        </div>
+                                        {shopOpen && (
+                                            <div className="flex flex-row gap-8 absolute top-[65%] border rounded border-black bg-gray-50 p-5
+                                    transition-opacity ease-in delay-150 shadow-md" >
+                                                <div className="flex flex-col items-center justify-center gap-2 hover:animate-fade-in">
+                                                    <p className="text-sm font-bold"><strong>Kadın</strong></p>
+                                                    {female.map((cat) => (
+
+                                                        <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold transition-transform">
+                                                            {cat.title}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                                <div className="flex flex-col items-center  gap-2">
+                                                    <p className="text-sm font-bold"><strong>Erkek</strong></p>
+                                                    {male.map((cat) => (
+
+                                                        <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
+                                                            {cat.title}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                                 <a href="/about" className="block text-link-color text-3xl font-normal">About</a>
                                 <a href="#" className="block text-link-color text-3xl font-normal">Blog</a>
                                 <a href="/contact" className="block text-link-color text-3xl font-normal">Contact</a>
