@@ -84,15 +84,6 @@ export const ProductPage = () => {
                         <p className="text-login text-sm font-bold">In Stock</p>
                     </div>
 
-                    <div className="flex flex-row">
-                        <p className="text-[#737373] text-sm font-bold">Sell Count:</p>
-                        <p className="text-login text-sm font-bold">{product?.data.sell_count}</p>
-                    </div>
-                    <div className="flex flex-row">
-                        <p className="text-[#737373] text-sm font-bold">Stock Count:</p>
-                        <p className="text-login text-sm font-bold">{product?.data.stock}</p>
-                    </div>
-
                     <p className="text-[#858585] text-sm font-normal">
                         {product?.data.description}
                     </p>

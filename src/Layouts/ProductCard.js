@@ -37,7 +37,7 @@ export const ProductCard = () => {
 
                         <div className="z-2000 absolute flex flex-col justify-between gap-4 items-center">
                             <p className="text-white text-base font-bold">{product.gender === "k" ? "Kadın " : "Erkek "}{product.title}</p>
-                            <p className="text-white text-sm font-normal">{product.rating}</p>
+                            <p className="text-white text-sm font-normal">Rating: {product.rating}</p>
                         </div>
 
                     </div>

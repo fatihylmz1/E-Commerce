@@ -68,10 +68,11 @@ export const CategoryPage = () => {
                 </div>
                 <div className="flex flex-row flex-wrap items-center gap-4">
 
-                    <form onSubmit={onSubmit} className="flex flex-row gap-2">
-                        <input type="text" className="border rounded p-4 border-neutral-400 w-36" placeholder="Filter Products" value={filter} onChange={handleChange} />
+                    <form onSubmit={onSubmit} className="flex sm:flex-row flex-col  gap-2">
+                        <input type="text" className="border rounded p-4 border-neutral-400 sm:w-36 w-46 bg-neutral-200" placeholder="Filter Products" value={filter} onChange={handleChange} />
 
-                        <select className="dropdown border rounded border-neutral-400 px-4 py-4 cursor-pointer " placeholder="Sort By" value={sorted} onChange={(e) => setSorted(e.target.value)}>
+
+                        <select className="dropdown border rounded border-neutral-400 bg-neutral-200 px-4 py-4 cursor-pointer " placeholder="Sort By" value={sorted} onChange={(e) => setSorted(e.target.value)}>
                             <option value="" disabled selected >Sort By</option>
                             <option value="price:asc">Price:Low to High</option>
                             <option value="price:desc">Price:High to Low</option>
@@ -79,8 +80,9 @@ export const CategoryPage = () => {
                             <option value="rating:desc">Rating:High to Low</option>
                         </select>
 
+
                         <div>
-                            <button className="rounded bg-sky-500 text-white text-lg font-light w-32 h-14" type="submit">Filter</button>
+                            <button className="rounded bg-sky-500 text-white text-lg font-light sm:w-32 w-[14rem] h-14" type="submit">Filter</button>
                         </div>
                     </form>
                 </div>
