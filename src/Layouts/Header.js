@@ -238,7 +238,7 @@ export const Header = () => {
                                         <div className="flex flex-col items-center justify-center gap-2 hover:animate-fade-in">
                                             <p className="text-sm font-bold"><strong>Kadın</strong></p>
                                             {female.map((cat) => (
-                                                // <NavLink to={`/shop/Kadın/${cat.title}/?${queryParams}`} className="hover:scale-105 hover:font-bold ">{cat.title}</NavLink>
+
                                                 <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
                                                     {cat.title}
                                                 </button>
@@ -247,7 +247,7 @@ export const Header = () => {
                                         <div className="flex flex-col items-center  gap-2">
                                             <p className="text-sm font-bold"><strong>Erkek</strong></p>
                                             {male.map((cat) => (
-                                                // <NavLink to={cat.title} className="hover:scale-105 hover:font-bold">{cat.title}</NavLink>
+
                                                 <button onClick={(e) => CategoryChange(e, cat)} className="hover:scale-105 hover:font-bold">
                                                     {cat.title}
                                                 </button>

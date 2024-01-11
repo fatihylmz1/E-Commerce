@@ -12,7 +12,6 @@ import ellipse2 from "../photos/Ellipse 15.svg";
 import ellipse3 from "../photos/Ellipse 16.svg";
 import ellipse4 from "../photos/Ellipse 17.svg";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
 import axios from "axios";
 
 

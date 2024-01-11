@@ -118,12 +118,12 @@ export const Products = () => {
                 dataLength={object.length}
                 next={fetchNewProducts}
                 hasMore={hasMore}
-                loader={<h4 className="items-center flex flex-row gap-2">
+                loader={object.length === 0 ? "" : <h4 className="items-center flex flex-row gap-2">
                     <p>Yükleniyor...</p>
                     <FontAwesomeIcon icon={faSpinner} />
                 </h4>}
             >
-                <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
+                {object.length === 0 ? <p>Ürün Bulunamadı.... </p> : <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
                     {object?.map((product) => (
                         <button onClick={() => handleClick(product)}>
                             <div className="flex flex-col justify-between items-center gap-4 mb-16 hover:scale-110 transition-transform w-[15rem] h-[31rem]">
@@ -143,10 +143,10 @@ export const Products = () => {
 
                             </div>
                         </button>
-                        // </NavLink>
+
                     ))}
 
-                </div>
+                </div>}
             </InfiniteScroll>
 
         </div>
