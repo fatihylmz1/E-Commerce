@@ -111,17 +111,9 @@ export const Products = () => {
         // console.log("ASDASDASD>>>>>", product);
 
     }
-    // const addToCard = (product) => {
-    //     dispatch(addToCart(product));
-    //     console.log("CARD PRODUCT>>>>", product);
-    //     toast.success("Succesfully added to shop cart", {
-    //         position: "bottom-center",
-    //         autoClose: 3000,
-    //     })
-    // }
+
     const isProductInCart = useSelector((store) => store.shoppingcard.cart);
     const addToCard = (product) => {
-        // Check if the product with the same ID already exists in the cart
         for (let i = 0; i < isProductInCart.length; i++) {
             if (product.id === isProductInCart[i].id) {
                 console.log("Product is already in the cart!");

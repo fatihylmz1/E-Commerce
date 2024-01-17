@@ -1,5 +1,8 @@
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromCart } from "../store/actions/ShoppingCardAction";
 
 export const ShopBasket = () => {
 
@@ -7,6 +10,7 @@ export const ShopBasket = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [productCounts, setProductCounts] = useState({});
     const card = useSelector((store) => store.shoppingcard.cart);
+    const dispatch = useDispatch();
 
 
 
@@ -38,6 +42,11 @@ export const ShopBasket = () => {
         calculateTotal();
     }, [card, productCounts]);
 
+    const removeToCart = (product) => {
+
+        dispatch(removeFromCart(product.id));
+    }
+
 
 
 
@@ -62,6 +71,7 @@ export const ShopBasket = () => {
                                 <button className="border border-blue-700 bg-blue-500 text-black w-8 h-6 text-center rounded" onClick={() => updateProductCount(product.id, true)}>+</button>
                                 <p className="border border-blue-700 bg-white w-8 h-6 text-center rounded">{productCounts[product.id] || 1}</p>
                                 <button className="border border-blue-700 bg-blue-500 text-black w-8 h-6 text-center rounded" onClick={() => updateProductCount(product.id, false)}>-</button>
+                                <button onClick={() => removeToCart(product)}><FontAwesomeIcon icon={faTrash} /></button>
                             </div>
 
                         </div>

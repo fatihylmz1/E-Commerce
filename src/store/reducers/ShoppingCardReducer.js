@@ -10,6 +10,8 @@ export const ShoppingCartReducer = (state = cartInitial, action) => {
     switch (action.type) {
         case "ADD_TO_CART":
             const existingProduct = state.cart.find(item => item.id === action.payload.id);
+            const card = state.cart;
+            console.log("redUCER cart>>>>", card);
 
             if (existingProduct) {
                 toast.error("You have already added this product to your cart!", {
@@ -20,9 +22,10 @@ export const ShoppingCartReducer = (state = cartInitial, action) => {
 
             return { ...state, cart: [...state.cart, action.payload] };
         case "REMOVE_FROM_CART":
+
             return {
                 ...state,
-                cart: state.cart.filter((item) => item.product.id !== action.payload),
+                cart: state.cart.filter((item) => item.id !== action.payload),
             };
         case "SET_PAYMENT_INFO":
             return { ...state, payment: action.payload };
