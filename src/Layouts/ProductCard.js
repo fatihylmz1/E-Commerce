@@ -13,9 +13,9 @@ export const ProductCard = () => {
     const categorie = useSelector((store) => store.global.categories);
     // const gender2 = categorie.product.gender === "k" ? "Kadın" : "Erkek";
     const sortedObjects = categorie.sort((a, b) => b.rating - a.rating);
-    console.log("sorted>>>>", sortedObjects);
+    // console.log("sorted>>>>", sortedObjects);
     const topfive = sortedObjects.slice(0, 5);
-    console.log(topfive);
+    // console.log(topfive);
     const CategoryChange = (e, product) => {
         e.preventDefault()
         const categoryId = product.id;

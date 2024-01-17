@@ -10,11 +10,11 @@ import { setProductID } from "../store/actions/ProductActions";
 export const Card = () => {
 
     const product = useSelector((store) => store.product.productList);
-    console.log("HOMEPAGEPRODUCT", product);
+    // console.log("HOMEPAGEPRODUCT", product);
     const sortedObjects = product.sort((a, b) => b.sell_count - a.sell_count);
-    console.log("HOMEPAGESORTED>>>>", sortedObjects);
+    // console.log("HOMEPAGESORTED>>>>", sortedObjects);
     const topseller = sortedObjects.slice(0, 12);
-    console.log("TOPSELLER>>>", topseller);
+    // console.log("TOPSELLER>>>", topseller);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ export const Card = () => {
         const slug = slugify(product.name, {
             lower: true,
         });
-        console.log("SLUGGGGGGG>>>>>>>>>>>>>>>>", slug);
+        // console.log("SLUGGGGGGG>>>>>>>>>>>>>>>>", slug);
         if (product.category_id === 1) {
             const type = "Kadın-Tişört";
             navigate(`/product/${type}/${product.id}/${slug}`);

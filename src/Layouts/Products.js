@@ -9,9 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, setProductID } from "../store/actions/ProductActions";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faShoppingBasket, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import slugify from "slugify";
 import { type } from "@testing-library/user-event/dist/type";
+import { addToCart } from "../store/actions/ShoppingCardAction";
 
 
 export const Products = () => {
@@ -23,20 +24,20 @@ export const Products = () => {
 
     const [object, setObject] = useState([])
     const filtre = useSelector((store) => store.product.filter);
-    console.log("PRODUCTFILTRE>>>>>>>>>", filtre);
+    // console.log("PRODUCTFILTRE>>>>>>>>>", filtre);
     const category = useSelector((store) => store.product.category);
     const sort = useSelector((store) => store.product.sort);
 
     const product = useSelector((store) => store.product.productList);
-    console.log("ürünler>>>>>", product);
+    // console.log("ürünler>>>>>", product);
     const navigate = useNavigate()
 
 
 
     useEffect(() => {
-        console.log("state güncellendi", product)
+        // console.log("state güncellendi", product)
         setObject(product);
-        console.log("object", object);
+        // console.log("object", object);
         const urlSearchParams = new URLSearchParams();
 
         if (filtre) {
@@ -51,7 +52,7 @@ export const Products = () => {
             urlSearchParams.set('category', category);
         }
 
-        console.log("URLSearchParams:", urlSearchParams.toString());
+        // console.log("URLSearchParams:", urlSearchParams.toString());
 
         const newURL = `${window.location.pathname}?${urlSearchParams.toString()}`;
         window.history.replaceState({}, '', newURL);
@@ -63,7 +64,7 @@ export const Products = () => {
         try {
             const response = await fetch(`https://workintech-fe-ecommerce.onrender.com/products?category=${category}&offset=${offset}&limit=${limit}`);
             const data = await response.json();
-            console.log("data>>>>", data)
+            // console.log("data>>>>", data)
             if (!Array.isArray(data.products)) {
                 console.error('Hatalı veri formatı: Data bir dizi değil.');
                 return;
@@ -83,7 +84,7 @@ export const Products = () => {
         const slug = slugify(product.name, {
             lower: true,
         });
-        console.log("SLUGGGGGGG>>>>>>>>>>>>>>>>", slug);
+        // console.log("SLUGGGGGGG>>>>>>>>>>>>>>>>", slug);
         if (product.category_id === 1) {
             const type = "Kadın-Tişört";
             navigate(`/product/${type}/${product.id}/${slug}`);
@@ -106,8 +107,12 @@ export const Products = () => {
 
         }
 
-        console.log("ASDASDASD>>>>>", product);
+        // console.log("ASDASDASD>>>>>", product);
 
+    }
+    const addToCard = (product) => {
+        dispatch(addToCart(product));
+        console.log("CARD PRODUCT>>>>", product);
     }
 
 
@@ -125,24 +130,36 @@ export const Products = () => {
             >
                 <div className="flex sm:flex-row flex-wrap justify-between pt-6 px-6 gap-4 flex-col">
                     {object?.map((product) => (
-                        <button onClick={() => handleClick(product)}>
-                            <div className="flex flex-col justify-between items-center gap-2 mb-16 hover:scale-110 transition-transform w-[15rem] h-[31rem] rounded border border-gray-200 bg-white shadow-md ">
-                                <img src={product.images[0].url} alt="product" className="w-[15rem] h-[19rem] object-cover" />
-                                <p className="text-base font-bold text-header-blue">{product.name}</p>
-                                <p className="text-sm font-bold text-link-color">{product.description}</p>
-                                <div className="flex flex-row">
-                                    <p className="text-base font-bold">{product.price}</p>
-                                    <p className="text-base font-bold">$</p>
-                                </div>
-                                <div className="flex flex-row gap-2 py-2">
-                                    <img src={ellipse} alt="ellipse" />
-                                    <img src={ellipse2} alt="ellipse" />
-                                    <img src={ellipse3} alt="ellipse" />
-                                    <img src={ellipse4} alt="ellipse" />
-                                </div>
+                        <div className="hover:scale-110 transition-transform mb-16">
+                            <div>
+                                <button onClick={() => handleClick(product)}>
+                                    <div className="flex flex-col justify-between items-center gap-2  w-[15rem] h-[31rem] rounded border border-gray-200 bg-white shadow-md ">
+                                        <img src={product.images[0].url} alt="product" className="w-[15rem] h-[19rem] object-cover" />
+                                        <p className="text-base font-bold text-header-blue">{product.name}</p>
+                                        <p className="text-sm font-bold text-link-color">{product.description}</p>
+                                        <div className="flex flex-row">
+                                            <p className="text-base font-bold">{product.price}</p>
+                                            <p className="text-base font-bold">$</p>
+                                        </div>
 
+                                        <div className="flex flex-row gap-2 py-2">
+                                            <img src={ellipse} alt="ellipse" />
+                                            <img src={ellipse2} alt="ellipse" />
+                                            <img src={ellipse3} alt="ellipse" />
+                                            <img src={ellipse4} alt="ellipse" />
+                                        </div>
+
+                                    </div>
+                                </button>
                             </div>
-                        </button>
+
+                            <div>
+                                <button className="flex flex-row bg-blue-700 p-2 rounded items-center gap-2 w-[15rem] text-center justify-center" onClick={() => addToCard(product)}>
+                                    <p className="text-white font-bold">Add to Card</p>
+                                    <FontAwesomeIcon icon={faShoppingBasket} className="text-white" />
+                                </button>
+                            </div>
+                        </div>
 
                     ))}
 

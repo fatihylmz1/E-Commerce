@@ -9,7 +9,7 @@ import imgProduct from "../photos/single-product-1-cover-2.jpg";
 
 
 const ProductSlider = ({ product }) => {
-    console.log("SLİDER PRODUCT>>>>>", product);
+    // console.log("SLİDER PRODUCT>>>>>", product);
     const settings = {
         dots: true,
         infinite: true,

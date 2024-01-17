@@ -71,7 +71,7 @@ const SignUpForm = () => {
         axios
             .post("https://workintech-fe-ecommerce.onrender.com/signup", formData)
             .then((response) => {
-                console.log("FormData > ", response.config.data);
+                // console.log("FormData > ", response.config.data);
                 toast.success("You've successfully signed up!", {
                     transition: Flip,
                     position: "bottom-center",

@@ -21,7 +21,7 @@ export const LoginPage = () => {
         dispatch(loginUser(data))
 
             .then((response) => {
-                console.log("response", response);
+                // console.log("response", response);
                 if (response.data && response.data.token) {
                     localStorage.setItem("token", response.data.token);
                     dispatch(
@@ -43,7 +43,7 @@ export const LoginPage = () => {
                 } else {
                     throw new Error("Login failed: No token received");
                 }
-                console.log("data>", data)
+                // console.log("data>", data)
             })
             .catch((error) => {
                 toast.error("Login failed: " + error.message, {

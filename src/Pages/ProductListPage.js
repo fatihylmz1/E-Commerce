@@ -22,7 +22,7 @@ export const ProductListPage = () => {
     const categoryId = useSelector((store) => store.product.category) || null;
     const product = useSelector((store) => store.product.productList);
 
-    console.log("CATEGORYYY>>>>", categoryId);
+    // console.log("CATEGORYYY>>>>", categoryId);
 
     const handleChange = (e) => {
         setFilter(e.target.value)

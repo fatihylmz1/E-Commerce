@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { loginSuccess } from "../store/actions/UserActions";
 import { fetchCategories } from "../store/actions/GlobalActions";
-import { fetchProducts, setCategoryProducts, setFilterProducts, setSortProducts } from "../store/actions/ProductActions";
+import { fetchProducts, setCategoryProducts, setFilterProducts, setSortProducts, setTotalProductCount } from "../store/actions/ProductActions";
+import { ShopBasket } from "./ShopBasket";
 
 
 
@@ -21,6 +22,8 @@ export const Header = () => {
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const [shopOpen, setShopOpen] = useState(false);
+    const [basketOpen, setBasketOpen] = useState(false);
+    const [productCount, setProductCount] = useState(0);
     const [category, setCategory] = useState();
     const dispatch = useDispatch()
     const toggleMenu = () => {
@@ -31,7 +34,7 @@ export const Header = () => {
     }
 
     const loggedIn = localStorage.getItem("isloggedIn");
-    console.log("loggedin >", loggedIn);
+    // console.log("loggedin >", loggedIn);
 
 
 
@@ -94,7 +97,7 @@ export const Header = () => {
     const CategoryChange = (e, cat) => {
         e.preventDefault()
         const categoryId = cat.id;
-        console.log("ÜRÜÜÜÜÜÜNNNNNNNNNNNNNNN>>>>>>>>>>>", cat);
+        // console.log("ÜRÜÜÜÜÜÜNNNNNNNNNNNNNNN>>>>>>>>>>>", cat);
         setCategory(categoryId);
         dispatch(setCategoryProducts(categoryId));
         dispatch(fetchProducts(filtre, categoryId, sort));
@@ -119,6 +122,15 @@ export const Header = () => {
     const male = categories.filter(gender => gender.code.charAt(0) === "e");
     // console.log("female>>", female);
     // console.log("male>>", male);
+
+    const handleShopCard = () => {
+        setBasketOpen(!basketOpen);
+    }
+    const card = useSelector((store) => store.shoppingcard.cart);
+    useEffect(() => {
+        setProductCount(card.length);
+    }, [card])
+
 
 
     return (
@@ -351,13 +363,18 @@ export const Header = () => {
                                 </button>
                             </div>
 
-                            <div className="flex flex-row justify-between items-center">
-                                <button className="flex flex-row items-center gap-2">
-
-                                    <FontAwesomeIcon icon={faShoppingBasket} className="text-icon-blue" />
-                                    <p className="text-login">1</p>
-                                </button>
+                            <div className="flex flex-col justify-between items-center" onClick={handleShopCard}>
+                                <div className="flex flex-row justify-between items-center gap-2">
+                                    <button className="flex flex-row items-center gap-2">
+                                        <FontAwesomeIcon icon={faShoppingBasket} className="text-icon-blue" />
+                                    </button>
+                                    <p className="text-login">{productCount}</p>
+                                </div>
                             </div>
+                            <div className="absolute top-[15%] z-10 right-4">
+                                {basketOpen && (
+                                    <ShopBasket />
+                                )}</div>
 
                             <div className="flex flex-row justify-between items-center">
                                 <button className="flex flex-row items-center gap-2">

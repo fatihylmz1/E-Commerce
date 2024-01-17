@@ -20,7 +20,7 @@ function App() {
 
   const category = useSelector((store) => store.product.category);
   const id = useSelector((store) => store.product.productId);
-  console.log("APP ID>>>>>", id);
+  // console.log("APP ID>>>>>", id);
 
 
 

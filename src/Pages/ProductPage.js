@@ -21,14 +21,14 @@ export const ProductPage = () => {
 
     const [product, setProduct] = useState()
     const { id } = useParams();
-    console.log("IDIDIDIDID>>>>>>", id);
+    // console.log("IDIDIDIDID>>>>>>", id);
     const navigate = useNavigate();
 
 
     useEffect(() => {
         axios.get(`https://workintech-fe-ecommerce.onrender.com/products/${id}`)
             .then((res) => {
-                console.log("REQUEST>>>>>", res.data);
+                // console.log("REQUEST>>>>>", res.data);
                 setProduct(res);
             }).catch((err) => {
                 console.log(err);
@@ -36,10 +36,11 @@ export const ProductPage = () => {
     }, [id])
 
     useEffect(() => {
-        console.log("PRODUCTDETAIL>>>>>>", product);
+        // console.log("PRODUCTDETAIL>>>>>>", product);
     }, [product]);
 
-    const backButton = () => {
+    const backButton = (e) => {
+        e.preventDefault();
         navigate(-1);
         window.scrollTo(0, 0);
 
@@ -51,7 +52,7 @@ export const ProductPage = () => {
         <div>
             <Header />
             <div className="hidden sm:ml-[12rem] sm:flex">
-                <button onClick={backButton} className="flex flex-row gap-2 items-center rounded p-2 bg-slate-700 text-white">
+                <button onClick={(e) => backButton(e)} className="flex flex-row gap-2 items-center rounded p-2 bg-slate-700 text-white">
                     <FontAwesomeIcon icon={faCircleArrowLeft}></FontAwesomeIcon>
                     <p>Go Back</p>
                 </button>

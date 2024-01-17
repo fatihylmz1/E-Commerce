@@ -19,7 +19,7 @@ export const CategoryPage = () => {
     const [sorted, setSorted] = useState("");
     const dispatch = useDispatch();
     const categoryId = useSelector((store) => store.product.category) || null;
-    console.log("CATEGORYYY>>>>", categoryId);
+    // console.log("CATEGORYYY>>>>", categoryId);
 
     const handleChange = (e) => {
         setFilter(e.target.value)
