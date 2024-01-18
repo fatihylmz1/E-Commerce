@@ -29,17 +29,21 @@ export const ShopBasket = () => {
         setTotalPrice(price.toFixed(2));
     };
 
-    const updateProductCount = (productId, increment) => {
-        setProductCounts((prevCounts) => {
-            const count = prevCounts[productId] !== undefined ? prevCounts[productId] : 0;
-            const newCount = Math.max(1, count + (increment ? 1 : -1));
+    const updateProductCount = (productId, increase) => {
+        const updatedCounts = { ...productCounts };
+        const currentCount = updatedCounts[productId] || 1;
 
-            return { ...prevCounts, [productId]: newCount };
-        });
+        updatedCounts[productId] = increase ? currentCount + 1 : Math.max(currentCount - 1, 1);
+
+        setProductCounts(updatedCounts);
+
+        console.log(productCounts)
+        calculateTotal();
     };
 
     useEffect(() => {
         calculateTotal();
+
     }, [card, productCounts]);
 
     const removeToCart = (product) => {
@@ -60,7 +64,7 @@ export const ShopBasket = () => {
                     <img src={product.images[0].url} className="w-[4rem] h-full object-cover" />
                     <div className="flex flex-col gap-2 w-full">
                         <p className="text-black font-bold">{product.name}</p>
-                        <p className="text-gray-400 font-light">Adet:{productCounts[product.id] || 0}</p>
+                        <p className="text-gray-400 font-light">Adet:{productCounts[product.id] || 1}</p>
                         <div className="flex flex-row justify-between">
 
                             <div>
