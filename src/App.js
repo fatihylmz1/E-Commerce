@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { LoginPage } from "./Pages/LoginPage";
 import { useSelector } from "react-redux";
 import { CategoryPage } from "./Pages/CategoryPage";
+import { ShoppingCartPage } from "./Pages/ShoppingCartPage";
 
 
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/shopcart" element={<ShoppingCartPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

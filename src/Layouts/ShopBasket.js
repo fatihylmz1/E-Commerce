@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../store/actions/ShoppingCardAction";
+import { useNavigate } from "react-router-dom";
 
 export const ShopBasket = () => {
 
@@ -11,6 +12,7 @@ export const ShopBasket = () => {
     const [productCounts, setProductCounts] = useState({});
     const card = useSelector((store) => store.shoppingcard.cart);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
 
@@ -51,6 +53,10 @@ export const ShopBasket = () => {
         dispatch(removeFromCart(product.id));
     }
 
+    const navToShopCard = () => {
+        navigate("/shopcart");
+    }
+
 
 
 
@@ -86,7 +92,7 @@ export const ShopBasket = () => {
             <hr className="w-[18rem] border-black border-t-2 mb-3" />
             <p className="text-black font-bold mb-3">Total Price: {totalPrice}$</p>
             <div className="flex flex-row justify-between">
-                <button className="border rounded p-2 bg-login text-white font-bold">
+                <button className="border rounded p-2 bg-login text-white font-bold" onClick={navToShopCard}>
                     Sepete Git
                 </button>
                 <button className="border rounded p-2 bg-orange-500 text-white font-bold">
