@@ -371,7 +371,7 @@ export const Header = () => {
                                     <p className="text-login">{productCount}</p>
                                 </div>
                             </div>
-                            <div className="absolute top-[15%] z-10 right-4">
+                            <div className="absolute top-[15%] z-20 right-4">
                                 {basketOpen && (
                                     <ShopBasket />
                                 )}</div>

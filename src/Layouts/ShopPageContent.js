@@ -4,16 +4,19 @@ import React, { useEffect, useState } from "react";
 import { removeFromCart } from "../store/actions/ShoppingCardAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addProduct } from "../store/actions/OrderAction";
 
 export const ShopPageContent = () => {
 
+    const card = useSelector((store) => store.shoppingcard.cart);
+    // console.log("CARDDDDD>>>>>>", card);
     const [totalProduct, setTotalProduct] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [productCounts, setProductCounts] = useState({});
-    const card = useSelector((store) => store.shoppingcard.cart);
     const dispatch = useDispatch();
     const [cargo, setCargo] = useState(0);
     const [priceWithCargo, setPriceWithCargo] = useState(0);
+    const navigate = useNavigate();
 
 
 
@@ -68,6 +71,12 @@ export const ShopPageContent = () => {
 
         dispatch(removeFromCart(product.id));
     }
+
+    const basketHandler = () => {
+        // dispatch(addProduct(card));
+        navigate("/order");
+    }
+
     return (
         <div className="flex flex-row justify-between w-full h-auto px-48 py-20 gap-6">
             <div className="flex flex-col gap-6">
@@ -132,7 +141,7 @@ export const ShopPageContent = () => {
 
 
                 </div>
-                <button className="bg-orange-500 text-base font-bold text-white p-4 rounded">
+                <button className="bg-orange-500 text-base font-bold text-white p-4 rounded" onClick={basketHandler}>
                     Sepeti Onayla <FontAwesomeIcon icon={faArrowRight} />
                 </button>
 

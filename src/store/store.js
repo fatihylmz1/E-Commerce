@@ -7,6 +7,7 @@ import { ProductReducer } from './reducers/ProductReducer';
 import { ShoppingCartReducer } from './reducers/ShoppingCardReducer';
 import StoreReducer from './reducers/StoreReducer';
 import { UserReducer } from './reducers/UserReducer';
+import addressReducer from './reducers/OrderReducer';
 
 
 
@@ -17,6 +18,7 @@ export const reducers = combineReducers({
     shoppingcard: ShoppingCartReducer,
     store: StoreReducer,
     user: UserReducer,
+    addressReducer: addressReducer,
 
 });
 

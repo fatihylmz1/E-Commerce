@@ -12,6 +12,7 @@ import { LoginPage } from "./Pages/LoginPage";
 import { useSelector } from "react-redux";
 import { CategoryPage } from "./Pages/CategoryPage";
 import { ShoppingCartPage } from "./Pages/ShoppingCartPage";
+import OrderPage from "./Pages/OrderPage";
 
 
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/shopcart" element={<ShoppingCartPage />} />
+          <Route path="/order" element={<OrderPage />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
