@@ -10,6 +10,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { Header } from "../Layouts/Header";
 import { Footer } from "../Layouts/Footer";
+import axios from "axios";
 
 const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"];
 const districts = {
@@ -82,9 +83,9 @@ const OrderPage = () => {
 
     }, [totalPrice]);
 
-    const handleAddAddressClick = () => {
-        setShowAddAddressForm(true);
-    };
+    // const handleAddAddressClick = () => {
+    //     setShowAddAddressForm(true);
+    // };
     const token = localStorage.getItem("token");
 
     const handleAddAddressSubmit = (addressData) => {
@@ -94,16 +95,20 @@ const OrderPage = () => {
         setShowAddAddressForm(false);
     };
 
-    // useEffect(() => {
-    //     setAddresses(userAddress);
-    //     console.log("useradres güncellendi", userAddress);
-    // }, [userAddress]);
+    useEffect(() => {
+        setAddresses(userAddress);
+        console.log("useradres güncellendi", userAddress);
+    }, [userAddress]);
 
     const basketHandler = () => {
         // dispatch(addProduct(card));
         // navigate("/order");
         console.log("Sipariş verildi")
     }
+    const handleAddAddress = () => {
+        setShowAddAddressForm(true);
+    };
+
 
     return (
         <div>
@@ -114,7 +119,7 @@ const OrderPage = () => {
                         <div>
                             <button
                                 className="w-[30rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg "
-                                onClick={handleAddAddressClick}
+                                onClick={handleAddAddress}
                             >
                                 Adres Ekle
                             </button>
@@ -148,6 +153,7 @@ const OrderPage = () => {
                                         required: "Address title is required",
                                     })}
                                     className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+
                                 />
                                 {errors.addressTitle && (
                                     <p className="text-red-500 text-xs italic">
@@ -161,7 +167,7 @@ const OrderPage = () => {
                                     htmlFor="name"
                                     className="block text-gray-700 text-sm font-bold mb-2"
                                 >
-                                    Name & Surname:
+                                    Name:
                                 </label>
                                 <input
                                     type="text"
@@ -176,8 +182,34 @@ const OrderPage = () => {
                                     </p>
                                 )}
                             </div>
+                            <div className="mb-4">
+                                <label
+                                    htmlFor="surname"
+                                    className="block text-gray-700 text-sm font-bold mb-2"
+                                >
+                                    Surname:
+                                </label>
+                                <input
+                                    type="text"
+                                    id="surname"
+                                    name="surname"
+                                    {...register("name", { required: "Name is required" })}
+                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                />
+                                {errors.name && (
+                                    <p className="text-red-500 text-xs italic">
+                                        {errors.name.message}
+                                    </p>
+                                )}
+                            </div>
 
                             <div className="mb-4">
+                                <label
+                                    htmlFor="phone"
+                                    className="block text-gray-700 text-sm font-bold mb-2"
+                                >
+                                    Phone:
+                                </label>
                                 <input
                                     placeholder="Phone"
                                     type="tel"
