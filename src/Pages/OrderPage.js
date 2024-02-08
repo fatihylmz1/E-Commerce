@@ -88,17 +88,17 @@ const OrderPage = () => {
     // };
     const token = localStorage.getItem("token");
 
-    const handleAddAddressSubmit = (addressData) => {
-        dispatch(addUserAddress(addressData, token));
-        console.log("ADDRESSS>>>>", addressData);
-        setAddresses([...addresses, addressData]);
-        setShowAddAddressForm(false);
-    };
+    // const handleAddAddressSubmit = (addressData) => {
+    //     dispatch(addUserAddress(addressData, token));
+    //     console.log("ADDRESSS>>>>", addressData);
+    //     setAddresses([...addresses, addressData]);
+    //     setShowAddAddressForm(false);
+    // };
 
-    useEffect(() => {
-        setAddresses(userAddress);
-        console.log("useradres güncellendi", userAddress);
-    }, [userAddress]);
+    // useEffect(() => {
+    //     setAddresses(userAddress);
+    //     console.log("useradres güncellendi", userAddress);
+    // }, [userAddress]);
 
     const basketHandler = () => {
         // dispatch(addProduct(card));
@@ -109,254 +109,256 @@ const OrderPage = () => {
         setShowAddAddressForm(true);
     };
 
+    // const handleAddAddressSubmit = (data) => {
+    //     const addressData = {
+    //         title: data.addressTitle,
+    //         name: data.name,
+    //         surname: data.surname,
+    //         phone: data.phone,
+    //         city: data.city,
+    //         district: data.district,
+    //         neighborhood: data.neighborhood,
+    //         address: data.addressDetails,
+    //     };
+
+    //     axios
+    //         .post("https://workintech-fe-ecommerce.onrender.com/user/address", addressData).then((res) => {
+    //             console.log("Giden data: ", res.data);
+    //             getAddress();
+    //         });
+
+    //     // dispatch(addUserAddress(addressData));
+    //     setShowAddAddressForm(false);
+    //     dispatch(getUserAddress());
+    // };
+    // const getAddress = () => {
+    //     axios.get("https://workintech-fe-ecommerce.onrender.com/user/address").then((res) => {
+    //         console.log("Gelen data: ", res.data);
+    //         setAddresses(res.data);
+    //     });
+    // };
+
 
     return (
         <div>
             <Header />
             <div className="flex justify-between px-28 py-20">
-                <div className="flex flex-col">
-                    <div className="flex flex-col gap-4 w-full flex-wrap">
-                        <div>
-                            <button
-                                className="w-[30rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg "
-                                onClick={handleAddAddress}
-                            >
-                                Adres Ekle
-                            </button>
+                <div className="flex flex-row gap-4">
+                    <div className="flex flex-col">
+                        <div className="flex flex-col gap-4 w-full flex-wrap">
+                            <div>
+                                <button
+                                    className="w-[25rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg"
+                                    onClick={handleAddAddress}
+                                >
+                                    Adres Ekle
+                                </button>
+                            </div>
                         </div>
-                        <div className="flex flex-col gap-6">
-                            {addresses?.map((address) => {
+                        {showAddAddressForm && (
+                            <form
+                                onSubmit={handleSubmit(handleAddAddressSubmit)}
+                                className="max-w-md mx-auto bg-white p-8 rounded shadow-md"
+                            >
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="addressTitle"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        Address Title:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="addressTitle"
+                                        name="addressTitle"
+                                        {...register("addressTitle", {
+                                            required: "Address title is required",
+                                        })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 
-                                <div className="w-auto h-auto border-2 border-gray-400 font-montserrat font-semibold tracking-[0.0125rem] text-lg">
-                                    <p className="text-black">{address.city}</p>
+                                    />
+                                    {errors.addressTitle && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.addressTitle.message}
+                                        </p>
+                                    )}
                                 </div>
-                            })}
-                        </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="name"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        Name & Surname:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        {...register("name", { required: "Name is required" })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    />
+                                    {errors.name && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.name.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="phone"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        Phone:
+                                    </label>
+                                    <input
+                                        placeholder="Phone"
+                                        type="tel"
+                                        id="phone"
+                                        name="phone"
+                                        {...register("phone", { required: "Phone is required" })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    />
+                                    {errors.phone && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.phone.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="city"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        City:
+                                    </label>
+                                    <select
+                                        id="city"
+                                        name="city"
+                                        onChange={handleCityChange}
+                                        {...register("city", { required: "City is required" })}
+                                        value={selectedCity}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    >
+                                        <option value="" disabled>
+                                            Select City
+                                        </option>
+                                        {cities.map((city) => (
+                                            <option key={city} value={city}>
+                                                {city}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    {errors.city && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.city.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="district"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        District:
+                                    </label>
+                                    <select
+                                        id="district"
+                                        name="district"
+                                        value={selectedDistrict}
+                                        {...register("district", {
+                                            required: "District is required",
+                                        })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    >
+                                        <option value="" disabled>
+                                            Select District
+                                        </option>
+                                        {districts[selectedCity]?.map((district) => (
+                                            <option key={district} value={district}>
+                                                {district}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    {errors.district && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.district.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="neighborhood"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        Neighborhood:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="neighborhood"
+                                        name="neighborhood"
+                                        {...register("neighborhood", {
+                                            required: "Neighborhood is required",
+                                        })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    />
+                                    {errors.neighborhood && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.neighborhood.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="addressDetails"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        AddressDetails:
+                                    </label>
+                                    <textarea
+                                        id="addressDetails"
+                                        name="addressDetails"
+                                        rows="4"
+                                        {...register("addressDetails", {
+                                            required: "Address is required",
+                                        })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    ></textarea>
+                                    {errors.address && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.addressDetails.message}
+                                        </p>
+                                    )}
+                                </div>
+
+                                <button
+                                    type="submit"
+                                    className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        )}
                     </div>
-                    {showAddAddressForm && (
-                        <form
-                            onSubmit={handleSubmit(handleAddAddressSubmit)}
-                            className="max-w-md mx-auto bg-white p-8 rounded shadow-md"
-                        >
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="addressTitle"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    Address Title:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="addressTitle"
-                                    name="addressTitle"
-                                    {...register("addressTitle", {
-                                        required: "Address title is required",
-                                    })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-
-                                />
-                                {errors.addressTitle && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.addressTitle.message}
-                                    </p>
-                                )}
+                    <div className="flex flex-col gap-6">
+                        {Array.isArray(addresses) && addresses.map((address, index) => (
+                            <div key={index} className="w-[23rem] h-auto border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg">
+                                <p>{address.addressTitle}</p>
+                                <p>Müşteri Adı: {address.name}</p>
+                                <p>Şehir: {address.city}</p>
+                                <p>İlçe:{address.district}</p>
+                                <p>Mahalle:{address.neighborhood}</p>
+                                <p>Telefon:{address.phone}</p>
+                                <p>Adres Detayı: {address.addressDetails}</p>
                             </div>
-
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="name"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    Name:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    {...register("name", { required: "Name is required" })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                />
-                                {errors.name && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.name.message}
-                                    </p>
-                                )}
-                            </div>
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="surname"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    Surname:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="surname"
-                                    name="surname"
-                                    {...register("name", { required: "Name is required" })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                />
-                                {errors.name && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.name.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="phone"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    Phone:
-                                </label>
-                                <input
-                                    placeholder="Phone"
-                                    type="tel"
-                                    id="phone"
-                                    name="phone"
-                                    {...register("phone", { required: "Phone is required" })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                />
-                                {errors.phone && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.phone.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="city"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    City:
-                                </label>
-                                <select
-                                    id="city"
-                                    name="city"
-                                    onChange={handleCityChange}
-                                    {...register("city", { required: "City is required" })}
-                                    value={selectedCity}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                >
-                                    <option value="" disabled>
-                                        Select City
-                                    </option>
-                                    {cities.map((city) => (
-                                        <option key={city} value={city}>
-                                            {city}
-                                        </option>
-                                    ))}
-                                </select>
-                                {errors.city && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.city.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="district"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    District:
-                                </label>
-                                <select
-                                    id="district"
-                                    name="district"
-                                    value={selectedDistrict}
-                                    {...register("district", {
-                                        required: "District is required",
-                                    })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                >
-                                    <option value="" disabled>
-                                        Select District
-                                    </option>
-                                    {districts[selectedCity]?.map((district) => (
-                                        <option key={district} value={district}>
-                                            {district}
-                                        </option>
-                                    ))}
-                                </select>
-                                {errors.district && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.district.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="neighborhood"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    Neighborhood:
-                                </label>
-                                <input
-                                    type="text"
-                                    id="neighborhood"
-                                    name="neighborhood"
-                                    {...register("neighborhood", {
-                                        required: "Neighborhood is required",
-                                    })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                />
-                                {errors.neighborhood && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.neighborhood.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <div className="mb-4">
-                                <label
-                                    htmlFor="addressDetails"
-                                    className="block text-gray-700 text-sm font-bold mb-2"
-                                >
-                                    AddressDetails:
-                                </label>
-                                <textarea
-                                    id="addressDetails"
-                                    name="addressDetails"
-                                    rows="4"
-                                    {...register("addressDetails", {
-                                        required: "Address is required",
-                                    })}
-                                    className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                                ></textarea>
-                                {errors.address && (
-                                    <p className="text-red-500 text-xs italic">
-                                        {errors.addressDetails.message}
-                                    </p>
-                                )}
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none"
-                            >
-                                Submit
-                            </button>
-                        </form>
-                    )}
+                        ))}
+                    </div>
                 </div>
-                {Array.isArray(addresses) &&
-                    addresses.map((address) => (
-                        <div key={address.id}>
-                            <p>{address.title}</p>
-                            <p>
-                                {address.name} {address.surname}
-                            </p>
-                            <p>{address.phone}</p>
-                            <p>{address.city}</p>
-                            <p>{address.district}</p>
-                            <p>{address.neighborhood}</p>
-                            <p>{address.addressDetails}</p>
-                        </div>
-                    ))}
                 <div>
                     <div className="flex justify-start items-center flex-col gap-4">
 

@@ -8,6 +8,7 @@ export const addressData = {
     address: {
         title: "",
         name: "",
+        surname: "",
         phone: "",
         city: "",
         district: "",
