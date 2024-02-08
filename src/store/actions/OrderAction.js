@@ -13,9 +13,13 @@ export const getUserAddress = () => async (dispatch) => {
     }
 };
 
-export const addUserAddress = (addressData) => async (dispatch) => {
+export const addUserAddress = (addressData, token) => async (dispatch) => {
     try {
-        const response = await axios.post("https://workintech-fe-ecommerce.onrender.com/user/address", addressData);
+        const response = await axios.post("https://workintech-fe-ecommerce.onrender.com/user/address", addressData, {
+            headers: {
+                Authorization: `${token}`
+            }
+        });
         dispatch({ type: ADD_USER_ADDRESS, payload: { address: response.data } });
         console.log("adresdata>>>>", response.data)
     } catch (error) {

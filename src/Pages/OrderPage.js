@@ -42,8 +42,7 @@ const OrderPage = () => {
     const cart = useSelector((store) => store.shoppingcard.cart);
     const [showAddAddressForm, setShowAddAddressForm] = useState(false);
     const userAddress = useSelector((store) => store.addressReducer.address);
-    const [addresses, setAddresses] = useState(userAddress);
-    console.log("ADDRESSES", addresses);
+    const [addresses, setAddresses] = useState([]);
     const [totalProduct, setTotalProduct] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [productCounts, setProductCounts] = useState({});
@@ -86,22 +85,20 @@ const OrderPage = () => {
     const handleAddAddressClick = () => {
         setShowAddAddressForm(true);
     };
+    const token = localStorage.getItem("token");
 
     const handleAddAddressSubmit = (addressData) => {
-        dispatch(addUserAddress(addressData));
+        dispatch(addUserAddress(addressData, token));
         console.log("ADDRESSS>>>>", addressData);
+        setAddresses([...addresses, addressData]);
         setShowAddAddressForm(false);
     };
 
-    useEffect(() => {
-        setAddresses(userAddress);
-    }, [userAddress]);
+    // useEffect(() => {
+    //     setAddresses(userAddress);
+    //     console.log("useradres güncellendi", userAddress);
+    // }, [userAddress]);
 
-    const handleUpdateAddressSubmit = (addressId, updatedData) => {
-        dispatch(updateUserAddress(addressId, updatedData));
-
-        dispatch(getUserAddress());
-    };
     const basketHandler = () => {
         // dispatch(addProduct(card));
         // navigate("/order");
@@ -113,15 +110,22 @@ const OrderPage = () => {
             <Header />
             <div className="flex justify-between px-28 py-20">
                 <div className="flex flex-col">
-                    <div className="flex flex-row gap-4">
-                        <button
-                            className="w-[30rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg "
-                            onClick={handleAddAddressClick}
-                        >
-                            Adres Ekle
-                        </button>
-                        <div className="w-[30rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg">
-                            <p>{addresses?.city}</p>
+                    <div className="flex flex-col gap-4 w-full flex-wrap">
+                        <div>
+                            <button
+                                className="w-[30rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg "
+                                onClick={handleAddAddressClick}
+                            >
+                                Adres Ekle
+                            </button>
+                        </div>
+                        <div className="flex flex-col gap-6">
+                            {addresses?.map((address) => {
+
+                                <div className="w-auto h-auto border-2 border-gray-400 font-montserrat font-semibold tracking-[0.0125rem] text-lg">
+                                    <p className="text-black">{address.city}</p>
+                                </div>
+                            })}
                         </div>
                     </div>
                     {showAddAddressForm && (
