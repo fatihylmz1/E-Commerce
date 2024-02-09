@@ -6,19 +6,21 @@ import {
 } from "../store/actions/OrderAction";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { Header } from "../Layouts/Header";
 import { Footer } from "../Layouts/Footer";
 import axios from "axios";
 
-const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya"];
+const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya", "Adana", "Gaziantep"];
 const districts = {
-    Istanbul: ["Kadikoy", "Besiktas", "Sisli"],
+    Istanbul: ["Kadikoy", "Besiktas", "Eminönü", "Maslak"],
     Ankara: ["Cankaya", "Kecioren", "Yenimahalle"],
     Izmir: ["Konak", "Bornova", "Buca"],
     Bursa: ["Osmangazi", "Nilufer", "Yildirim"],
     Antalya: ["Muratpasa", "Konyaalti", "Kepez"],
+    Adana: ["Cukurova", "Sarıcam", "Yüregir"],
+    Gaziantep: ["Sehitkamil", "Sahinbey", "Oguzeli"],
 };
 
 const OrderPage = () => {
@@ -83,22 +85,14 @@ const OrderPage = () => {
 
     }, [totalPrice]);
 
-    // const handleAddAddressClick = () => {
-    //     setShowAddAddressForm(true);
-    // };
     const token = localStorage.getItem("token");
+    const handleAddAddressSubmit = (addressData) => {
+        dispatch(addUserAddress(addressData, token));
+        console.log("ADDRESSS>>>>", addressData);
+        setAddresses([...addresses, addressData]);
+        setShowAddAddressForm(false);
+    };
 
-    // const handleAddAddressSubmit = (addressData) => {
-    //     dispatch(addUserAddress(addressData, token));
-    //     console.log("ADDRESSS>>>>", addressData);
-    //     setAddresses([...addresses, addressData]);
-    //     setShowAddAddressForm(false);
-    // };
-
-    // useEffect(() => {
-    //     setAddresses(userAddress);
-    //     console.log("useradres güncellendi", userAddress);
-    // }, [userAddress]);
 
     const basketHandler = () => {
         // dispatch(addProduct(card));
@@ -106,7 +100,7 @@ const OrderPage = () => {
         console.log("Sipariş verildi")
     }
     const handleAddAddress = () => {
-        setShowAddAddressForm(true);
+        setShowAddAddressForm(!showAddAddressForm);
     };
 
     // const handleAddAddressSubmit = (data) => {
@@ -142,23 +136,28 @@ const OrderPage = () => {
     return (
         <div>
             <Header />
-            <div className="flex justify-between px-28 py-20">
-                <div className="flex flex-row gap-4">
+            <div className="flex flex-row w-[60rem] ml-28 bottom-48 z-10 absolute mb-[14rem]">
+                <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold">Adres Bilgileri</button>
+                <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold">Ödeme Bilgileri</button>
+            </div>
+            <div className="flex justify-between px-28 py-48">
+                <div className="flex flex-row flex-wrap gap-4 p-8 border border-gray-400 rounded">
                     <div className="flex flex-col">
-                        <div className="flex flex-col gap-4 w-full flex-wrap">
-                            <div>
-                                <button
-                                    className="w-[25rem] h-[10rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg"
-                                    onClick={handleAddAddress}
-                                >
-                                    Adres Ekle
-                                </button>
-                            </div>
+
+                        <div>
+                            <button
+                                className="w-[25rem] h-[8rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg"
+                                onClick={handleAddAddress}
+                            >
+                                <FontAwesomeIcon icon={faPlus} />
+                                <p>Yeni Adres Ekle</p>
+                            </button>
                         </div>
+
                         {showAddAddressForm && (
                             <form
                                 onSubmit={handleSubmit(handleAddAddressSubmit)}
-                                className="max-w-md mx-auto bg-white p-8 rounded shadow-md"
+                                className="max-w-md mx-auto bg-white p-12 rounded shadow-md z-10 absolute mb-[14rem] ml-[14rem] border border-gray-400 top-[26.3%] "
                             >
                                 <div className="mb-4">
                                     <label
@@ -318,7 +317,7 @@ const OrderPage = () => {
                                         htmlFor="addressDetails"
                                         className="block text-gray-700 text-sm font-bold mb-2"
                                     >
-                                        AddressDetails:
+                                        Address Details:
                                     </label>
                                     <textarea
                                         id="addressDetails"
@@ -338,21 +337,28 @@ const OrderPage = () => {
 
                                 <button
                                     type="submit"
-                                    className="bg-blue-500 text-white py-2 px-4 rounded focus:outline-none"
+                                    className="bg-orange-500 text-white py-2 px-4 rounded focus:outline-none w-full"
                                 >
                                     Submit
                                 </button>
                             </form>
                         )}
                     </div>
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-6 flex-wrap">
                         {Array.isArray(addresses) && addresses.map((address, index) => (
-                            <div key={index} className="w-[23rem] h-auto border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg">
-                                <p>{address.addressTitle}</p>
-                                <p>Müşteri Adı: {address.name}</p>
-                                <p>Şehir: {address.city}</p>
-                                <p>İlçe:{address.district}</p>
-                                <p>Mahalle:{address.neighborhood}</p>
+                            <div key={index} className="w-[23rem] h-[8rem] border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600">
+                                <div className="flex flex-row gap-2 py-2">
+                                    <input type="radio" name="selectedAddress" value={index} />
+                                    <p className="text-gray-600 font-bold">{address.addressTitle}</p>
+                                </div>
+                                <div>
+                                    <p>Müşteri Adı: {address.name}</p>
+                                </div>
+                                <div className="flex flex-row gap-4">
+                                    <p>Şehir: {address.city}</p>
+                                    <p>İlçe:{address.district}</p>
+                                    <p>Mahalle:{address.neighborhood}</p>
+                                </div>
                                 <p>Telefon:{address.phone}</p>
                                 <p>Adres Detayı: {address.addressDetails}</p>
                             </div>
@@ -393,7 +399,7 @@ const OrderPage = () => {
 
                         <div className="flex text-center items-center ">
                             <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg ">
-                                <p className="font-montserrat text-[#23A6F0] text-3xl ">+</p>
+                                <p className="font-montserrat text-orange-500 text-3xl ">+</p>
                                 <p className="font-montserrat text-sm font-semibold">
                                     İNDİRİM KODU GİR
                                 </p>
