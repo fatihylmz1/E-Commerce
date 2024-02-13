@@ -4,6 +4,10 @@ export const setUser = (userInfo) => ({
     type: "SET_USER",
     payload: userInfo,
 });
+export const setToken = (token) => ({
+    type: "SET_TOKEN",
+    payload: token,
+});
 export const loginSuccess = (userInfo) => ({
     type: "LOGIN_SUCCESS",
     payload: userInfo,
@@ -21,6 +25,7 @@ export const loginUser = (loginInfo) => {
             .then((response) => {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem("isloggedIn", true);
+                dispatch(setToken(response.data.token));
                 dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
                 return response;
             })

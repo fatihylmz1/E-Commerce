@@ -85,13 +85,35 @@ const OrderPage = () => {
 
     }, [totalPrice]);
 
-    const token = localStorage.getItem("token");
-    const handleAddAddressSubmit = (addressData) => {
+    const token = useSelector((store) => store.user.token);
+
+
+    const handleAddAddressSubmit = (data) => {
+        console.log("DATA<<<<", data);
+        const addressData = {
+            address: data.addressDetails,
+            city: data.city,
+            district: data.district,
+            id: data.id,
+            name: data.name,
+            surname: data.surname,
+            neighborhood: data.neighborhood,
+            phone: data.phone,
+            title: data.addressTitle,
+
+        };
         dispatch(addUserAddress(addressData, token));
         console.log("ADDRESSS>>>>", addressData);
         setAddresses([...addresses, addressData]);
         setShowAddAddressForm(false);
+        // dispatch(getUserAddress());
+
     };
+    const addressdata = useSelector((store) => store.addressReducer.addressData)
+
+    useEffect(() => {
+        console.log("Yeni Adres Eklendi", addressdata)
+    }, [addressdata])
 
 
     const basketHandler = () => {
@@ -103,34 +125,6 @@ const OrderPage = () => {
         setShowAddAddressForm(!showAddAddressForm);
     };
 
-    // const handleAddAddressSubmit = (data) => {
-    //     const addressData = {
-    //         title: data.addressTitle,
-    //         name: data.name,
-    //         surname: data.surname,
-    //         phone: data.phone,
-    //         city: data.city,
-    //         district: data.district,
-    //         neighborhood: data.neighborhood,
-    //         address: data.addressDetails,
-    //     };
-
-    //     axios
-    //         .post("https://workintech-fe-ecommerce.onrender.com/user/address", addressData).then((res) => {
-    //             console.log("Giden data: ", res.data);
-    //             getAddress();
-    //         });
-
-    //     // dispatch(addUserAddress(addressData));
-    //     setShowAddAddressForm(false);
-    //     dispatch(getUserAddress());
-    // };
-    // const getAddress = () => {
-    //     axios.get("https://workintech-fe-ecommerce.onrender.com/user/address").then((res) => {
-    //         console.log("Gelen data: ", res.data);
-    //         setAddresses(res.data);
-    //     });
-    // };
 
 
     return (
@@ -141,7 +135,7 @@ const OrderPage = () => {
                 <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold">Ödeme Bilgileri</button>
             </div>
             <div className="flex justify-between px-28 py-48">
-                <div className="flex flex-row flex-wrap gap-4 p-8 border border-gray-400 rounded">
+                <div className="flex flex-row flex-wrap gap-4 p-8 border border-gray-400 rounded w-[53.2rem]">
                     <div className="flex flex-col">
 
                         <div>
@@ -200,6 +194,26 @@ const OrderPage = () => {
                                     {errors.name && (
                                         <p className="text-red-500 text-xs italic">
                                             {errors.name.message}
+                                        </p>
+                                    )}
+                                </div>
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="surname"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        Surname:
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="surname"
+                                        name="surname"
+                                        {...register("surname", { required: "Surname is required" })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    />
+                                    {errors.surname && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.surname.message}
                                         </p>
                                     )}
                                 </div>
@@ -331,6 +345,28 @@ const OrderPage = () => {
                                     {errors.address && (
                                         <p className="text-red-500 text-xs italic">
                                             {errors.addressDetails.message}
+                                        </p>
+                                    )}
+                                </div>
+                                <div className="mb-4">
+                                    <label
+                                        htmlFor="id"
+                                        className="block text-gray-700 text-sm font-bold mb-2"
+                                    >
+                                        ID:
+                                    </label>
+                                    <input
+                                        id="id"
+                                        type="number"
+                                        name="id"
+                                        {...register("id", {
+                                            required: "ID is required",
+                                        })}
+                                        className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    ></input>
+                                    {errors.id && (
+                                        <p className="text-red-500 text-xs italic">
+                                            {errors.id.message}
                                         </p>
                                     )}
                                 </div>
