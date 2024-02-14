@@ -4,30 +4,17 @@ import {
     UPDATE_USER_ADDRESS,
 } from "../actions/OrderAction";
 
-export const addressData = {
-    address: {
-        title: "",
-        name: "",
-        surname: "",
-        phone: "",
-        city: "",
-        district: "",
-        neighborhood: "",
-        addressDetails: "",
-    },
-};
+export const addressData = [];
 
 const addressReducer = (state = addressData, action) => {
     switch (action.type) {
         case GET_USER_ADDRESS:
-            return {
-                ...state,
-                address: action.payload,
-            };
+            return [...state, ...action.payload];
+
         case ADD_USER_ADDRESS:
             return {
                 ...state,
-                address: [...state, action.payload],
+                address: action.payload,
             };
         case UPDATE_USER_ADDRESS:
             return {
