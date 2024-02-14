@@ -6,10 +6,11 @@ import {
 
 export const addressData = [];
 
-const addressReducer = (state = addressData, action) => {
+const addressReducer = (state = [], action) => {
     switch (action.type) {
         case GET_USER_ADDRESS:
-            return [...state, ...action.payload];
+            return action.payload;
+        // [...state, ...action.payload];
 
         case ADD_USER_ADDRESS:
             return {

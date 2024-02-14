@@ -53,6 +53,8 @@ const OrderPage = () => {
     const [cargo, setCargo] = useState(0);
     const [priceWithCargo, setPriceWithCargo] = useState(0);
     const [addressPayment, setAddressPayment] = useState(true);
+    const [updateAddress, setUpdateAddress] = useState(false);
+    const [addressWillUpdate, setAddressWillUpdate] = useState([]);
 
     const calculateTotal = () => {
         let productCount = 0;
@@ -109,26 +111,19 @@ const OrderPage = () => {
         // setAddresses([...addresses, addressData]);
         setShowAddAddressForm(false);
     };
+
+
+
     const addressdata = useSelector((store) => store.addressReducer)
     console.log("DENEME>>>>>>>>>>>", addressdata);
 
     useEffect(() => {
-        console.log("Yeni Adres Eklendi", addressdata)
-        setAddresses(addressdata);
-        console.log("STATE ADRESS>>>>>", addresses);
-    }, [addressdata])
-
-    useEffect(() => {
         const token2 = localStorage.getItem("token");
         dispatch(getUserAddress(token2));
-        // setAddresses(addressdata);
-        console.log("STATE ADRESS>>>>>", addresses);
     }, [])
 
 
     const basketHandler = () => {
-        // dispatch(addProduct(card));
-        // navigate("/order");
         console.log("Sipariş verildi")
     }
     const handleAddAddress = () => {
@@ -142,11 +137,40 @@ const OrderPage = () => {
     }
 
     const handlePayment = () => {
-        setAddressPayment(false)
+        setAddressPayment(false);
     }
 
     const handleUpdate = (id) => {
-        setShowAddAddressForm(true);
+        setUpdateAddress(!updateAddress);
+
+        // Güncellenecek adresleri içerecek yeni bir dizi oluştur
+        const willupdateAddresses = addressdata.filter(address => address.id !== id);
+
+        console.log("GÜNCELLEME>>>>>>", willupdateAddresses);
+
+        // Güncellenecek adresleri state'e ayarla
+        setAddressWillUpdate(willupdateAddresses);
+
+        return willupdateAddresses;
+    }
+
+    useEffect(() => {
+        console.log("GÜNCELLENECEK ADRES DATASI", addressWillUpdate);
+    }, [addressWillUpdate]);
+
+    const handleUpdateAddressSubmit = () => {
+        // const token3 = localStorage.getItem("token");
+        // adressDataWillUpdate={
+        //     address: addressUpdated.addressDetails,
+        //     city: addressUpdated.city,
+        //     district: addressUpdated.district,
+        //     id: addressUpdated.id,
+        //     name: addressUpdated.name,
+        //     surname: addressUpdated.surname,
+        //     neighborhood: addressUpdated.neighborhood,
+        //     phone: addressUpdated.phone,
+        //     title: addressUpdated.addressTitle,
+        // }
 
     }
 
@@ -407,7 +431,7 @@ const OrderPage = () => {
                             )}
                         </div>
                         <div className="flex flex-row gap-6 flex-wrap">
-                            {Array.isArray(addresses) && addresses.map((address, index) => (
+                            {Array.isArray(addressdata) && addressdata.map((address, index) => (
                                 <div key={index} className="w-[23rem] h-auto border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600">
                                     <div className="flex flex-row gap-2 py-2">
                                         <input type="radio" name="selectedAddress" value={index} />
@@ -477,6 +501,244 @@ const OrderPage = () => {
                         </div>
                     </div>
                 </div>
+            )}
+            {updateAddress && (
+                <form
+                    onSubmit={handleSubmit(handleUpdateAddressSubmit)}
+                    className="max-w-md mx-auto bg-white p-12 rounded shadow-md z-10 absolute mb-[14rem] ml-[14rem] border border-gray-400 top-[26.3%] "
+                >
+                    <div className="mb-4">
+                        <label
+                            htmlFor="addressTitle"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Address Title:
+                        </label>
+                        <input
+                            type="text"
+                            id="addressTitle"
+                            name="addressTitle"
+                            value={addressWillUpdate[0].title}
+                            {...register("addressTitle", {
+                                required: "Address title is required",
+                            })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+
+                        />
+                        {errors.addressTitle && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.addressTitle.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            htmlFor="name"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Name:
+                        </label>
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={addressWillUpdate[0].name}
+                            {...register("name", { required: "Name is required" })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        />
+                        {errors.name && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.name.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="surname"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Surname:
+                        </label>
+                        <input
+                            type="text"
+                            id="surname"
+                            name="surname"
+                            value={addressWillUpdate[0].surname}
+                            {...register("surname", { required: "Surname is required" })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        />
+                        {errors.surname && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.surname.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            htmlFor="phone"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Phone:
+                        </label>
+                        <input
+                            placeholder="Phone"
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            value={addressWillUpdate[0].phone}
+                            {...register("phone", { required: "Phone is required" })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        />
+                        {errors.phone && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.phone.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            htmlFor="city"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            City:
+                        </label>
+                        <select
+                            id="city"
+                            name="city"
+                            onChange={handleCityChange}
+                            {...register("city", { required: "City is required" })}
+                            value={addressWillUpdate[0].city}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        >
+                            <option value="" disabled>
+                                Select City
+                            </option>
+                            {cities.map((city) => (
+                                <option key={city} value={city}>
+                                    {city}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.city && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.city.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            htmlFor="district"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            District:
+                        </label>
+                        <select
+                            id="district"
+                            name="district"
+                            value={addressWillUpdate[0].district}
+                            {...register("district", {
+                                required: "District is required",
+                            })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        >
+                            <option value="" disabled>
+                                Select District
+                            </option>
+                            {districts[selectedCity]?.map((district) => (
+                                <option key={district} value={district}>
+                                    {district}
+                                </option>
+                            ))}
+                        </select>
+                        {errors.district && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.district.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            htmlFor="neighborhood"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Neighborhood:
+                        </label>
+                        <input
+                            type="text"
+                            id="neighborhood"
+                            name="neighborhood"
+                            value={addressWillUpdate[0].neighborhood}
+                            {...register("neighborhood", {
+                                required: "Neighborhood is required",
+                            })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        />
+                        {errors.neighborhood && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.neighborhood.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <label
+                            htmlFor="addressDetails"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            Address Details:
+                        </label>
+                        <textarea
+                            id="addressDetails"
+                            name="addressDetails"
+                            rows="4"
+                            value={addressWillUpdate[0].address}
+                            {...register("addressDetails", {
+                                required: "Address is required",
+                            })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        ></textarea>
+                        {errors.address && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.addressDetails.message}
+                            </p>
+                        )}
+                    </div>
+                    <div className="mb-4">
+                        <label
+                            htmlFor="id"
+                            className="block text-gray-700 text-sm font-bold mb-2"
+                        >
+                            ID:
+                        </label>
+                        <input
+                            id="id"
+                            type="number"
+                            name="id"
+                            value={addressWillUpdate[0].id}
+                            {...register("id", {
+                                required: "ID is required",
+                            })}
+                            className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                        ></input>
+                        {errors.id && (
+                            <p className="text-red-500 text-xs italic">
+                                {errors.id.message}
+                            </p>
+                        )}
+                    </div>
+
+                    <button
+                        type="submit"
+                        className="bg-orange-500 text-white py-2 px-4 rounded focus:outline-none w-full"
+                    >
+                        Submit
+                    </button>
+                </form>
             )}
             {!addressPayment && (
 

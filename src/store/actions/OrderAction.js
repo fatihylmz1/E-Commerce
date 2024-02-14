@@ -34,11 +34,15 @@ export const addUserAddress = (addressData, token) => async (dispatch) => {
 };
 
 export const updateUserAddress =
-    (addressId, updatedData) => async (dispatch) => {
+    (updatedData) => async (dispatch) => {
         try {
             const response = await axios.put(
-                `https://workintech-fe-ecommerce.onrender.com/user/address/${addressId}`,
-                updatedData
+                `https://workintech-fe-ecommerce.onrender.com/user/address/`, updatedData,
+                // {
+                //     headers: {
+                //         Authorization: `${token}`
+                //     }
+                // }
             );
             dispatch({ type: UPDATE_USER_ADDRESS, payload: response.data });
         } catch (error) { }
