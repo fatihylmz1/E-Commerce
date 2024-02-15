@@ -8,6 +8,7 @@ import { ShoppingCartReducer } from './reducers/ShoppingCardReducer';
 import StoreReducer from './reducers/StoreReducer';
 import { UserReducer } from './reducers/UserReducer';
 import addressReducer from './reducers/OrderReducer';
+import PaymentReducer from './reducers/PaymentReducer';
 
 
 
@@ -19,6 +20,7 @@ export const reducers = combineReducers({
     store: StoreReducer,
     user: UserReducer,
     addressReducer: addressReducer,
+    payment: PaymentReducer,
 
 });
 

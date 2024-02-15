@@ -3,6 +3,8 @@ export const GET_USER_ADDRESS = "GET_USER_ADDRESS";
 export const ADD_USER_ADDRESS = "ADD_USER_ADDRESS";
 export const UPDATE_USER_ADDRESS = "UPDATE_USER_ADDRESS";
 
+
+
 export const getUserAddress = (token) => async (dispatch) => {
     try {
         const response = await axios.get("https://workintech-fe-ecommerce.onrender.com/user/address", {
@@ -17,6 +19,7 @@ export const getUserAddress = (token) => async (dispatch) => {
         console.error("Error getting user address", error);
     }
 };
+
 
 export const addUserAddress = (addressData, token) => async (dispatch) => {
     try {
@@ -33,17 +36,16 @@ export const addUserAddress = (addressData, token) => async (dispatch) => {
     }
 };
 
-export const updateUserAddress =
-    (updatedData) => async (dispatch) => {
-        try {
-            const response = await axios.put(
-                `https://workintech-fe-ecommerce.onrender.com/user/address/`, updatedData,
-                // {
-                //     headers: {
-                //         Authorization: `${token}`
-                //     }
-                // }
-            );
-            dispatch({ type: UPDATE_USER_ADDRESS, payload: response.data });
-        } catch (error) { }
-    };
+export const updateUserAddress = (updatedData, token) => async (dispatch) => {
+    try {
+        const response = await axios.put(`https://workintech-fe-ecommerce.onrender.com/user/address`, updatedData, {
+            headers: {
+                Authorization: `${token}`
+            }
+        }
+        );
+        dispatch({ type: UPDATE_USER_ADDRESS, payload: response.data });
+    } catch (error) {
+        console.error("Error updating address", error);
+    }
+};
