@@ -109,6 +109,7 @@ const OrderPage = () => {
         dispatch(addUserAddress(addressData, token));
         console.log("ADDRESSS>>>>", addressData);
         setShowAddAddressForm(false);
+        dispatch(getUserAddress(token));
     };
 
 
@@ -199,21 +200,21 @@ const OrderPage = () => {
         <div>
             <Header />
             <div className="flex flex-row w-[60rem] ml-28 bottom-48 z-10 absolute mb-[14rem]">
-                <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold" onClick={handleAddress}>Adres Bilgileri</button>
-                <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold" onClick={handlePayment}>Ödeme Bilgileri</button>
+                <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold hover:bg-header-blue hover:scale-15 hover:delay-150 hover:text-white" onClick={handleAddress}>Adres Bilgileri</button>
+                <button className="border rounded border-gray-400 py-12 px-[9.35rem] text-lg font-bold hover:bg-orange-500 hover:scale-15 hover:delay-150 hover:text-white" onClick={handlePayment}>Ödeme Bilgileri</button>
             </div>
             {addressPayment && (
                 <div className="flex justify-between px-28 py-48">
-                    <div className="flex flex-row flex-wrap gap-4 p-8 border border-gray-400 rounded w-[53.2rem]">
+                    <div className="flex flex-row flex-wrap p-8 border border-gray-400 rounded w-[53.2rem]">
                         <div className="flex flex-col">
 
-                            <div>
+                            <div className="mb-[1rem]">
                                 <button
-                                    className="w-[47.5rem] h-[8rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg"
+                                    className="w-[47.5rem] h-[5rem] border-2 bg-header-blue text-white font-montserrat font-semibold tracking-[0.0125rem] text-lg"
                                     onClick={handleAddAddress}
                                 >
-                                    <FontAwesomeIcon icon={faPlus} />
-                                    <p>Yeni Adres Ekle</p>
+                                    <FontAwesomeIcon icon={faPlus} className="hover:scale-105 delay-75" />
+                                    <p className="hover:scale-105 delay-75">Yeni Adres Ekle</p>
                                 </button>
                             </div>
 
@@ -430,36 +431,41 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-row gap-6 flex-wrap">
                             {Array.isArray(addressdata) && addressdata.map((address, index) => (
-                                <div key={index} className="w-[23rem] h-auto border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600">
+                                <div key={index} className="w-[23rem] h-auto border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600 gap-2 flex flex-col p-3 rounded shadow-md bg-gray-200">
                                     <div className="flex flex-row gap-2 py-2">
                                         <input type="radio" name="selectedAddress" value={index} />
-                                        <div className="flex flex-row justify-between w-full">
+                                        <div className="flex flex-row justify-between w-full items-center">
                                             <p className="text-gray-600 font-bold">{address.title}</p>
-                                            <button className="flex flex-row gap-1 items-center" onClick={() => handleUpdate(address.id)}>
+                                            <button className="flex flex-row gap-1 items-center border bg-header-blue text-white p-2 rounded" onClick={() => handleUpdate(address.id)}>
                                                 <p>Düzenle</p>
                                                 <FontAwesomeIcon icon={faPen} />
                                             </button>
                                         </div>
                                     </div>
-                                    <div>
-                                        <p>Müşteri Adı: {address.name}</p>
-                                        <p>Müşteri Soyadı: {address.surname}</p>
+                                    <div className="flex flex-row gap-4 items-center">
+                                        <p><strong>Adı:</strong> {address.name}</p>
+                                        <p><strong>Soyadı:</strong> {address.surname}</p>
                                     </div>
                                     <div className="flex flex-row gap-4">
-                                        <p>Şehir: {address.city}</p>
-                                        <p>İlçe:{address.district}</p>
-                                        <p>Mahalle:{address.neighborhood}</p>
+                                        <p><strong>Şehir:</strong> {address.city}</p>
+                                        <p><strong>İlçe:</strong>{address.district}</p>
+                                        <p><strong>Mahalle:</strong>{address.neighborhood}</p>
                                     </div>
-                                    <p>Telefon:{address.phone}</p>
-                                    <p>Adres Detayı: {address.address}</p>
+                                    <p><strong>Telefon:</strong>{address.phone}</p>
+                                    <p><strong>Adres Detayı:</strong> {address.address}</p>
                                 </div>
                             ))}
                         </div>
                     </div>
                     <div>
                         <div className="flex justify-start items-center flex-col gap-4">
+                            <div className="flex flex-row gap-3 p-5 border border-gray-400 rounded">
+                                <input type="checkbox" />
+                                <p><strong>Ön Bilgilendirme Koşulları'nı</strong> ve <br /> <strong>Mesafeli Satış Sözleşmesi'ni</strong><br /> okudum, onaylıyorum.</p>
 
-                            <div className="flex flex-col gap-6 mt-[3.9rem] h-auto">
+                            </div>
+
+                            <div className="flex flex-col gap-6  h-auto">
                                 <div className="flex flex-col gap-3 border rounded border-gray-400 px-3 py-6 shadow-md">
                                     <p className="text-lg"><strong>Sipariş Özeti</strong></p>
                                     <div className="flex flex-row justify-between">
@@ -476,13 +482,13 @@ const OrderPage = () => {
                                     </div>
                                     <hr className="w-full border-gray-400 border-t-2" />
                                     <div className="flex flex-row justify-between">
-                                        <p>TOPLAM</p>
+                                        <p><strong>TOPLAM</strong></p>
                                         <p className="font-bold">{priceWithCargo} $</p>
                                     </div>
 
 
                                 </div>
-                                <button className="bg-orange-500 text-base font-bold text-white p-4 rounded" onClick={basketHandler}>
+                                <button className="bg-header-blue text-base font-bold text-white p-4 rounded" onClick={basketHandler}>
                                     Sepeti Onayla <FontAwesomeIcon icon={faArrowRight} />
                                 </button>
 

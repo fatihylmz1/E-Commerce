@@ -5,6 +5,8 @@ import axios from "axios";
 import { getUserCard } from "../store/actions/PaymentActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faPen } from "@fortawesome/free-solid-svg-icons";
+import photo from "../photos/cardphotos/png-transparent-integrated-circuit-smart-card-card-chip-electronics-text-rectangle-thumbnail2.png"
+import "../Payment.css";
 
 export const Payment = () => {
     const dispatch = useDispatch();
@@ -65,7 +67,7 @@ export const Payment = () => {
         const expireMonth = parseInt(expiryParts[0], 10);
         const expireYear = parseInt(expiryParts[1], 10);
         const paymentData = {
-            card_no: cardNumber.replace(/ /g, ""), // Boşlukları kaldır
+            card_no: cardNumber.replace(/ /g, ""),
             expire_month: expireMonth,
             expire_year: expireYear,
             name_on_card: nameOnCard,
@@ -82,6 +84,9 @@ export const Payment = () => {
         setExpiry("");
         setCVC("");
         setNameOnCard("");
+        dispatch(getUserCard(token));
+        setAddCard(false);
+
     };
 
     const handleAddCard = () => {
@@ -121,54 +126,76 @@ export const Payment = () => {
 
 
     return (
-        <div className="">
+        <div>
             <div className="flex justify-between px-28 py-48">
-                <div className="flex flex-row flex-wrap gap-4 p-8 border border-gray-400 rounded w-[53.2rem]">
-                    <div>
-                        <button onClick={handleAddCard} className="w-[47.5rem] h-[8rem] border-2 font-montserrat font-semibold tracking-[0.0125rem] text-lg">Kart Ekle</button>
+                <div className="flex flex-row flex-wrap p-8 border border-gray-400 rounded w-[53.2rem]">
+                    <div className="h-[4rem]">
+                        <button onClick={handleAddCard} className="w-[47.5rem] h-[4rem] border-2 font-montserrat tracking-[0.0125rem] text-lg bg-orange-400 text-white font-bold rounded">Kart Ekle</button>
                     </div>
                     <div className="flex flex-row flex-wrap gap-6">
                         {cards.map(card => (
-                            <div key={card.id} className="w-[23rem] h-auto border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600">
-                                <div>
-                                    <input type="radio" name="selectedcard" />
-                                    <p>Name on Card: {card.name_on_card}</p>
-                                    <button className="flex flex-row gap-1 items-center" onClick={() => handleUpdate(card.id)}>
+                            <div key={card.id} className="w-[23rem] h-[12rem] border-2 rounded-md border-gray-500 p-3 font-montserrat font-normal tracking-[0.0125rem] text-sm text-black flex flex-col justify-between bg-slate-200 shadow-xl ">
+                                <div className="flex flex-row justify-between">
+
+                                    <div className="flex flex-row gap-2 items-center">
+
+                                        <input type="radio" name="selectedcard" />
+                                        <p><strong>{card.name_on_card}</strong></p>
+                                    </div>
+                                    <button className="flex flex-row gap-1 items-center border border-gray-300 p-2 bg-orange-500 text-white rounded" onClick={() => handleUpdate(card.id)}>
                                         <p>Düzenle</p>
                                         <FontAwesomeIcon icon={faPen} />
                                     </button>
                                 </div>
-                                <p>Card Number: {card.card_no}</p>
-                                <p>Expire Month: {card.expire_month}</p>
-                                <p>Expire Year: {card.expire_year}</p>
+
+                                <div className="flex flex-row justify-between">
+                                    <img src={photo} className="w-[4rem] h-[2.5rem] object-cover rounded" />
+                                    <div className="flex flex-col gap-2 items-end justify-end">
+
+                                        <p>{card.card_no}</p>
+                                        <p>{card.expire_month} / {card.expire_year} </p>
+
+                                    </div>
+                                </div>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {addCard && (
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="z-10 absolute border rounded border-gray-400 p-8 right-[38.2rem] bg-white flex 
+                    flex-col w-[47.8rem] bottom-[6rem]">
                         <CreditCardInput
-                            cardNumberInputProps={{ value: cardNumber, onChange: e => setCardNumber(e.target.value) }}
+                            cardNumberInputProps={{ className: "cardNumber", value: cardNumber, onChange: e => setCardNumber(e.target.value) }}
                             cardExpiryInputProps={{ value: expiry, onChange: e => setExpiry(e.target.value) }}
                             cardCVCInputProps={{ value: cvc, onChange: e => setCVC(e.target.value) }}
                         />
                         <div className="form-group">
-                            <label htmlFor="nameOnCard">Kart Sahibinin Adı</label>
+                            <label htmlFor="nameOnCard"></label>
                             <input
                                 type="text"
                                 id="nameOnCard"
+                                placeholder="Kart Sahibinin Adı"
                                 value={nameOnCard}
                                 onChange={(e) => setNameOnCard(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
                             />
                         </div>
-                        <button type="submit">Ödemeyi Tamamla</button>
+                        <div className="flex justify-center">
+
+                            <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem] items-center content-center">Kart Ekle</button>
+                        </div>
                     </form>
                 )}
                 <div>
                     <div className="flex justify-start items-center flex-col gap-4">
 
-                        <div className="flex flex-col gap-6 mt-[3.9rem] h-auto">
+                        <div className="flex flex-col gap-6 h-auto">
+                            <div className="flex flex-row gap-3 p-7 border border-gray-400 rounded">
+                                <input type="checkbox" />
+                                <p><strong>Ön Bilgilendirme Koşulları'nı</strong> ve <br /> <strong>Mesafeli Satış Sözleşmesi'ni</strong><br /> okudum, onaylıyorum.</p>
+
+                            </div>
                             <div className="flex flex-col gap-3 border rounded border-gray-400 px-3 py-6 shadow-md">
                                 <p className="text-lg"><strong>Sipariş Özeti</strong></p>
                                 <div className="flex flex-row justify-between">
