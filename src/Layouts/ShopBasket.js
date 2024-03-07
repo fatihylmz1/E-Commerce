@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../store/actions/ShoppingCardAction";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const ShopBasket = () => {
 
@@ -57,6 +58,16 @@ export const ShopBasket = () => {
         navigate("/shopcart");
     }
 
+    const handleSiparis = () => {
+        axios.get("http://localhost:8585/ecommerce/card")
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
 
 
 
@@ -95,7 +106,7 @@ export const ShopBasket = () => {
                 <button className="border rounded p-2 bg-login text-white font-bold" onClick={navToShopCard}>
                     Sepete Git
                 </button>
-                <button className="border rounded p-2 bg-orange-500 text-white font-bold">
+                <button className="border rounded p-2 bg-orange-500 text-white font-bold" onClick={handleSiparis}>
                     Siparişi Tamamla
                 </button>
             </div>

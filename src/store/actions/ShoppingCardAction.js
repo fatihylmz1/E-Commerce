@@ -4,6 +4,11 @@ export const addToCart = (item) => {
         payload: item,
     };
 };
+export const fetchFromLocal = () => {
+    return {
+        type: "LOAD_CART_FROM_LOCALSTORAGE",
+    };
+};
 
 export const removeFromCart = (productId) => {
     return {

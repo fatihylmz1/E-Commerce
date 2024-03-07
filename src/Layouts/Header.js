@@ -14,6 +14,7 @@ import { loginSuccess } from "../store/actions/UserActions";
 import { fetchCategories } from "../store/actions/GlobalActions";
 import { fetchProducts, setCategoryProducts, setFilterProducts, setSortProducts, setTotalProductCount } from "../store/actions/ProductActions";
 import { ShopBasket } from "./ShopBasket";
+import { fetchFromLocal } from "../store/actions/ShoppingCardAction";
 
 
 
@@ -87,6 +88,9 @@ export const Header = () => {
             .catch((error) => {
                 console.error('Error fetching products:', error);
             });
+
+
+        dispatch(fetchFromLocal());
 
 
 

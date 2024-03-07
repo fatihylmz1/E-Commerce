@@ -129,6 +129,9 @@ export const Products = () => {
                 return;
             }
         }
+        const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+        const updatedCart = [...existingCart, product];
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
         dispatch(addToCart(product));
         console.log("CARD PRODUCT>>>>", product);
         toast.success("Successfully added to shop cart", {

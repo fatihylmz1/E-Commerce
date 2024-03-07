@@ -10,7 +10,6 @@ import { faArrowRight, faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "react-hook-form";
 import { Header } from "../Layouts/Header";
 import { Footer } from "../Layouts/Footer";
-import axios from "axios";
 import { Payment } from "../Layouts/Payment";
 
 const cities = ["Istanbul", "Ankara", "Izmir", "Bursa", "Antalya", "Adana", "Gaziantep"];
@@ -104,7 +103,6 @@ const OrderPage = () => {
             neighborhood: data.neighborhood,
             phone: data.phone,
             title: data.addressTitle,
-
         };
         dispatch(addUserAddress(addressData, token));
         console.log("ADDRESSS>>>>", addressData);
@@ -144,7 +142,6 @@ const OrderPage = () => {
     const handleUpdate = (id) => {
         setUpdateAddress(!updateAddress);
 
-        // Seçilen adresi filtrele
         const selectedAddress = addressdata.find(address => address.id === id);
 
         console.log("GÜNCELLEME>>>>>>", selectedAddress);
@@ -160,33 +157,36 @@ const OrderPage = () => {
 
     }, [addressWillUpdate]);
 
-    const [updatedData, setUpdatedData] = useState({
-        address: "",
-        city: "",
-        district: "",
-        id: null,
-        name: "",
-        surname: "",
-        neighborhood: "",
-        phone: "",
-        title: "",
-    })
+    // const [updatedData, setUpdatedData] = useState({
+    //     address: "",
+    //     city: "",
+    //     district: "",
+    //     id: null,
+    //     name: "",
+    //     surname: "",
+    //     neighborhood: "",
+    //     phone: "",
+    //     title: "",
+    // })
 
-    const handleUpdateAddressSubmit = (event, updatedData) => {
-        event.preventDefault();
+    const handleUpdateAddressSubmit = (data) => {
+        // event.preventDefault();
         const token3 = localStorage.getItem("token");
         const adressDataUpdated = {
-            address: updatedData.addressDetails,
-            city: updatedData.city,
-            district: updatedData.district,
-            id: addressWillUpdate.id,
-            name: updatedData.name,
-            surname: updatedData.surname,
-            neighborhood: updatedData.neighborhood,
-            phone: updatedData.phone,
-            title: updatedData.addressTitle,
+            address: data.addressDetails,
+            city: data.city,
+            district: data.district,
+            id: addressWillUpdate[0].id,
+            name: data.name,
+            surname: data.surname,
+            neighborhood: data.neighborhood,
+            phone: data.phone,
+            title: data.addressTitle,
         }
+        console.log("UPDATED ADDRESS>>>>", data);
         dispatch(updateUserAddress(adressDataUpdated, token3));
+        setUpdateAddress(!updateAddress);
+        dispatch(getUserAddress(token));
 
     }
 
@@ -431,7 +431,7 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-row gap-6 flex-wrap">
                             {Array.isArray(addressdata) && addressdata.map((address, index) => (
-                                <div key={index} className="w-[23rem] h-auto border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600 gap-2 flex flex-col p-3 rounded shadow-md bg-gray-200">
+                                <div key={index} className="w-[23rem] h-[15rem] border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600 gap-2 flex flex-col p-3 rounded shadow-lg bg-gray-200">
                                     <div className="flex flex-row gap-2 py-2">
                                         <input type="radio" name="selectedAddress" value={index} />
                                         <div className="flex flex-row justify-between w-full items-center">
@@ -508,7 +508,7 @@ const OrderPage = () => {
             )}
             {updateAddress && (
                 <form
-                    onSubmit={(e) => handleUpdateAddressSubmit(e, updatedData)}
+                    onSubmit={handleSubmit(handleUpdateAddressSubmit)}
                     className="max-w-md mx-auto bg-white p-12 rounded shadow-md z-10 absolute mb-[14rem] ml-[14rem] border border-gray-400 top-[26.3%] "
                 >
                     <div className="mb-4">
@@ -522,7 +522,7 @@ const OrderPage = () => {
                             type="text"
                             id="addressTitle"
                             name="addressTitle"
-                            value={updatedData}
+                            defaultValue={addressWillUpdate[0].title}
                             {...register("addressTitle", {
                                 required: "Address title is required",
                             })}
@@ -547,7 +547,7 @@ const OrderPage = () => {
                             type="text"
                             id="name"
                             name="name"
-                            value={updatedData}
+                            defaultValue={addressWillUpdate[0].name}
                             {...register("name", { required: "Name is required" })}
                             className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         />
@@ -568,7 +568,7 @@ const OrderPage = () => {
                             type="text"
                             id="surname"
                             name="surname"
-                            // value={addressWillUpdate[0].surname}
+                            defaultValue={addressWillUpdate[0].surname}
                             {...register("surname", { required: "Surname is required" })}
                             className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         />
@@ -591,7 +591,7 @@ const OrderPage = () => {
                             type="tel"
                             id="phone"
                             name="phone"
-                            // value={addressWillUpdate[0].phone}
+                            defaultValue={addressWillUpdate[0].phone}
                             {...register("phone", { required: "Phone is required" })}
                             className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         />
@@ -612,9 +612,10 @@ const OrderPage = () => {
                         <select
                             id="city"
                             name="city"
+                            defaultValue={addressWillUpdate[0].city}
                             onChange={handleCityChange}
                             {...register("city", { required: "City is required" })}
-                            // value={addressWillUpdate[0].city}
+
                             className="w-full px-3 py-2 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                         >
                             <option value="" disabled>
@@ -643,7 +644,7 @@ const OrderPage = () => {
                         <select
                             id="district"
                             name="district"
-                            // value={addressWillUpdate[0].district}
+                            defaultValue={addressWillUpdate[0].district}
                             {...register("district", {
                                 required: "District is required",
                             })}
@@ -676,7 +677,7 @@ const OrderPage = () => {
                             type="text"
                             id="neighborhood"
                             name="neighborhood"
-                            // value={addressWillUpdate[0].neighborhood}
+                            defaultValue={addressWillUpdate[0].neighborhood}
                             {...register("neighborhood", {
                                 required: "Neighborhood is required",
                             })}
@@ -700,7 +701,7 @@ const OrderPage = () => {
                             type="text"
                             id="addressDetails"
                             name="addressDetails"
-                            // value={addressWillUpdate[0].address}
+                            defaultValue={addressWillUpdate[0].address}
                             {...register("addressDetails", {
                                 required: "Address is required",
                             })}

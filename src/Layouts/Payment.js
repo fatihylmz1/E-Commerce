@@ -122,6 +122,16 @@ export const Payment = () => {
     //     window.location.reload();
     // }, [cards]);
 
+    const handleTest = () => {
+        axios.get("http://localhost:8585/ecommerce/address")
+            .then((res) => {
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
 
 
 
@@ -225,7 +235,7 @@ export const Payment = () => {
                         </div>
 
                         <div className="flex text-center items-center ">
-                            <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg ">
+                            <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg " onClick={handleTest}>
                                 <p className="font-montserrat text-orange-500 text-3xl ">+</p>
                                 <p className="font-montserrat text-sm font-semibold">
                                     İNDİRİM KODU GİR
