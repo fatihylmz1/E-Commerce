@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreditCardInput from "react-credit-card-input";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { getUserCard } from "../store/actions/PaymentActions";
+import { getUserCard, updateCard, updateUserCard } from "../store/actions/PaymentActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faPen } from "@fortawesome/free-solid-svg-icons";
 import photo from "../photos/cardphotos/png-transparent-integrated-circuit-smart-card-card-chip-electronics-text-rectangle-thumbnail2.png"
@@ -22,6 +22,9 @@ export const Payment = () => {
     const [priceWithCargo, setPriceWithCargo] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
     const cart = useSelector((store) => store.shoppingcard.cart);
+    console.log("KARTLAR>>>>>>", cart);
+    const [updateCard, setUpdateCard] = useState(false);
+    const [cardWillupdate, setCardWillUpdate] = useState([]);
 
     const calculateTotal = () => {
         let productCount = 0;
@@ -115,8 +118,19 @@ export const Payment = () => {
     console.log("CARDSSS", cards);
 
     const handleUpdate = (id) => {
-        console.log("güncelleme")
+        setUpdateCard(!updateCard)
+        const selectedCard = cards.find(card => card.id === id);
+
+        console.log("GÜNCELLEME>>>>>>", selectedCard);
+
+        setCardWillUpdate([selectedCard]);
+
+        return selectedCard;
     }
+    useEffect(() => {
+        console.log("GÜNCELLENECEK KART DATASI", cardWillupdate);
+
+    }, [cardWillupdate]);
 
     // useEffect(() => {
     //     window.location.reload();
@@ -130,6 +144,23 @@ export const Payment = () => {
             .catch((err) => {
                 console.log(err);
             })
+    }
+
+    const handleUpdateSubmit = (e) => {
+        e.preventDefault();
+        // console.log("GÜNCEL KART DATASI>>>>", data)
+        const updatedCardData = {
+            id: cardWillupdate[0].id,
+            card_no: cardNumber ? cardNumber : cardWillupdate.card_no,
+            expire_month: expiry.split(" / ")[0],
+            expire_year: expiry.split(" / ")[1],
+            name_on_card: nameOnCard,
+        };
+        console.log("UPDATEDCARDDATAAA>>>>>>", updatedCardData)
+        dispatch(updateUserCard(updatedCardData, token))
+        dispatch(getUserCard(token))
+        setUpdateCard(!updateCard)
+
     }
 
 
@@ -194,6 +225,32 @@ export const Payment = () => {
                         <div className="flex justify-center">
 
                             <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem] items-center content-center">Kart Ekle</button>
+                        </div>
+                    </form>
+                )}
+                {updateCard && (
+                    <form onSubmit={(e) => handleUpdateSubmit(e)} className="z-10 absolute border rounded border-gray-400 p-8 right-[38.2rem] bg-white flex 
+                    flex-col w-[47.8rem] bottom-[6rem]">
+                        <CreditCardInput
+                            cardNumberInputProps={{ className: "cardNumber", defaultValue: cardWillupdate[0].card_no, onChange: e => setCardNumber(e.target.value) }}
+                            cardExpiryInputProps={{ value: expiry, onChange: e => setExpiry(e.target.value) }}
+                            cardCVCInputProps={{ value: cvc, onChange: e => setCVC(e.target.value) }}
+                        />
+                        <div className="form-group">
+                            <label htmlFor="nameOnCard"></label>
+                            <input
+                                type="text"
+                                id="nameOnCard"
+                                placeholder="Kart Sahibinin Adı"
+                                // value={nameOnCard}
+                                defaultValue={cardWillupdate[0].name_on_card}
+                                onChange={(e) => setNameOnCard(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
+                        <div className="flex justify-center">
+
+                            <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem] items-center content-center">Düzenle</button>
                         </div>
                     </form>
                 )}

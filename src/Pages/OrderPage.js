@@ -170,7 +170,6 @@ const OrderPage = () => {
     // })
 
     const handleUpdateAddressSubmit = (data) => {
-        // event.preventDefault();
         const token3 = localStorage.getItem("token");
         const adressDataUpdated = {
             address: data.addressDetails,
