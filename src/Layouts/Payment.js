@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faPen } from "@fortawesome/free-solid-svg-icons";
 import photo from "../photos/cardphotos/png-transparent-integrated-circuit-smart-card-card-chip-electronics-text-rectangle-thumbnail2.png"
 import "../Payment.css";
+import { fetchFromLocal } from "../store/actions/ShoppingCardAction";
+import { toast } from "react-toastify";
 
 export const Payment = () => {
     const dispatch = useDispatch();
@@ -132,19 +134,6 @@ export const Payment = () => {
 
     }, [cardWillupdate]);
 
-    // useEffect(() => {
-    //     window.location.reload();
-    // }, [cards]);
-
-    const handleTest = () => {
-        axios.get("http://localhost:8585/ecommerce/address")
-            .then((res) => {
-                console.log(res.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
@@ -160,6 +149,64 @@ export const Payment = () => {
         dispatch(updateUserCard(updatedCardData, token))
         dispatch(getUserCard(token))
         setUpdateCard(!updateCard)
+
+    }
+    const choosenAddress = useSelector((store) => store.choose.address);
+    console.log("CHOOSENNADDRESS/////", choosenAddress);
+    const product = JSON.parse(localStorage.getItem('cart'))
+    console.log("SEPETTEKİ ÜRÜNLER", product);
+    const [choosenCard, setChoosenCard] = useState();
+
+    const handleChoose = (card) => {
+        console.log("ADDDRESSSSS??????", card);
+        setChoosenCard(card);
+
+    }
+
+
+    useEffect(() => {
+        console.log("SEÇİLEN KART DATASI", choosenCard);
+
+    }, [choosenCard]);
+
+
+
+
+
+
+
+    const createOrder = () => {
+        const orderData = {
+            address_id: choosenAddress.id,
+            order_date: new Date().toISOString(),
+            card_no: choosenCard.card_no,
+            card_name: choosenCard.name_on_card,
+            card_expire_month: choosenCard.expire_month,
+            card_expire_year: choosenCard.expire_year,
+            price: priceWithCargo,
+            products: product.map((item) => ({
+                product_id: item.id,
+                count: 1,
+                detail: item.description
+            }))
+        }
+
+        console.log("ORDERDATAAA>>>>>", orderData);
+
+        axios
+            .post("https://workintech-fe-ecommerce.onrender.com/order", orderData, {
+                headers: {
+                    Authorization: `${token}`
+                }
+            })
+            .then((res) => {
+                console.log("SİPARİŞ OLUŞTURULDU!!!!!!")
+                toast.success("Sipariş Oluşturuldu.", {
+                    position: "bottom-center",
+                    autoClose: 3000,
+                })
+            })
+            .catch((err) => console.log("POST DATA", err));
 
     }
 
@@ -180,7 +227,7 @@ export const Payment = () => {
 
                                     <div className="flex flex-row gap-2 items-center">
 
-                                        <input type="radio" name="selectedcard" />
+                                        <input type="radio" name="selectedcard" onClick={() => handleChoose(card)} />
                                         <p><strong>{card.name_on_card}</strong></p>
                                     </div>
                                     <button className="flex flex-row gap-1 items-center border border-gray-300 p-2 bg-orange-500 text-white rounded" onClick={() => handleUpdate(card.id)}>
@@ -285,14 +332,14 @@ export const Payment = () => {
 
 
                             </div>
-                            <button className="bg-orange-500 text-base font-bold text-white p-4 rounded" onClick={basketHandler}>
+                            <button className="bg-orange-500 text-base font-bold text-white p-4 rounded" onClick={createOrder}>
                                 Sepeti Onayla <FontAwesomeIcon icon={faArrowRight} />
                             </button>
 
                         </div>
 
                         <div className="flex text-center items-center ">
-                            <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg " onClick={handleTest}>
+                            <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg " >
                                 <p className="font-montserrat text-orange-500 text-3xl ">+</p>
                                 <p className="font-montserrat text-sm font-semibold">
                                     İNDİRİM KODU GİR

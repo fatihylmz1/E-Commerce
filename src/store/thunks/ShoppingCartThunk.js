@@ -42,19 +42,3 @@ export const postAddress = (address) => {
             .catch((err) => console.log("POST DATA", err));
     };
 };
-// export const getPayment = () => {
-//   return (dispatch, getState) => {
-//     axiosInstance
-//       .get("/user/card")
-//       .then((res) => dispatch(getPaymentData(res.data)))
-//       .catch((err) => console.log("PAYMENT ERROR"));
-//   };
-// };
-// export const postPayment = (payment) => {
-//   return (dispatch, getState) => {
-//     axiosInstance
-//       .post("/user/card", payment)
-//       .then((res) => dispatch(postPaymentData(res.data["0"])))
-//       .catch((err) => console.log("POST PAYMENT ERROR"));
-//   };
-// };

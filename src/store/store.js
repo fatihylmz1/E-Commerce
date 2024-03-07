@@ -9,6 +9,7 @@ import StoreReducer from './reducers/StoreReducer';
 import { UserReducer } from './reducers/UserReducer';
 import addressReducer from './reducers/OrderReducer';
 import PaymentReducer from './reducers/PaymentReducer';
+import ChoosenReducer from './reducers/ChoosenReducer';
 
 
 
@@ -21,6 +22,7 @@ export const reducers = combineReducers({
     user: UserReducer,
     addressReducer: addressReducer,
     payment: PaymentReducer,
+    choose: ChoosenReducer,
 
 });
 

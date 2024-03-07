@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_USER_ADDRESS = "GET_USER_ADDRESS";
 export const ADD_USER_ADDRESS = "ADD_USER_ADDRESS";
 export const UPDATE_USER_ADDRESS = "UPDATE_USER_ADDRESS";
+export const CHOOSEN_ADDRESS = "CHOOSEN_ADDRESS"
 
 
 
@@ -49,3 +50,8 @@ export const updateUserAddress = (updatedData, token) => async (dispatch) => {
         console.error("Error updating address", error);
     }
 };
+
+export const choosenUserAddress = (data) => ({
+    type: "CHOOSEN_ADDRESS",
+    payload: data,
+});

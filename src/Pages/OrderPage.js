@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
     addUserAddress,
+    choosenAddress,
+    choosenUserAddress,
     getUserAddress,
     updateUserAddress,
 } from "../store/actions/OrderAction";
@@ -188,6 +190,15 @@ const OrderPage = () => {
         dispatch(getUserAddress(token));
 
     }
+
+    const handleChoose = (address) => {
+        console.log("ADDDRESSSSS??????", address);
+        dispatch(choosenUserAddress(address))
+
+    }
+
+    const choosenAddress = useSelector((store) => store.choose.address);
+    console.log("CHOOSENNADDRESS/////", choosenAddress);
 
 
 
@@ -432,7 +443,7 @@ const OrderPage = () => {
                             {Array.isArray(addressdata) && addressdata.map((address, index) => (
                                 <div key={index} className="w-[23rem] h-[15rem] border-2 font-montserrat font-normal tracking-[0.0125rem] text-sm text-gray-600 gap-2 flex flex-col p-3 rounded shadow-lg bg-gray-200">
                                     <div className="flex flex-row gap-2 py-2">
-                                        <input type="radio" name="selectedAddress" value={index} />
+                                        <input type="radio" name="selectedAddress" value={index} onClick={() => handleChoose(address)} />
                                         <div className="flex flex-row justify-between w-full items-center">
                                             <p className="text-gray-600 font-bold">{address.title}</p>
                                             <button className="flex flex-row gap-1 items-center border bg-header-blue text-white p-2 rounded" onClick={() => handleUpdate(address.id)}>
