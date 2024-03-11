@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 import { CategoryPage } from "./Pages/CategoryPage";
 import { ShoppingCartPage } from "./Pages/ShoppingCartPage";
 import OrderPage from "./Pages/OrderPage";
+import { OrderInformation } from "./Pages/OrderInformation";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/shopcart" element={<ShoppingCartPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/orderinformation" element={<OrderInformation />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />

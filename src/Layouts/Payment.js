@@ -9,6 +9,7 @@ import photo from "../photos/cardphotos/png-transparent-integrated-circuit-smart
 import "../Payment.css";
 import { fetchFromLocal } from "../store/actions/ShoppingCardAction";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const Payment = () => {
     const dispatch = useDispatch();
@@ -169,6 +170,8 @@ export const Payment = () => {
 
     }, [choosenCard]);
 
+    const navigate = useNavigate();
+
 
 
 
@@ -177,7 +180,7 @@ export const Payment = () => {
 
     const createOrder = () => {
         const orderData = {
-            address_id: choosenAddress.id,
+            address_id: choosenAddress,
             order_date: new Date().toISOString(),
             card_no: choosenCard.card_no,
             card_name: choosenCard.name_on_card,
@@ -205,6 +208,9 @@ export const Payment = () => {
                     position: "bottom-center",
                     autoClose: 3000,
                 })
+
+                navigate("/orderinformation")
+                localStorage.removeItem("cart");
             })
             .catch((err) => console.log("POST DATA", err));
 
