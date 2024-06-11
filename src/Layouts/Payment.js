@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import CreditCardInput from "react-credit-card-input";
+import Cards from 'react-credit-cards-2';
+import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { getUserCard, updateCard, updateUserCard } from "../store/actions/PaymentActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faPen } from "@fortawesome/free-solid-svg-icons";
-import photo from "../photos/cardphotos/png-transparent-integrated-circuit-smart-card-card-chip-electronics-text-rectangle-thumbnail2.png"
+import photo from "../photos/cardphotos/png-transparent-integrated-circuit-smart-card-card-chip-electronics-text-rectangle-thumbnail2.png";
 import "../Payment.css";
-import { fetchFromLocal } from "../store/actions/ShoppingCardAction";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,6 @@ export const Payment = () => {
     const [priceWithCargo, setPriceWithCargo] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
     const cart = useSelector((store) => store.shoppingcard.cart);
-    console.log("KARTLAR>>>>>>", cart);
     const [updateCard, setUpdateCard] = useState(false);
     const [cardWillupdate, setCardWillUpdate] = useState([]);
 
@@ -41,11 +40,10 @@ export const Payment = () => {
 
         setTotalProduct(productCount);
         setTotalPrice(price.toFixed(2));
-
     };
+
     useEffect(() => {
         calculateTotal();
-
     }, [cart, productCounts]);
 
     useEffect(() => {
@@ -56,20 +54,17 @@ export const Payment = () => {
             const cargoCost = 29.99;
             setCargo(cargoCost);
             let cargoprice = parseFloat(totalPrice) + cargoCost;
-            setPriceWithCargo(cargoprice.toFixed(3));
+            setPriceWithCargo(cargoprice.toFixed(2));
         }
-
     }, [totalPrice]);
 
     const basketHandler = () => {
-        console.log("Sipariş verildi")
-    }
-
+        console.log("Sipariş verildi");
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("EXPIRY", expiry);
-        const expiryParts = expiry.split(" / ");
+        const expiryParts = expiry.split("/");
         const expireMonth = parseInt(expiryParts[0], 10);
         const expireYear = parseInt(expiryParts[1], 10);
         const paymentData = {
@@ -78,105 +73,61 @@ export const Payment = () => {
             expire_year: expireYear,
             name_on_card: nameOnCard,
         };
-        console.log("PAYMENT DATA", paymentData);
 
         axios.post(`https://workintech-fe-ecommerce.onrender.com/user/card`, paymentData, {
             headers: {
                 Authorization: `${token}`
             }
-        }
-        );
+        });
+
         setCardNumber("");
         setExpiry("");
         setCVC("");
         setNameOnCard("");
         dispatch(getUserCard(token));
         setAddCard(false);
-
     };
 
     const handleAddCard = () => {
         setAddCard(!addCard);
-    }
+    };
 
-
-    // const [cards, setCards] = useState([]);
     useEffect(() => {
-        // axios.get(`https://workintech-fe-ecommerce.onrender.com/user/card`, {
-        //     headers: {
-        //         Authorization: `${token}`
-        //     }
-        // }
-        // ).then((response) => {
-        //     setCards(response.data);
-        // }).catch((err) => {
-        //     console.log(err);
-        // })
         dispatch(getUserCard(token));
+    }, [dispatch, token]);
 
-
-    }, [])
-
-    const cards = useSelector((store) => store.payment)
-    console.log("CARDSSS", cards);
+    const cards = useSelector((store) => store.payment);
 
     const handleUpdate = (id) => {
-        setUpdateCard(!updateCard)
+        setUpdateCard(!updateCard);
         const selectedCard = cards.find(card => card.id === id);
-
-        console.log("GÜNCELLEME>>>>>>", selectedCard);
-
         setCardWillUpdate([selectedCard]);
-
-        return selectedCard;
-    }
-    useEffect(() => {
-        console.log("GÜNCELLENECEK KART DATASI", cardWillupdate);
-
-    }, [cardWillupdate]);
-
+    };
 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
-        // console.log("GÜNCEL KART DATASI>>>>", data)
         const updatedCardData = {
             id: cardWillupdate[0].id,
-            card_no: cardNumber ? cardNumber : cardWillupdate.card_no,
-            expire_month: expiry.split(" / ")[0],
-            expire_year: expiry.split(" / ")[1],
+            card_no: cardNumber ? cardNumber : cardWillupdate[0].card_no,
+            expire_month: expiry.split("/")[0],
+            expire_year: expiry.split("/")[1],
             name_on_card: nameOnCard,
         };
-        console.log("UPDATEDCARDDATAAA>>>>>>", updatedCardData)
-        dispatch(updateUserCard(updatedCardData, token))
-        dispatch(getUserCard(token))
-        setUpdateCard(!updateCard)
 
-    }
+        dispatch(updateUserCard(updatedCardData, token));
+        dispatch(getUserCard(token));
+        setUpdateCard(!updateCard);
+    };
+
     const choosenAddress = useSelector((store) => store.choose.address);
-    console.log("CHOOSENNADDRESS/////", choosenAddress);
-    const product = JSON.parse(localStorage.getItem('cart'))
-    console.log("SEPETTEKİ ÜRÜNLER", product);
+    const product = JSON.parse(localStorage.getItem('cart'));
     const [choosenCard, setChoosenCard] = useState();
 
     const handleChoose = (card) => {
-        console.log("ADDDRESSSSS??????", card);
         setChoosenCard(card);
-
-    }
-
-
-    useEffect(() => {
-        console.log("SEÇİLEN KART DATASI", choosenCard);
-
-    }, [choosenCard]);
+    };
 
     const navigate = useNavigate();
-
-
-
-
-
-
 
     const createOrder = () => {
         const orderData = {
@@ -192,9 +143,7 @@ export const Payment = () => {
                 count: 1,
                 detail: item.description
             }))
-        }
-
-        console.log("ORDERDATAAA>>>>>", orderData);
+        };
 
         axios
             .post("https://workintech-fe-ecommerce.onrender.com/order", orderData, {
@@ -203,21 +152,16 @@ export const Payment = () => {
                 }
             })
             .then((res) => {
-                console.log("SİPARİŞ OLUŞTURULDU!!!!!!")
                 toast.success("Sipariş Oluşturuldu.", {
                     position: "bottom-center",
                     autoClose: 3000,
-                })
+                });
 
-                navigate("/orderinformation")
+                navigate("/orderinformation");
                 localStorage.removeItem("cart");
             })
             .catch((err) => console.log("POST DATA", err));
-
-    }
-
-
-
+    };
 
     return (
         <div>
@@ -230,9 +174,7 @@ export const Payment = () => {
                         {cards.map(card => (
                             <div key={card.id} className="w-[23rem] h-[12rem] border-2 rounded-md border-gray-500 p-3 font-montserrat font-normal tracking-[0.0125rem] text-sm text-black flex flex-col justify-between bg-slate-200 shadow-xl ">
                                 <div className="flex flex-row justify-between">
-
                                     <div className="flex flex-row gap-2 items-center">
-
                                         <input type="radio" name="selectedcard" onClick={() => handleChoose(card)} />
                                         <p><strong>{card.name_on_card}</strong></p>
                                     </div>
@@ -241,14 +183,11 @@ export const Payment = () => {
                                         <FontAwesomeIcon icon={faPen} />
                                     </button>
                                 </div>
-
                                 <div className="flex flex-row justify-between">
                                     <img src={photo} className="w-[4rem] h-[2.5rem] object-cover rounded" />
                                     <div className="flex flex-col gap-2 items-end justify-end">
-
                                         <p>{card.card_no}</p>
                                         <p>{card.expire_month} / {card.expire_year} </p>
-
                                     </div>
                                 </div>
                             </div>
@@ -257,64 +196,119 @@ export const Payment = () => {
                 </div>
 
                 {addCard && (
-                    <form onSubmit={handleSubmit} className="z-10 absolute border rounded border-gray-400 p-8 right-[38.2rem] bg-white flex 
-                    flex-col w-[47.8rem] bottom-[6rem]">
-                        <CreditCardInput
-                            cardNumberInputProps={{ className: "cardNumber", value: cardNumber, onChange: e => setCardNumber(e.target.value) }}
-                            cardExpiryInputProps={{ value: expiry, onChange: e => setExpiry(e.target.value) }}
-                            cardCVCInputProps={{ value: cvc, onChange: e => setCVC(e.target.value) }}
+                    <form onSubmit={handleSubmit} className="z-10 absolute border rounded border-gray-400 p-8 right-[38.2rem] bg-white flex flex-col w-[47.8rem] bottom-[6rem]">
+                        <Cards
+                            number={cardNumber}
+                            name={nameOnCard}
+                            expiry={expiry}
+                            cvc={cvc}
                         />
-                        <div className="form-group">
-                            <label htmlFor="nameOnCard"></label>
+                        <div className="form-group mt-4">
+                            <label htmlFor="cardNumber">Card Number</label>
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                value={cardNumber}
+                                onChange={(e) => setCardNumber(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
+                        <div className="form-group mt-4">
+                            <label htmlFor="nameOnCard">Name on Card</label>
                             <input
                                 type="text"
                                 id="nameOnCard"
-                                placeholder="Kart Sahibinin Adı"
                                 value={nameOnCard}
                                 onChange={(e) => setNameOnCard(e.target.value)}
                                 className="border border-gray-400 rounded p-2"
                             />
                         </div>
+                        <div className="form-group mt-4">
+                            <label htmlFor="expiry">Expiry</label>
+                            <input
+                                type="text"
+                                id="expiry"
+                                value={expiry}
+                                onChange={(e) => setExpiry(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
+                        <div className="form-group mt-4">
+                            <label htmlFor="cvc">CVC</label>
+                            <input
+                                type="text"
+                                id="cvc"
+                                value={cvc}
+                                onChange={(e) => setCVC(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
                         <div className="flex justify-center">
-
-                            <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem] items-center content-center">Kart Ekle</button>
+                            <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem]">Kart Ekle</button>
                         </div>
                     </form>
                 )}
+
                 {updateCard && (
-                    <form onSubmit={(e) => handleUpdateSubmit(e)} className="z-10 absolute border rounded border-gray-400 p-8 right-[38.2rem] bg-white flex 
-                    flex-col w-[47.8rem] bottom-[6rem]">
-                        <CreditCardInput
-                            cardNumberInputProps={{ className: "cardNumber", defaultValue: cardWillupdate[0].card_no, onChange: e => setCardNumber(e.target.value) }}
-                            cardExpiryInputProps={{ value: expiry, onChange: e => setExpiry(e.target.value) }}
-                            cardCVCInputProps={{ value: cvc, onChange: e => setCVC(e.target.value) }}
+                    <form onSubmit={(e) => handleUpdateSubmit(e)} className="z-10 absolute border rounded border-gray-400 p-8 right-[38.2rem] bg-white flex flex-col w-[47.8rem] bottom-[6rem]">
+                        <Cards
+                            number={cardNumber || cardWillupdate[0].card_no}
+                            name={nameOnCard || cardWillupdate[0].name_on_card}
+                            expiry={expiry || `${cardWillupdate[0].expire_month}/${cardWillupdate[0].expire_year}`}
+                            cvc={cvc}
                         />
-                        <div className="form-group">
-                            <label htmlFor="nameOnCard"></label>
+                        <div className="form-group mt-4">
+                            <label htmlFor="cardNumber">Card Number</label>
+                            <input
+                                type="text"
+                                id="cardNumber"
+                                defaultValue={cardWillupdate[0].card_no}
+                                onChange={(e) => setCardNumber(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
+                        <div className="form-group mt-4">
+                            <label htmlFor="nameOnCard">Name on Card</label>
                             <input
                                 type="text"
                                 id="nameOnCard"
-                                placeholder="Kart Sahibinin Adı"
-                                // value={nameOnCard}
                                 defaultValue={cardWillupdate[0].name_on_card}
                                 onChange={(e) => setNameOnCard(e.target.value)}
                                 className="border border-gray-400 rounded p-2"
                             />
                         </div>
+                        <div className="form-group mt-4">
+                            <label htmlFor="expiry">Expiry</label>
+                            <input
+                                type="text"
+                                id="expiry"
+                                defaultValue={`${cardWillupdate[0].expire_month}/${cardWillupdate[0].expire_year}`}
+                                onChange={(e) => setExpiry(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
+                        <div className="form-group mt-4">
+                            <label htmlFor="cvc">CVC</label>
+                            <input
+                                type="text"
+                                id="cvc"
+                                value={cvc}
+                                onChange={(e) => setCVC(e.target.value)}
+                                className="border border-gray-400 rounded p-2"
+                            />
+                        </div>
                         <div className="flex justify-center">
-
-                            <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem] items-center content-center">Düzenle</button>
+                            <button type="submit" className="mt-3 border rounded bg-orange-400 text-white font-normal w-[8rem] h-[3rem]">Düzenle</button>
                         </div>
                     </form>
                 )}
+
                 <div>
                     <div className="flex justify-start items-center flex-col gap-4">
-
                         <div className="flex flex-col gap-6 h-auto">
                             <div className="flex flex-row gap-3 p-7 border border-gray-400 rounded">
                                 <input type="checkbox" />
                                 <p><strong>Ön Bilgilendirme Koşulları'nı</strong> ve <br /> <strong>Mesafeli Satış Sözleşmesi'ni</strong><br /> okudum, onaylıyorum.</p>
-
                             </div>
                             <div className="flex flex-col gap-3 border rounded border-gray-400 px-3 py-6 shadow-md">
                                 <p className="text-lg"><strong>Sipariş Özeti</strong></p>
@@ -335,18 +329,14 @@ export const Payment = () => {
                                     <p>TOPLAM</p>
                                     <p className="font-bold">{priceWithCargo} $</p>
                                 </div>
-
-
                             </div>
                             <button className="bg-orange-500 text-base font-bold text-white p-4 rounded" onClick={createOrder}>
                                 Sepeti Onayla <FontAwesomeIcon icon={faArrowRight} />
                             </button>
-
                         </div>
-
                         <div className="flex text-center items-center ">
-                            <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg " >
-                                <p className="font-montserrat text-orange-500 text-3xl ">+</p>
+                            <button className="flex bg-custom-white items-center gap-4 border-2 rounded-md px-20 py-4 font-montserrat tracking-[0.0125rem] font-semibold text-lg">
+                                <p className="font-montserrat text-orange-500 text-3xl">+</p>
                                 <p className="font-montserrat text-sm font-semibold">
                                     İNDİRİM KODU GİR
                                 </p>
@@ -354,11 +344,7 @@ export const Payment = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     );
 };
-
-
